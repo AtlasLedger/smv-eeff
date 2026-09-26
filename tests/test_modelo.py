@@ -189,3 +189,16 @@ def test_flujo_trimestral_va_a_acumulado():
     h = _hechos(df).set_index("estado")
     assert pd.isna(h.loc["FE", "monto"]) and h.loc["FE", "monto_acumulado"] == -57966.0
     assert h.loc["ER", "monto"] == 170200.0 and h.loc["ER", "monto_acumulado"] == 349210.0
+
+
+def test_reglas_superpuestas_fallan(tmp_path):
+    ruta = tmp_path / "mapeo.csv"
+    ruta.write_text(
+        "concepto,plan,tipo,desde,hasta,cuentas,confianza,nota\n"
+        "utilidad_neta,D,,,,2D07ST,directo,\n"
+        "utilidad_neta,D,,2000,2030,2D0503,propuesto,\n", "utf-8")
+    hechos = pd.DataFrame([
+        {"rpj": "A", "ejercicio": 2024, "periodo": "A", "tipo": "I", "cuenta": c, "monto": 10.0,
+         "monto_comparativo": 0.0, "monto_acumulado": float("nan")} for c in ["2D07ST", "2D0503"]])
+    with pytest.raises(ValueError, match="más de una regla"):
+        conceptos(hechos, leer_mapeo(ruta))
