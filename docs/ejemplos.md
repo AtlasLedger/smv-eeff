@@ -5,8 +5,9 @@ Montos en miles de la moneda de reporte. Todos los ejemplos se probaron sobre la
 ## Excel o Power BI
 
 Abrir `data/csv/resumen_anual.csv`: una fila por empresa, año y tipo de estado, con los
-conceptos principales y los ratios en columnas. La columna `conceptos_no_validados` indica
-qué valores de la fila dependen de una decisión de criterio aún no validada.
+conceptos principales y los ratios en columnas. La columna `conceptos_con_criterio` indica
+qué valores de la fila dependen de una decisión de criterio contable (documentadas en
+`mapeo/DECISIONES.md`).
 
 ## Python (pandas)
 
@@ -57,8 +58,8 @@ ORDER BY ejercicio;
 
 - Para comparar empresas de distinto sector usa `estandar.parquet` o `ratios.parquet`, no
   los códigos de cuenta: cada plan de cuentas usa códigos distintos.
-- Filtra por `confianza` si solo quieres cifras sin decisiones de criterio pendientes
-  (`directo` o `validado`).
+- Filtra por `confianza = 'directo'` si solo quieres cifras que no dependen de ninguna
+  decisión de criterio (`validado` = depende de una decisión documentada).
 - Revisa la moneda (`presentaciones.moneda`) antes de sumar empresas: unas 30 reportan en
   dólares.
 - En trimestres, `monto` es el trimestre aislado y `monto_acumulado` el acumulado del año

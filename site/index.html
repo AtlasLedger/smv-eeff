@@ -68,8 +68,8 @@
   </div>
   <div class="tabla"><table id="t"><thead></thead><tbody></tbody></table></div>
   <p class="nota" id="nota">Montos en miles de la moneda de reporte. Los valores con
-  <span class="aviso">criterio</span> dependen de una decisión de mapeo aún no validada
-  (ver la carpeta <code>mapeo/</code> del repositorio).</p>
+  <span class="aviso">criterio</span> dependen de una decisión de criterio contable documentada
+  (ver <code>mapeo/DECISIONES.md</code> en el repositorio).</p>
 
   <h2>Descargas</h2>
   <ul class="descargas">
@@ -138,7 +138,7 @@ function pintar() {
       const v = d[k] ?? "";
       return `<td>${t === "n" ? fmtN(v) : t === "p" ? fmtP(v) : t === "x" ? fmtX(v) : v}</td>`;
     }).join("");
-    const aviso = d.conceptos_no_validados ? ` <span class="aviso" title="${d.conceptos_no_validados}">criterio</span>` : "";
+    const aviso = d.conceptos_con_criterio ? ` <span class="aviso" title="${d.conceptos_con_criterio}">criterio</span>` : "";
     return `<tr><td>${d.nombre}${aviso}</td>${celdas}</tr>`;
   }).join("");
 }

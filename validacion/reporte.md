@@ -26,7 +26,7 @@ Fuente: https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_repor
 | 2024-A-C | pasivo_corriente | valor | 5,216,350 | 5,216,350 | 0 | ok | directo |
 | 2024-A-C | pasivo_total | valor | 9,979,152 | 9,979,152 | 0 | ok | directo |
 | 2024-A-C | patrimonio_total | valor | 2,252,388 | 2,252,388 | 0 | ok | directo |
-| 2024-A-C | deuda_financiera | valor | 5,137,268 | 5,137,268 | 0 | ok | propuesto |
+| 2024-A-C | deuda_financiera | valor | 5,137,268 | 5,137,268 | 0 | ok | validado |
 | 2024-A-C | activo_total | valor_comparativo | 12,917,367 | 12,917,367 | 0 | ok | directo |
 | 2024-4-C | ingresos | valor | 3,052,270 | 3,052,270 | 0 | ok | directo |
 | 2024-4-C | ingresos | valor_acumulado | 10,598,328 | 10,598,328 | 0 | ok | directo |
@@ -43,7 +43,7 @@ Fuente: https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-000
 | 2024-A-I | activo_total | valor_comparativo | 179,230,213 | 179,230,213 | 0 | ok | directo |
 | 2024-A-I | pasivo_total | valor | 170,689,252 | 170,689,252 | 0 | ok | directo |
 | 2024-A-I | patrimonio_total | valor | 24,967,058 | 24,967,058 | 0 | ok | directo |
-| 2024-A-I | efectivo | valor | 43,923,142 | 43,923,142 | 0 | ok | propuesto |
+| 2024-A-I | efectivo | valor | 43,923,142 | 43,923,142 | 0 | ok | validado |
 | 2024-A-I | ingresos_intereses | valor | 14,450,779 | 14,450,779 | 0 | ok | directo |
 | 2024-A-I | utilidad_antes_impuestos | valor | 6,945,406 | 6,945,406 | 0 | ok | directo |
 | 2024-A-I | impuesto_renta | valor | -1,728,714 | -1,728,714 | 0 | ok | directo |
@@ -151,7 +151,7 @@ Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F
 | 2024-A-C | impuesto_renta | valor | -2,201,275 | -2,201,275 | 0 | ok | directo |
 | 2024-A-C | ingresos_intereses | valor | 19,869,256 | 19,869,256 | 0 | ok | directo |
 | 2024-A-C | gastos_intereses | valor | -5,754,125 | -5,754,125 | 0 | ok | directo |
-| 2024-A-C | efectivo | valor | 47,570,103 | 47,655,196 | 85,093 | diferencia explicada | propuesto |
+| 2024-A-C | efectivo | valor | 47,570,103 | 47,655,196 | 85,093 | diferencia explicada | validado |
 | 2022-A-C | activo_total | valor | 236,753,609 | 236,753,609 | 0 | ok | directo |
 | 2022-A-C | pasivo_total | valor | 207,173,900 | 207,173,900 | 0 | ok | directo |
 | 2022-A-C | patrimonio_total | valor | 29,579,709 | 29,579,709 | 0 | ok | directo |

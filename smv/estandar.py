@@ -145,9 +145,11 @@ def control_cruzado(est: pd.DataFrame, presentaciones: pd.DataFrame) -> tuple[pd
             continue
         e = est[est["concepto"] == concepto]
         if concepto == "ingresos":
-            # Solo donde la definición es la misma que usa la SMV; en los 'propuesto' la
-            # diferencia es intencional (ver mapeo/DECISIONES.md).
-            e = e[e["confianza"] == "directo"]
+            # Solo donde la definición es la misma que usa el índice de la SMV. En los demás
+            # planes la diferencia es una decisión de criterio (ver mapeo/DECISIONES.md).
+            anio = e["ejercicio"].astype(int)
+            e = e[((e["cuentas"] == "2D01ST") & (anio >= 2010))
+                  | e["cuentas"].isin(["2A01ST", "2V0101+2V01ST"])]
         e = e[CLAVES + ["valor"]]
         m = e.merge(p[CLAVES + [col_smv]], on=CLAVES).dropna(subset=[col_smv, "valor"])
         if concepto == "ingresos":

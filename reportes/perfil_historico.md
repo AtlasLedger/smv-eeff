@@ -214,7 +214,7 @@ _Ninguna._
   "empresas_con_balance": 682,
   "empresas_solo_con_ori": 2284,
   "planes_sin_mapeo": [],
-  "mapeo_cuentas_con_descripcion_cambiante": 71,
+  "mapeo_cuentas_con_descripcion_cambiante": 75,
   "balances_que_no_cuadran": 3,
   "identidad_resultado_antes_extraordinarias_tasa": 0.9992,
   "identidad_resultado_antes_extraordinarias_anios_bajo_95pct": [],

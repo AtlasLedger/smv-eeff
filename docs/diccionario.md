@@ -85,7 +85,7 @@ Las definiciones están en `mapeo/conceptos.csv` y las reglas en `mapeo/mapeo_cu
 | `concepto` | Concepto estándar. |
 | `valor`, `valor_comparativo`, `valor_acumulado` | Igual que en `hechos`. |
 | `cuentas` | Cuentas de la SMV que se sumaron. |
-| `confianza` | `directo`: equivalencia sin discusión. `validado`: decisión de criterio revisada. `propuesto`: decisión de criterio aún no validada; usar con cuidado. |
+| `confianza` | `directo`: equivalencia sin discusión (y, donde existe, coincide con el índice de la SMV). `validado`: depende de una decisión de criterio contable documentada en `mapeo/DECISIONES.md`. |
 
 ## ratios.parquet
 

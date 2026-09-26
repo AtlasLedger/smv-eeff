@@ -15,7 +15,7 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
   distinta para los estados consolidados. El proyecto los lleva a un conjunto común de
   conceptos (activo total, ingresos, utilidad neta, etc.) y calcula ratios estándar.
 - **Trazabilidad.** Cada concepto indica qué cuentas de la SMV lo componen y con qué
-  nivel de confianza (`directo`, `validado` o `propuesto`). Las decisiones de criterio
+  nivel de confianza (`directo` o `validado`). Las decisiones de criterio
   contable están en un CSV que cualquiera puede revisar.
 
 ## Qué contiene
@@ -35,9 +35,9 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
 |---|---|
 | Extracción con caché | listo |
 | Limpieza y modelo dimensional | listo |
-| Mapeo entre planes de cuentas | propuesta lista; decisiones de criterio en revisión |
+| Mapeo entre planes de cuentas | listo; decisiones de criterio documentadas |
 | Validación contra estados publicados | 5 empresas, 177 cifras (2017 a 2024) |
-| Publicación y actualización trimestral | pendiente |
+| Publicación y actualización mensual | preparada, falta publicar |
 
 ## Qué tan confiable es
 
@@ -59,8 +59,9 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
   presentación y un error de signo en el XBRL que Buenaventura presentó a la SEC).
   Para Credicorp y Buenaventura la fuente es la información XBRL que presentan a la SEC. Detalle en
   [validacion/reporte.md](validacion/reporte.md).
-- Los conceptos marcados como `propuesto` dependen de una decisión de criterio que aún no
-  se validó. Úsalos sabiendo eso.
+- Los conceptos marcados como `validado` dependen de una decisión de criterio contable
+  (por ejemplo, qué cuenta como ingreso de un banco). Cada decisión, la evidencia que la
+  respalda y su impacto están en [mapeo/DECISIONES.md](mapeo/DECISIONES.md).
 
 ## Uso
 

@@ -7,8 +7,8 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 
 - Paso 1 (extractor): histórico COMPLETO 2000-2026 (1,350 combinaciones, 0 fallidas, 9.1
   millones de filas) + patrimonio anual 2000-2025 (54 combinaciones, 0 fallidas).
-- Paso 2 (mapeo): propuesta lista para todas las plantillas con vigencia por años.
-  Decisiones de criterio pendientes: `mapeo/DECISIONES.md` (8 puntos).
+- Paso 2 (mapeo): listo para todas las plantillas con vigencia por años. Las 8 decisiones
+  de criterio están tomadas (el propietario del proyecto delegó el criterio el 2026-09-26): `mapeo/DECISIONES.md`.
 - Paso 3 (modelo): base completa construida (`data/`, 163 MB; ningún archivo sobre 50 MB).
 - Paso 4 (validación): 173 OK + 4 explicadas (5 empresas, 2017-2024). Índice SMV: 187,724
   comparaciones, 5 diferencias (anomalías de la fuente). Balances: 3 de ~48,000 no cuadran.
@@ -22,36 +22,24 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
    cambios de plantilla en bancos, seguros y AFP: fijar el año del paso a NIIF).
 4. `python scripts/exportar.py` y actualizar números en README.
 
-## Decisiones que necesitan a el propietario del proyecto
+## Decisiones de criterio (tomadas el 2026-09-26)
 
-**Documento para decidir, con opciones, recomendación e impacto medido: `mapeo/DECISIONES.md`.**
-Todas están en `mapeo/mapeo_cuentas.csv` con `confianza = propuesto` o `pendiente`.
-Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado como
-`propuesto` en `data/estandar.parquet` y `data/ratios.parquet`.
+el propietario del proyecto delegó el criterio. Se revisó cada decisión contra los datos antes de tomarla; el
+registro completo, con la evidencia, está en `mapeo/DECISIONES.md`. Cuatro cambiaron
+respecto a la propuesta inicial porque los datos la contradijeron:
 
-1. **Ingresos de bancos.** La SMV usa solo ingresos por intereses (2F0101). Propuesta:
-   intereses + ingresos por servicios financieros (2F0101 + 2F2402).
-2. **Ingresos de seguros.** La SMV usa primas netas antes de cesiones (2E0201). Propuesta:
-   primas ganadas netas (2E0602).
-3. **Ingresos de SAB.** La SMV usa Total Ingresos Operacionales (2I2031), que incluye el
-   valor bruto de inversiones vendidas (Credicorp Capital SAB 2024: 1,577 millones de
-   venta de inversiones contra 46 millones de comisiones). Propuesta: comisiones +
-   intereses + otros + ganancia NETA por venta de inversiones.
-4. **Efectivo de bancos.** DISPONIBLE incluye el encaje en el BCRP. ¿Se deja o se excluye?
-5. **Deuda financiera.** En el plan general "Otros Pasivos Financieros" mezcla deuda,
-   arrendamientos NIIF 16 y derivados. No se puede separar con esta data. ¿Se acepta con
-   la advertencia?
-7. **Plantillas previas a NIIF (años antiguos).** La SMV reutiliza los mismos códigos con
-   otro significado. En 2005: `2D01ST` era "Total de Ingresos Brutos" (incluye otros
-   ingresos operacionales), `2D04ST` era "antes de gastos extraordinarios,
-   participaciones e impuesto" y la participación de trabajadores iba aparte (`2D0501`).
-   Bancos, seguros y AFP hasta ~2012 reportan "antes de participaciones e impuesto".
-   Hoy el mapeo aplica el significado moderno a todos los años; para esos conceptos en
-   años antiguos hay que decidir si (a) se acepta con advertencia, (b) se reconstruye
-   (ej. restar la participación) o (c) se deja vacío. El mapeo ya admite `desde`/`hasta`.
-   Lista para revisar: `data/mapeo_revisar_descripciones.csv`.
-6. **Utilidad operativa** de AFP (¿incluye el encaje legal?), bancos (2F2801) y seguros
-   (no hay línea equivalente).
+- Ingresos de seguros: primas emitidas netas y no primas ganadas (estas incluyen el ajuste
+  de reservas y en seguros de vida vuelven negativo el ingreso).
+- Deuda financiera: la regla inicial solo tomaba líneas NIIF; antes de 2006 omitía la deuda
+  de corto plazo.
+- Utilidad operativa de seguros: sí hay línea equivalente (antes se proponía dejarla vacía).
+- Ingresos del plan general antes de 2010: tal como fueron reportados; al reexpresar 2009
+  en NIIF las empresas mantuvieron esa cifra (87 % contra 76 % de ventas netas).
+
+Prueba usada para las eras: el primer estado con plantilla nueva reexpresa el año anterior;
+esa cifra dice qué definición antigua es la correcta. La reconstrucción de la utilidad antes
+de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, probando 2010 ->
+2011, que es cuando la SBS cambió; probar 2012 -> 2013 daba un resultado engañoso).
 
 ## Hallazgos (para el README y la documentación)
 
@@ -151,6 +139,9 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - README, diccionario, licencias (MIT código + ODbL datos), exportación CSV, workflows.
 
 ## Antes de publicar (necesita a el propietario del proyecto)
+
+0. (Opcional) Leer `mapeo/DECISIONES.md` y cambiar cualquier decisión con la que no esté de
+   acuerdo: se edita `mapeo/mapeo_cuentas.csv` y se reconstruye.
 
 1. Crear el repo público en GitHub y hacer push. Quitar `data/` de `.gitignore` cuando
    el histórico esté completo (hoy está excluido para no llenar el historial de git).

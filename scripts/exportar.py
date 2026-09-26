@@ -40,11 +40,11 @@ def resumen(est: pd.DataFrame, rat: pd.DataFrame, emp: pd.DataFrame, pres: pd.Da
     valores = valores[[c for c in CONCEPTOS_RESUMEN if c in valores]]
     ratios = rat.pivot_table(index=CLAVES, columns="ratio", values="valor", aggfunc="first")
     ratios.columns = [f"ratio_{c}" for c in ratios.columns]
-    # Qué conceptos de la fila dependen de un criterio aún no validado (ver mapeo/).
+    # Qué conceptos de la fila dependen de una decisión de criterio (mapeo/DECISIONES.md).
     # Los ratios heredan esa condición de sus insumos, así que basta con los conceptos.
-    propuestos = (est[est["confianza"] == "propuesto"]
+    propuestos = (est[est["confianza"] != "directo"]
                     .groupby(CLAVES)["concepto"].agg(lambda s: ",".join(sorted(s)))
-                    .rename("conceptos_no_validados"))
+                    .rename("conceptos_con_criterio"))
     moneda = (pres[pres["estado"] == "BG"].drop_duplicates(CLAVES)
                 .set_index(CLAVES)[["moneda", "plan"]])
     out = valores.join(ratios, how="outer").join(moneda).join(propuestos).reset_index()
@@ -52,7 +52,7 @@ def resumen(est: pd.DataFrame, rat: pd.DataFrame, emp: pd.DataFrame, pres: pd.Da
     # El resumen es para análisis: solo filas con balance o resultados.
     out = out[out[[c for c in ["activo_total", "utilidad_neta", "ingresos"] if c in out]].notna().any(axis=1)]
     primeras = ["rpj", "nombre", "ruc", "tipo_empresa", "sector", "ciiu", "ejercicio", "periodo",
-                "tipo", "plan", "moneda", "conceptos_no_validados"]
+                "tipo", "plan", "moneda", "conceptos_con_criterio"]
     return out[primeras + [c for c in out.columns if c not in primeras]].sort_values(
         ["nombre", "ejercicio", "periodo", "tipo"])
 

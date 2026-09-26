@@ -107,14 +107,14 @@ def test_mapeo_y_ratios():
     mapeo = leer_mapeo(Path(__file__).resolve().parents[1] / "mapeo" / "mapeo_cuentas.csv")
     est = conceptos(hechos, mapeo)
     v = est.set_index(["rpj", "concepto"])
-    # Banco: ingresos = intereses + servicios (propuesto, no validado)
+    # Banco: ingresos = intereses + servicios (decisión de criterio validada)
     assert v.loc[("B", "ingresos"), "valor"] == 100
-    assert v.loc[("B", "ingresos"), "confianza"] == "propuesto"
+    assert v.loc[("B", "ingresos"), "confianza"] == "validado"
     r = ratios(est).set_index(["rpj", "ratio"])
     assert r.loc[("A", "roe"), "valor"] == pytest.approx(18 / 90)  # sobre patrimonio promedio
     assert r.loc[("A", "margen_neto"), "confianza"] == "directo"
-    # El margen del banco depende de 'ingresos' propuesto -> hereda la confianza más baja
-    assert r.loc[("B", "margen_neto"), "confianza"] == "propuesto"
+    # El margen del banco depende de 'ingresos' validado -> hereda la confianza más baja
+    assert r.loc[("B", "margen_neto"), "confianza"] == "validado"
 
 
 def test_control_cruzado_compara_de_verdad():
@@ -303,3 +303,12 @@ def test_cambios_en_comparativos():
     ])
     c = cambios_en_comparativos(est)
     assert list(c["rpj"]) == ["A"] and c["diferencia"].iloc[0] == -5.0
+
+
+def test_ratio_hereda_la_confianza_mas_baja():
+    base = {"rpj": "X", "ejercicio": 2024, "periodo": "A", "tipo": "I",
+            "valor_comparativo": float("nan"), "valor_acumulado": float("nan"), "cuentas": ""}
+    est = pd.DataFrame([{**base, "concepto": "utilidad_neta", "valor": 10.0, "confianza": "directo"},
+                        {**base, "concepto": "ingresos", "valor": 100.0, "confianza": "propuesto"}])
+    r = ratios(est).set_index("ratio")
+    assert r.loc["margen_neto", "confianza"] == "propuesto"
