@@ -2,6 +2,13 @@ cff-version: 1.2.0
 message: "Si usas esta base, cítala así. Los datos originales son de la SMV (ODbL 1.0)."
 title: "smv-eeff: estados financieros normalizados de empresas supervisadas por la SMV (Perú)"
 type: dataset
+doi: "10.5281/zenodo.22981480"
+version: "1.0.0"
+date-released: "2026-09-26"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22981481"
+    description: "DOI de la versión 1.0.0"
 authors:
   - name: "AtlasLedger"
 license: ODbL-1.0

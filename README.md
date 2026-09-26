@@ -1,5 +1,7 @@
 # smv-eeff
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22981480.svg)](https://doi.org/10.5281/zenodo.22981480)
+
 Base de datos abierta, limpia y comparable de los estados financieros que las empresas
 supervisadas por la SMV (Superintendencia del Mercado de Valores del Perú) presentan cada
 trimestre.
@@ -133,6 +135,14 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
   `obtener_EFData`, que siempre devuelve 0 registros.
 - Algunas partidas se clasifican distinto en el formato SBS que en el estado auditado NIIF
   (por ejemplo, la prima al fondo de seguro de depósitos o el efectivo restringido).
+
+## Cómo citar
+
+AtlasLedger (2026). *smv-eeff: estados financieros normalizados de empresas supervisadas
+por la SMV (Perú), 2000-2026*. Zenodo. https://doi.org/10.5281/zenodo.22981480
+
+Ese DOI siempre apunta a la versión más reciente. Para citar una versión exacta, la v1.0.0
+es https://doi.org/10.5281/zenodo.22981481.
 
 ## Fuente y licencia
 

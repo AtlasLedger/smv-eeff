@@ -142,9 +142,18 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
 
 - Repositorio público: https://github.com/AtlasLedger/smv-eeff (autoría: AtlasLedger;
   el historial se reescribió para no incluir datos personales).
-- Página: https://atlasledger.github.io/smv-eeff/ (workflow `pagina`).
-- Caché crudo: Release `cache` (lo usa el workflow `actualizar`).
-- Zenodo: cuenta conectada. Para que emita el DOI falta activar el interruptor del
-  repositorio en https://zenodo.org/account/settings/github/ y luego publicar el release
-  borrador `v1.0.0` en GitHub (Releases > v1.0.0 > Publish). Zenodo solo archiva los
-  releases publicados DESPUÉS de activar el interruptor.
+- Página: https://atlasledger.github.io/smv-eeff/ (workflow `pagina`, se republica sola
+  después de cada actualización).
+- Actualización mensual (workflow `actualizar`, día 5 de cada mes): probada desde GitHub
+  el 2026-09-26. Descargó 134 consultas nuevas de la SMV sin fallas, reconstruyó la base
+  con los mismos controles que la construcción local y subió los datos y el caché.
+- Caché crudo: Release `cache` (lo usa y lo reemplaza el workflow `actualizar`).
+- Zenodo: webhook activo. Release `v1.0.0` publicado el 2026-09-26 sobre el commit con los
+  datos actualizados. DOI concepto (última versión): 10.5281/zenodo.22981480; DOI de la
+  v1.0.0: 10.5281/zenodo.22981481. Zenodo archiva cada release publicado y le asigna un DOI; además da
+  un "DOI concepto" que siempre apunta a la última versión.
+- Para una versión nueva en Zenodo (por ejemplo, una vez al año): publicar un release
+  nuevo en GitHub (`v1.1.0`, `v2.0.0`...). Las actualizaciones mensuales de datos no crean
+  versiones en Zenodo por sí solas.
+- Lección: no comprimir el caché en macOS sin `COPYFILE_DISABLE=1`; el tar de macOS agrega
+  archivos ocultos `._*` que en Linux rompían la construcción (ya se ignoran igual).
