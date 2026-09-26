@@ -83,6 +83,13 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   coincidencia con acumulado T(n) - acumulado T(n-1) en 2021, 2024 y 2025; en el resto de
   planes el mismo método da 87-100 %). Parece el último mes. Se deja nulo y se conserva
   el acumulado. El flujo de las SAB sí es acumulado como el de todos.
+- Letras de plan antiguas (2005): B = bancos, S = seguros, C = CAVALI (hasta 2012). Son
+  las que el diccionario oficial de la SMV documenta como F/B, E/S, V/C. Plantillas
+  distintas a las actuales; mapeadas buscando la cuenta que coincide con el índice SMV
+  (`scripts/buscar_cuentas_indice.py`, 100 % de coincidencia).
+- Códigos que cambian con los años aunque la línea sea la misma: efectivo (1D0101 Caja y
+  Bancos hasta 2005, 1D0109 desde 2006), provisiones de bancos (2F2304 + 2F2305 hasta 2009,
+  2F2306 desde 2010). El mapeo tiene `desde`/`hasta` y una guarda contra superposiciones.
 - Presentación doble: BNB Valores SAB (SG0005) presentó 2021-T1/T2 en el plan de SAB y en
   el general a la vez. La guarda contra reglas superpuestas lo detectó (si no, el activo
   salía duplicado). Se usa el plan que corresponde al tipo de empresa. Quedan 2
