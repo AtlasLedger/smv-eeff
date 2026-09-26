@@ -2,7 +2,7 @@
 
 Montos en miles de la moneda de reporte. Tolerancia: 1 (redondeo).
 
-Resultado: {'ok': 64, 'diferencia explicada': 2}
+Resultado: {'ok': 100, 'diferencia explicada': 2}
 
 ## ALICORP S.A.A.
 
@@ -72,6 +72,26 @@ Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F
 | 2024-A-C | impuesto_renta | valor | -156,164 | -156,164 | 0 | ok | directo |
 | 2024-A-C | gastos_financieros | valor | -65,397 | -65,397 | 0 | ok | directo |
 | 2024-A-C | ingresos_financieros | valor | 12,528 | 12,528 | 0 | ok | directo |
+| 2022-A-C | ingresos | valor | 824,802 | 824,802 | 0 | ok | directo |
+| 2022-A-C | utilidad_neta | valor | 602,935 | 602,935 | 0 | ok | directo |
+| 2022-A-C | utilidad_antes_impuestos | valor | 124,429 | 124,429 | 0 | ok | directo |
+| 2022-A-C | activo_total | valor | 4,503,227 | 4,503,227 | 0 | ok | directo |
+| 2022-A-C | pasivo_total | valor | 1,340,286 | 1,340,286 | 0 | ok | directo |
+| 2022-A-C | patrimonio_total | valor | 3,162,941 | 3,162,941 | 0 | ok | directo |
+| 2022-A-C | activo_corriente | valor | 620,380 | 620,380 | 0 | ok | directo |
+| 2022-A-C | pasivo_corriente | valor | 379,597 | 379,597 | 0 | ok | directo |
+| 2022-A-C | utilidad_bruta | valor | 61,329 | 61,329 | 0 | ok | directo |
+| 2022-A-C | impuesto_renta | valor | -41 | -41 | 0 | ok | directo |
+| 2023-A-C | ingresos | valor | 823,845 | 823,845 | 0 | ok | directo |
+| 2023-A-C | utilidad_neta | valor | 32,682 | 32,682 | 0 | ok | directo |
+| 2023-A-C | utilidad_antes_impuestos | valor | 82,524 | 82,524 | 0 | ok | directo |
+| 2023-A-C | activo_total | valor | 4,533,799 | 4,533,799 | 0 | ok | directo |
+| 2023-A-C | pasivo_total | valor | 1,364,588 | 1,364,588 | 0 | ok | directo |
+| 2023-A-C | patrimonio_total | valor | 3,169,211 | 3,169,211 | 0 | ok | directo |
+| 2023-A-C | activo_corriente | valor | 577,762 | 577,762 | 0 | ok | directo |
+| 2023-A-C | pasivo_corriente | valor | 441,605 | 441,605 | 0 | ok | directo |
+| 2023-A-C | utilidad_bruta | valor | 91,248 | 91,248 | 0 | ok | directo |
+| 2023-A-C | impuesto_renta | valor | -42,994 | -42,994 | 0 | ok | directo |
 
 ## CREDICORP LTD.
 
@@ -88,6 +108,22 @@ Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F
 | 2024-A-C | ingresos_intereses | valor | 19,869,256 | 19,869,256 | 0 | ok | directo |
 | 2024-A-C | gastos_intereses | valor | -5,754,125 | -5,754,125 | 0 | ok | directo |
 | 2024-A-C | efectivo | valor | 47,570,103 | 47,655,196 | 85,093 | diferencia explicada | propuesto |
+| 2022-A-C | activo_total | valor | 236,753,609 | 236,753,609 | 0 | ok | directo |
+| 2022-A-C | pasivo_total | valor | 207,173,900 | 207,173,900 | 0 | ok | directo |
+| 2022-A-C | patrimonio_total | valor | 29,579,709 | 29,579,709 | 0 | ok | directo |
+| 2022-A-C | utilidad_neta | valor | 4,745,388 | 4,745,388 | 0 | ok | directo |
+| 2022-A-C | utilidad_antes_impuestos | valor | 6,855,889 | 6,855,889 | 0 | ok | directo |
+| 2022-A-C | impuesto_renta | valor | -2,110,501 | -2,110,501 | 0 | ok | directo |
+| 2022-A-C | ingresos_intereses | valor | 15,011,282 | 15,011,282 | 0 | ok | directo |
+| 2022-A-C | gastos_intereses | valor | -3,493,187 | -3,493,187 | 0 | ok | directo |
+| 2023-A-C | activo_total | valor | 238,840,188 | 238,840,188 | 0 | ok | directo |
+| 2023-A-C | pasivo_total | valor | 205,733,123 | 205,733,123 | 0 | ok | directo |
+| 2023-A-C | patrimonio_total | valor | 33,107,065 | 33,107,065 | 0 | ok | directo |
+| 2023-A-C | utilidad_neta | valor | 4,959,878 | 4,959,878 | 0 | ok | directo |
+| 2023-A-C | utilidad_antes_impuestos | valor | 6,848,329 | 6,848,329 | 0 | ok | directo |
+| 2023-A-C | impuesto_renta | valor | -1,888,451 | -1,888,451 | 0 | ok | directo |
+| 2023-A-C | ingresos_intereses | valor | 18,798,495 | 18,798,495 | 0 | ok | directo |
+| 2023-A-C | gastos_intereses | valor | -5,860,523 | -5,860,523 | 0 | ok | directo |
 
 Diferencia explicada en `efectivo`: El efectivo NIIF excluye el efectivo restringido (85,093); el rubro Disponible del formato SBS lo incluye. Refuerza que efectivo de bancos quede como propuesto.
 

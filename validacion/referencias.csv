@@ -65,3 +65,39 @@ RIMAC SEGUROS Y REASEGUROS,2024,A,I,impuesto_renta,valor,0,https://imagescdn.rim
 RIMAC SEGUROS Y REASEGUROS,2024,A,I,utilidad_neta,valor,447798,https://imagescdn.rimac.com/bltcc080c5219b7e019/67e2e59ec0d1f261140a49e8/Informe_auditado_de_Rimac_Seguros_y_Reaseguros_31.12.24-23_V.Vinal.pdf,,
 RIMAC SEGUROS Y REASEGUROS,2024,A,I,activo_total,valor_comparativo,20143246,https://imagescdn.rimac.com/bltcc080c5219b7e019/67e2e59ec0d1f261140a49e8/Informe_auditado_de_Rimac_Seguros_y_Reaseguros_31.12.24-23_V.Vinal.pdf,,
 RIMAC SEGUROS Y REASEGUROS,2024,A,I,utilidad_neta,valor_comparativo,424623,https://imagescdn.rimac.com/bltcc080c5219b7e019/67e2e59ec0d1f261140a49e8/Informe_auditado_de_Rimac_Seguros_y_Reaseguros_31.12.24-23_V.Vinal.pdf,,
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,ingresos,valor,824802,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,utilidad_neta,valor,602935,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,utilidad_antes_impuestos,valor,124429,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,activo_total,valor,4503227,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,pasivo_total,valor,1340286,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,patrimonio_total,valor,3162941,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,activo_corriente,valor,620380,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,pasivo_corriente,valor,379597,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,utilidad_bruta,valor,61329,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2022,A,C,impuesto_renta,valor,-41,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,ingresos,valor,823845,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,utilidad_neta,valor,32682,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,utilidad_antes_impuestos,valor,82524,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,activo_total,valor,4533799,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,pasivo_total,valor,1364588,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,patrimonio_total,valor,3169211,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,activo_corriente,valor,577762,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,pasivo_corriente,valor,441605,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,utilidad_bruta,valor,91248,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+COMPAÑIA DE MINAS BUENAVENTURA S.A.A.,2023,A,C,impuesto_renta,valor,-42994,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,activo_total,valor,236753609,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,pasivo_total,valor,207173900,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,patrimonio_total,valor,29579709,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,utilidad_neta,valor,4745388,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,utilidad_antes_impuestos,valor,6855889,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,impuesto_renta,valor,-2110501,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,ingresos_intereses,valor,15011282,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2022,A,C,gastos_intereses,valor,-3493187,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,activo_total,valor,238840188,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,pasivo_total,valor,205733123,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,patrimonio_total,valor,33107065,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,utilidad_neta,valor,4959878,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,utilidad_antes_impuestos,valor,6848329,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,impuesto_renta,valor,-1888451,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,ingresos_intereses,valor,18798495,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
+CREDICORP LTD.,2023,A,C,gastos_intereses,valor,-5860523,"https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F, XBRL)",,La SEC publica en unidades; aquí en miles.
