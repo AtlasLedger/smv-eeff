@@ -79,6 +79,14 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   total. Verificado: las líneas en mayúsculas son ~1000x y las demás no. Un primer intento
   dividía todo y dejaba el detalle 1000 veces más chico: lo detectó la revisión de ratios.
 - Nuevo control: activo = pasivo + patrimonio en cada presentación (0 descuadres).
+- SAB, estado de resultados TRIMESTRAL: el Monto1 de la SMV no es el trimestre (0 % de
+  coincidencia con acumulado T(n) - acumulado T(n-1) en 2021, 2024 y 2025; en el resto de
+  planes el mismo método da 87-100 %). Parece el último mes. Se deja nulo y se conserva
+  el acumulado. El flujo de las SAB sí es acumulado como el de todos.
+- Presentación doble: BNB Valores SAB (SG0005) presentó 2021-T1/T2 en el plan de SAB y en
+  el general a la vez. La guarda contra reglas superpuestas lo detectó (si no, el activo
+  salía duplicado). Se usa el plan que corresponde al tipo de empresa. Quedan 2
+  diferencias de 1 (miles) contra el índice por redondeo entre ambas versiones.
 - Diferencias de presentación SBS vs estado auditado NIIF (no son errores de la base):
   prima al fondo de seguro de depósitos (BCP) y efectivo restringido (Credicorp).
 

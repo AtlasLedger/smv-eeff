@@ -202,3 +202,28 @@ def test_reglas_superpuestas_fallan(tmp_path):
          "monto_comparativo": 0.0, "monto_acumulado": float("nan")} for c in ["2D07ST", "2D0503"]])
     with pytest.raises(ValueError, match="más de una regla"):
         conceptos(hechos, leer_mapeo(ruta))
+
+
+def test_empresa_en_dos_planes_se_queda_con_uno():
+    from smv.modelo import _un_plan_por_empresa
+    base = {"RPJ": "SG0005", "TipoEmpresa": "SOCIEDADES AGENTES DE BOLSA", "Ejercicio": 2021,
+            "_periodo_consultado": "1", "_tipo_consultado": "I", "_operacion": "obtener_BalanceGeneral"}
+    df = pd.DataFrame([{**base, "plan": "I", "Cuenta": "1I1131"}, {**base, "plan": "I", "Cuenta": "1I1491"},
+                       {**base, "plan": "D", "Cuenta": "1D020T"},
+                       {**base, "RPJ": "X", "TipoEmpresa": "EMPRESAS EMISORAS", "plan": "D", "Cuenta": "1D020T"}])
+    calidad = {}
+    out = _un_plan_por_empresa(df, calidad)
+    assert set(out[out["RPJ"] == "SG0005"]["plan"]) == {"I"}
+    assert len(out[out["RPJ"] == "X"]) == 1
+    assert len(calidad["presentaciones_en_dos_planes"]) == 1
+
+
+def test_resultados_trimestrales_sab_sin_monto_del_trimestre():
+    from smv.modelo import _hechos
+    base = {"RPJ": "S", "Ejercicio": 2024, "_periodo_consultado": "1", "_tipo_consultado": "I",
+            "estado": "ER", "Monto2": 1.0, "Monto3": 432.5, "Monto4": 422.7}
+    df = pd.DataFrame([{**base, "plan": "I", "Cuenta": "2I2161", "Monto1": 196.3},
+                       {**base, "plan": "D", "Cuenta": "2D07ST", "Monto1": 432.5}])
+    h = _hechos(df).set_index("cuenta")
+    assert pd.isna(h.loc["2I2161", "monto"]) and h.loc["2I2161", "monto_acumulado"] == 432.5
+    assert h.loc["2D07ST", "monto"] == 432.5

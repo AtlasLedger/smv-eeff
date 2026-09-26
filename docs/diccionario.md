@@ -21,7 +21,7 @@ Una fila por empresa, período, tipo y cuenta. Es el dato original de la SMV, li
 | campo | significado |
 |---|---|
 | `cuenta` | Código de cuenta de la SMV. El segundo carácter es el plan de cuentas (ver `cuentas`). |
-| `monto` | Monto del período aislado. En trimestres de resultados y ORI es **solo el trimestre**. En el balance es el saldo al cierre. En trimestres del flujo de efectivo es nulo: la SMV solo publica el acumulado (ver `monto_acumulado`). |
+| `monto` | Monto del período aislado. En trimestres de resultados y ORI es **solo el trimestre**. En el balance es el saldo al cierre. En trimestres del flujo de efectivo es nulo: la SMV solo publica el acumulado (ver `monto_acumulado`). También es nulo en el estado de resultados trimestral de las sociedades agentes de bolsa: ahí la SMV entrega un subperíodo que no identifica (por magnitud, el último mes). |
 | `monto_comparativo` | Mismo concepto en el período comparativo que publica la empresa: año anterior (resultados, flujo) o cierre del ejercicio anterior (balance). |
 | `monto_acumulado` | Trimestres de resultados, ORI y flujo de efectivo: acumulado desde enero. Nulo cuando no aplica (anuales y balance). |
 | `monto_acumulado_comparativo` | Acumulado del mismo período del año anterior. |

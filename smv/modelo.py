@@ -88,6 +88,13 @@ def _hechos(df: pd.DataFrame) -> pd.DataFrame:
     # resultados y ORI, donde Monto1 es el trimestre aislado. Para que las columnas
     # signifiquen lo mismo en todos los estados, se mueve a las columnas de acumulado y
     # el trimestre aislado queda nulo (no se reporta; no se deriva restando).
+    # Estado de resultados trimestral de las SAB (plan I): Monto1 NO es el trimestre (en
+    # 2021, 2024 y 2025 no coincide nunca con acumulado T(n) - acumulado T(n-1), y en el T1
+    # difiere del acumulado). Por magnitud parece el último mes (las SAB reportan
+    # mensualmente), pero la fuente no lo dice: se deja fuera y se conserva el acumulado.
+    if "plan" in df:
+        sab_trim = (df["plan"].to_numpy() == "I") & (h["estado"] == "ER") & (h["periodo"] != "A")
+        h.loc[sab_trim, ["monto", "monto_comparativo"]] = float("nan")
     fe_trim = (h["estado"] == "FE") & (h["periodo"] != "A")
     if fe_trim.any():
         h.loc[fe_trim, "monto_acumulado"] = h.loc[fe_trim, "monto"]
@@ -95,6 +102,36 @@ def _hechos(df: pd.DataFrame) -> pd.DataFrame:
         h.loc[fe_trim, ["monto", "monto_comparativo"]] = float("nan")
     h["ejercicio"] = h["ejercicio"].astype("int16")
     return h
+
+
+# Plan de cuentas esperado según el tipo de empresa (para resolver presentaciones duplicadas).
+PLAN_POR_TIPO_EMPRESA = {"SOCIEDADES AGENTES DE BOLSA": "I"}
+
+
+def _un_plan_por_empresa(df: pd.DataFrame, calidad: dict) -> pd.DataFrame:
+    """Si una empresa presentó el mismo estado en dos planes de cuentas, deja uno.
+
+    Caso real: BNB Valores SAB, 2021-T1, vino en el plan de SAB (I) y en el general (D)
+    con las mismas cifras. Sin esto, los conceptos se sumarían dos veces. Se prefiere el
+    plan que corresponde al tipo de empresa y, si no está definido, el más detallado.
+    """
+    if "plan" not in df or df.empty:
+        return df
+    n = df.groupby("RPJ")["plan"].nunique()
+    dobles = n[n > 1].index
+    if not len(dobles):
+        return df
+    quitar = []
+    for rpj in dobles:
+        sub = df[df["RPJ"] == rpj]
+        esperado = PLAN_POR_TIPO_EMPRESA.get(sub["TipoEmpresa"].iloc[0]) if "TipoEmpresa" in sub else None
+        conteo = sub["plan"].value_counts()
+        elegido = esperado if esperado in conteo.index else conteo.index[0]
+        quitar.append((df["RPJ"] == rpj) & (df["plan"] != elegido))
+        calidad.setdefault("presentaciones_en_dos_planes", []).append(
+            f"{rpj} {sub['Ejercicio'].iloc[0]}-{sub['_periodo_consultado'].iloc[0]}-"
+            f"{sub['_tipo_consultado'].iloc[0]} {sub['_operacion'].iloc[0]}: se usa plan {elegido}")
+    return df[~pd.concat(quitar, axis=1).any(axis=1)]
 
 
 def _patrimonio(df: pd.DataFrame, calidad: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -202,6 +239,7 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
                 calidad["archivos_vacios"] += 1
                 continue
             calidad["archivos_procesados"] += 1
+            df = _un_plan_por_empresa(df, calidad)
             if op == "patrimonio":
                 p, cols = _patrimonio(df, calidad)
                 patrimonio_por_anio.setdefault(ejercicio, []).append(p)
