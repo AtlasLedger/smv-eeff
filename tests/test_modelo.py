@@ -12,7 +12,7 @@ import servidor_simulado as sim
 from smv import CacheDisco, ClienteSMV, descargar
 from smv.limpieza import limpiar, limpiar_ruc, limpiar_texto, textos_sospechosos
 from smv.estandar import conceptos, leer_mapeo, ratios
-from smv.modelo import _patrimonio, construir
+from smv.modelo import _detectar_escala, _patrimonio, _reescalar, construir
 
 
 def test_repara_valores_conocidos():
@@ -133,3 +133,20 @@ def test_control_cruzado_compara_de_verdad():
 def test_ejercicio_se_normaliza_a_entero():
     df = pd.DataFrame([{**sim.FILAS[0], "Ejercicio": "2024", "_operacion": "obtener_GanciaPerdida"}])
     assert limpiar(df)["Ejercicio"].iloc[0] == 2024
+
+
+def test_detecta_y_corrige_presentaciones_en_unidades():
+    base = {"ejercicio": 2010, "periodo": "A", "tipo": "I"}
+    hechos = pd.DataFrame([
+        {**base, "rpj": "SAB", "cuenta": "1I1131", "monto": 38_179_940.0},  # en soles
+        {**base, "rpj": "SAB", "cuenta": "2I2901", "monto": 0.25},          # utilidad por acción
+        {**base, "rpj": "OK", "cuenta": "1D020T", "monto": 5_000.0},         # ya en miles
+    ])
+    idx = pd.DataFrame([{**base, "rpj": "SAB", "smv_activo_total": 38_180.0},
+                        {**base, "rpj": "OK", "smv_activo_total": 5_000.0}])
+    esc = _detectar_escala({2010: [hechos]}, idx)
+    assert list(esc["rpj"]) == ["SAB"]
+    out = _reescalar(hechos, esc, excluir={"2I2901"}).set_index("cuenta")["monto"]
+    assert out["1I1131"] == pytest.approx(38_179.94)
+    assert out["2I2901"] == 0.25        # los montos por acción no se tocan
+    assert out["1D020T"] == 5_000.0     # otras empresas no se tocan
