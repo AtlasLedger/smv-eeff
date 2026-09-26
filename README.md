@@ -25,16 +25,21 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
 | Extracción con caché | listo |
 | Limpieza y modelo dimensional | listo |
 | Mapeo entre planes de cuentas | propuesta lista; decisiones de criterio en revisión |
-| Validación contra estados publicados | en curso (Alicorp y BCP 2024) |
+| Validación contra estados publicados | 5 empresas validadas (2024) |
 | Publicación y actualización trimestral | pendiente |
 
 ## Qué tan confiable es
 
 - Los totales de activo, pasivo, patrimonio y utilidad neta se cruzan contra el índice
-  que publica la propia SMV: 0 diferencias en 9,897 comparaciones (2024 a 2026).
-- Contra los estados financieros publicados por las empresas: Alicorp consolidado 2024
-  (22 cifras, incluidos trimestres) y BCP individual 2024 (11 cifras) coinciden, con una
-  diferencia de presentación documentada. Detalle en [validacion/reporte.md](validacion/reporte.md).
+  que publica la propia SMV en cada período. Ese cruce detectó, por ejemplo, que las
+  sociedades agentes de bolsa reportaban en soles y no en miles en los años antiguos;
+  la base lo corrige y lo registra.
+- Contra estados financieros publicados por las propias empresas (2024): Alicorp
+  (consolidado, incluidos trimestres), BCP (banco, individual), Credicorp (conglomerado,
+  consolidado), Buenaventura (en dólares) y Rimac (seguros). 64 cifras coinciden y 2
+  difieren por diferencias de presentación documentadas. Para Credicorp y Buenaventura
+  la fuente es la información XBRL que presentan a la SEC. Detalle en
+  [validacion/reporte.md](validacion/reporte.md).
 - Los conceptos marcados como `propuesto` dependen de una decisión de criterio que aún no
   se validó. Úsalos sabiendo eso.
 

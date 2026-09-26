@@ -2,7 +2,7 @@
 
 Montos en miles de la moneda de reporte. Tolerancia: 1 (redondeo).
 
-Resultado: {'ok': 53, 'diferencia explicada': 2}
+Resultado: {'ok': 64, 'diferencia explicada': 2}
 
 ## ALICORP S.A.A.
 
@@ -90,3 +90,21 @@ Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F
 | 2024-A-C | efectivo | valor | 47,570,103 | 47,655,196 | 85,093 | diferencia explicada | propuesto |
 
 Diferencia explicada en `efectivo`: El efectivo NIIF excluye el efectivo restringido (85,093); el rubro Disponible del formato SBS lo incluye. Refuerza que efectivo de bancos quede como propuesto.
+
+## RIMAC SEGUROS Y REASEGUROS
+
+Fuente: https://imagescdn.rimac.com/bltcc080c5219b7e019/67e2e59ec0d1f261140a49e8/Informe_auditado_de_Rimac_Seguros_y_Reaseguros_31.12.24-23_V.Vinal.pdf
+
+| período | concepto | campo | publicado | base | diferencia | resultado | confianza |
+|---|---|---|---:|---:|---:|---|---|
+| 2024-A-I | activo_total | valor | 21,513,476 | 21,513,476 | 0 | ok | directo |
+| 2024-A-I | pasivo_total | valor | 18,454,554 | 18,454,554 | 0 | ok | directo |
+| 2024-A-I | patrimonio_total | valor | 3,058,922 | 3,058,922 | 0 | ok | directo |
+| 2024-A-I | efectivo | valor | 673,565 | 673,565 | 0 | ok | directo |
+| 2024-A-I | primas_ganadas_netas | valor | 3,320,376 | 3,320,376 | 0 | ok | directo |
+| 2024-A-I | siniestros_netos | valor | -1,853,374 | -1,853,374 | 0 | ok | directo |
+| 2024-A-I | utilidad_antes_impuestos | valor | 447,798 | 447,798 | 0 | ok | directo |
+| 2024-A-I | impuesto_renta | valor | 0 | 0 | 0 | ok | directo |
+| 2024-A-I | utilidad_neta | valor | 447,798 | 447,798 | 0 | ok | directo |
+| 2024-A-I | activo_total | valor_comparativo | 20,143,246 | 20,143,246 | 0 | ok | directo |
+| 2024-A-I | utilidad_neta | valor_comparativo | 424,623 | 424,623 | 0 | ok | directo |

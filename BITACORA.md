@@ -10,10 +10,11 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
   correr el mismo comando: continúa donde quedó.
 - Paso 2 (mapeo): **propuesta** lista en `mapeo/`. Faltan las decisiones de criterio (abajo).
 - Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`.
-- Paso 4 (validación): 53 cifras OK + 2 diferencias explicadas, en 4 empresas y 4
+- Paso 4 (validación): 64 cifras OK + 2 diferencias explicadas, en 5 empresas y 5
   plantillas (Alicorp consolidado PEN, BCP individual banco, Credicorp consolidado
-  conglomerado, Buenaventura consolidado USD). `validacion/reporte.md`. Faltan: una
-  aseguradora (plan E), una SAB (plan I) y una AFP (plan A); y años antiguos.
+  conglomerado, Buenaventura consolidado USD, Rimac individual seguros).
+  `validacion/reporte.md`. Faltan: una SAB (plan I; no encontré su estado auditado
+  individual en línea) y una AFP (plan A); y validar años antiguos.
 - Paso 5 (publicación): pendiente; requiere cuentas de el propietario del proyecto (GitHub, Zenodo).
 
 ## Decisiones que necesitan a el propietario del proyecto
