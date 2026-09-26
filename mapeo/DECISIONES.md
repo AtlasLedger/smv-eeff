@@ -1,7 +1,7 @@
 # Decisiones de criterio
 
 Registro de las decisiones de criterio contable que definen los conceptos estándar. Se
-tomaron el 2026-09-26 con criterio delegado por el propietario del proyecto , después de revisar cada una
+tomaron el 2026-09-26 con criterio delegado por el propietario del proyecto, después de revisar cada una
 contra los datos. Los valores que dependen de ellas llevan `confianza = validado` en
 `estandar.parquet` y `ratios.parquet`; los que no requieren criterio llevan `directo`.
 

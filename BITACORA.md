@@ -1,6 +1,6 @@
 # Bitácora de trabajo autónomo
 
-Registro de lo que se avanzó sin intervención de el propietario del proyecto, de lo que quedó pendiente y de
+Registro de lo que se avanzó sin intervención humana directa, de lo que quedó pendiente y de
 las decisiones que necesitan su validación. La sección de arriba siempre está al día.
 
 ## Estado actual
@@ -8,11 +8,11 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 - Paso 1 (extractor): histórico COMPLETO 2000-2026 (1,350 combinaciones, 0 fallidas, 9.1
   millones de filas) + patrimonio anual 2000-2025 (54 combinaciones, 0 fallidas).
 - Paso 2 (mapeo): listo para todas las plantillas con vigencia por años. Las 8 decisiones
-  de criterio están tomadas (el propietario del proyecto delegó el criterio el 2026-09-26): `mapeo/DECISIONES.md`.
+  de criterio están tomadas (criterio delegado el 2026-09-26): `mapeo/DECISIONES.md`.
 - Paso 3 (modelo): base completa construida (`data/`, 163 MB; ningún archivo sobre 50 MB).
 - Paso 4 (validación): 173 OK + 4 explicadas (5 empresas, 2017-2024). Índice SMV: 187,724
   comparaciones, 5 diferencias (anomalías de la fuente). Balances: 3 de ~48,000 no cuadran.
-- Paso 5 (publicación): preparado; requiere cuentas de el propietario del proyecto.
+- Paso 5 (publicación): preparado; requiere cuentas del propietario del proyecto.
 
 ### Hecho el 2026-09-26 a las 5 am tras terminar la descarga (queda como referencia)
 1. `python scripts/construir.py` y revisar `data/calidad.json` (discrepancias con el índice,
@@ -24,7 +24,7 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 
 ## Decisiones de criterio (tomadas el 2026-09-26)
 
-el propietario del proyecto delegó el criterio. Se revisó cada decisión contra los datos antes de tomarla; el
+Se delegó el criterio autónomo el 2026-09-26. Se revisó cada decisión contra los datos antes de tomarla; el
 registro completo, con la evidencia, está en `mapeo/DECISIONES.md`. Cuatro cambiaron
 respecto a la propuesta inicial porque los datos la contradijeron:
 
@@ -138,7 +138,7 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
 - Validación (Alicorp, BCP, Credicorp y Buenaventura; estas dos contra la API XBRL de la SEC).
 - README, diccionario, licencias (MIT código + ODbL datos), exportación CSV, workflows.
 
-## Antes de publicar (necesita a el propietario del proyecto)
+## Antes de publicar (necesita al propietario del proyecto)
 
 0. (Opcional) Leer `mapeo/DECISIONES.md` y cambiar cualquier decisión con la que no esté de
    acuerdo: se edita `mapeo/mapeo_cuentas.csv` y se reconstruye.
@@ -148,7 +148,7 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
 2. Primera corrida manual del workflow `actualizar` (Actions > actualizar > Run). Riesgo
    a verificar: que el servidor de la SMV acepte conexiones desde GitHub (EE. UU.).
 3. Zenodo: conectar la cuenta de GitHub y crear un release para obtener el DOI.
-4. Revisar el nombre en `LICENSE` y en `CITATION.cff` (puse "el propietario del proyecto ").
+4. Revisar el nombre/entidad en `LICENSE` y en `CITATION.cff`.
 5. Para no esperar horas en la primera corrida de Actions: subir el caché local como
    asset del Release `cache` (`tar -czf cache-raw.tar.gz cache/raw` y
    `gh release create cache cache-raw.tar.gz`).

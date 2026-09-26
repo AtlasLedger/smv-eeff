@@ -3,8 +3,7 @@ message: "Si usas esta base, cítala así. Los datos originales son de la SMV (O
 title: "smv-eeff: estados financieros normalizados de empresas supervisadas por la SMV (Perú)"
 type: dataset
 authors:
-  - family-names: 
-    given-names: el propietario del proyecto
+  - name: "smv-eeff"
 license: ODbL-1.0
 keywords:
   - Perú
