@@ -5,21 +5,16 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 
 ## Estado actual
 
-- Paso 1 (extractor): listo. Descarga histórica 2000-2026 en curso para balance,
-  resultados, flujo, integrales e índice (`logs/historico_1.out`, de reciente a antiguo).
-  Al terminar arranca sola la de patrimonio anual (`logs/cola_patrimonio.sh` ->
-  `logs/historico_patrimonio.out`). Si algo se cortó, volver a correr el mismo comando:
-  continúa donde quedó.
-- Paso 2 (mapeo): **propuesta** lista en `mapeo/` para los 6 planes actuales y las 3
-  letras antiguas, con vigencia por años. Cobertura mínima 99.6 %. Faltan las decisiones
-  de criterio: `mapeo/DECISIONES.md`.
-- Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`;
-  `python scripts/exportar.py` los CSV; `python scripts/perfil_historico.py` el perfil.
-- Paso 4 (validación): ver abajo. `python scripts/validar.py`.
-- Paso 5 (publicación): todo preparado (README, licencias, workflows, página); requiere
-  cuentas de el propietario del proyecto (GitHub, Zenodo). Ver "Antes de publicar".
+- Paso 1 (extractor): histórico COMPLETO 2000-2026 (1,350 combinaciones, 0 fallidas, 9.1
+  millones de filas). Patrimonio anual descargándose (`logs/historico_patrimonio.out`).
+- Paso 2 (mapeo): propuesta lista para todas las plantillas con vigencia por años.
+  Decisiones de criterio pendientes: `mapeo/DECISIONES.md` (8 puntos).
+- Paso 3 (modelo): base completa construida (`data/`, 163 MB; ningún archivo sobre 50 MB).
+- Paso 4 (validación): 173 OK + 4 explicadas (5 empresas, 2017-2024). Índice SMV: 187,724
+  comparaciones, 5 diferencias (anomalías de la fuente). Balances: 3 de ~48,000 no cuadran.
+- Paso 5 (publicación): preparado; requiere cuentas de el propietario del proyecto.
 
-### Qué hacer cuando termine la descarga histórica
+### Hecho el 2026-09-26 a las 5 am tras terminar la descarga (queda como referencia)
 1. `python scripts/construir.py` y revisar `data/calidad.json` (discrepancias con el índice,
    balances que no cuadran, cobertura del mapeo, planes sin mapeo).
 2. `python scripts/validar.py` (se validan solos 2017-2019 de Credicorp y Buenaventura).
@@ -100,6 +95,19 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - Códigos que cambian con los años aunque la línea sea la misma: efectivo (1D0101 Caja y
   Bancos hasta 2005, 1D0109 desde 2006), provisiones de bancos (2F2304 + 2F2305 hasta 2009,
   2F2306 desde 2010). El mapeo tiene `desde`/`hasta` y una guarda contra superposiciones.
+- AÑOS 2000-2004: el índice SMV trae ceros para las SAB. Nueva detección de escala sin
+  índice (activo total vs suma de su detalle): encontró 406 presentaciones más con
+  totales en unidades. Discrepancias con el índice: de 1,298 a 5.
+- INTERÉS MINORITARIO fuera de pasivo y patrimonio en plantillas antiguas (D hasta 2005,
+  F/E hasta 2010, B, S; en SAB "ganancias diferidas"). Explicaba el 100 % de ~2,000
+  balances que no cuadraban. Nuevo concepto `partidas_entre_pasivo_y_patrimonio`. En 2010
+  (transición) se decide por presentación. Quedan 3 descuadres (anomalías de la fuente).
+- SEC: el XBRL de Buenaventura 2018 y 2019 trae el signo del impuesto invertido (error del
+  emisor; la identidad contable lo confirma). Queda como diferencia explicada.
+- 682 empresas con balance; otras 2,284 entidades solo aparecen en el servicio de ORI en
+  2012-2014 (columna `empresas.estados`).
+- Brechas conocidas: plantillas del año 2000 de B y S (30 bancos, 20 seguros) y CAVALI
+  2013-2016 sin todos los conceptos; bancos sin desglose de cartera antes de 2006.
 - Presentación doble: BNB Valores SAB (SG0005) presentó 2021-T1/T2 en el plan de SAB y en
   el general a la vez. La guarda contra reglas superpuestas lo detectó (si no, el activo
   salía duplicado). Se usa el plan que corresponde al tipo de empresa. Quedan 2

@@ -49,6 +49,7 @@ Una fila por estado financiero presentado (empresa, período, tipo, estado).
 | `tipo_empresa` | Clasificación de la SMV (emisora, SAB, SAF, etc.). |
 | `sector` | Sector según la SMV. |
 | `planes` | Plan(es) de cuentas usados. |
+| `estados` | Estados disponibles (BG, ER, FE, ORI). Unas 2,300 entidades solo tienen ORI de 2012 a 2014: el servicio de la SMV las devuelve en ese estado pero no en los demás. |
 | `primer_periodo`, `ultimo_periodo` | Rango con información en la base. |
 
 ## cuentas.parquet

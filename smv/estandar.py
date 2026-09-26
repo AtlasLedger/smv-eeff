@@ -65,7 +65,24 @@ def conceptos(hechos: pd.DataFrame, mapeo: pd.DataFrame) -> pd.DataFrame:
                   valor_comparativo=("monto_comparativo", lambda s: s.sum(min_count=1)),
                   valor_acumulado=("monto_acumulado", lambda s: s.sum(min_count=1)),
                   cuentas=("cuenta", lambda s: "+".join(sorted(s)))))
-    return agg
+    return _quitar_intermedias_ya_incluidas(agg)
+
+
+def _quitar_intermedias_ya_incluidas(est: pd.DataFrame) -> pd.DataFrame:
+    """En años de transición (ej. 2010) algunas empresas ya incluían el interés minoritario
+    dentro del patrimonio. Si el balance cuadra SIN la partida intermedia, esa partida no
+    estaba fuera de los totales y el concepto se elimina para esa presentación."""
+    c = "partidas_entre_pasivo_y_patrimonio"
+    if c not in set(est["concepto"]):
+        return est
+    w = est[est["concepto"].isin(["activo_total", "pasivo_total", "patrimonio_total"])].pivot_table(
+        index=CLAVES, columns="concepto", values="valor", aggfunc="first").dropna()
+    cuadra = w.index[(w["activo_total"] - w["pasivo_total"] - w["patrimonio_total"]).abs() <= 1]
+    inter = est["concepto"] == c
+    claves_inter = pd.MultiIndex.from_frame(est.loc[inter, CLAVES])
+    quitar = inter.copy()
+    quitar.loc[inter] = claves_inter.isin(cuadra)
+    return est[~quitar].reset_index(drop=True)
 
 
 def ratios(est: pd.DataFrame) -> pd.DataFrame:
@@ -199,9 +216,12 @@ def cuadre_balance(est: pd.DataFrame, tolerancia: float = 1.0) -> pd.DataFrame:
     Es una identidad contable: si no se cumple, hay un problema de escala, de mapeo o de
     la fuente. Tolerancia en miles (redondeo).
     """
-    w = est[est["concepto"].isin(["activo_total", "pasivo_total", "patrimonio_total"])].pivot_table(
-        index=CLAVES, columns="concepto", values="valor", aggfunc="first").dropna()
+    base = ["activo_total", "pasivo_total", "patrimonio_total"]
+    w = est[est["concepto"].isin(base + ["partidas_entre_pasivo_y_patrimonio"])].pivot_table(
+        index=CLAVES, columns="concepto", values="valor", aggfunc="first").dropna(subset=base)
     if w.empty:
-        return pd.DataFrame(columns=CLAVES + ["activo_total", "pasivo_total", "patrimonio_total", "diferencia"])
-    w["diferencia"] = w["activo_total"] - w["pasivo_total"] - w["patrimonio_total"]
+        return pd.DataFrame(columns=CLAVES + base + ["diferencia"])
+    # En plantillas antiguas el interés minoritario (y otras partidas) iba fuera de ambos totales.
+    intermedio = w["partidas_entre_pasivo_y_patrimonio"].fillna(0) if "partidas_entre_pasivo_y_patrimonio" in w else 0
+    w["diferencia"] = w["activo_total"] - w["pasivo_total"] - w["patrimonio_total"] - intermedio
     return w[w["diferencia"].abs() > tolerancia].reset_index()

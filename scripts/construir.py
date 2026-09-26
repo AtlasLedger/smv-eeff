@@ -43,7 +43,10 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
 
     cob = cobertura(est, pres, ruta_mapeo)
     cob.to_csv(salida / "cobertura_mapeo.csv", index=False)
-    bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)]
+    # Las partidas intermedias solo existen cuando hay interés minoritario u otras: su
+    # cobertura baja es esperable y no es alerta.
+    bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)
+                & (cob["concepto"] != "partidas_entre_pasivo_y_patrimonio")]
 
     descuadre = cuadre_balance(est)
     if len(descuadre):

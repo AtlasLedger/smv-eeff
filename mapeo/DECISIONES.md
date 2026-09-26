@@ -131,3 +131,23 @@ no se cumple porque había **partidas extraordinarias** debajo del impuesto; eso
 y la utilidad neta se toma tal como fue reportada.
 
 **Recomendación:** validar la opción b.
+
+## 8. Interés minoritario en años antiguos
+
+En las plantillas antiguas (plan general hasta 2005, bancos y seguros hasta 2010, y las
+letras B y S) el interés minoritario, y a veces "contingencias" o "ganancias diferidas" en
+las SAB, se presentaba **fuera** del pasivo total y del patrimonio total. Con NIIF el
+interés minoritario (participaciones no controladoras) es parte del patrimonio.
+
+Hoy la base deja `patrimonio_total` tal como fue reportado (coincide con el índice de la
+SMV) y guarda esas partidas en el concepto `partidas_entre_pasivo_y_patrimonio`, que se
+usa para verificar que el balance cuadre. En 2010, año de transición, algunas empresas ya
+lo incluían dentro del patrimonio: eso se detecta presentación por presentación.
+
+| opción | qué hace |
+|---|---|
+| **A. Actual** | Patrimonio tal como fue reportado. El ROE de años antiguos excluye al minoritario. |
+| B. | Sumar el interés minoritario al patrimonio en años antiguos, para que sea comparable con NIIF. |
+
+**Recomendación:** A para `patrimonio_total` (es el dato reportado) y documentarlo. El
+impacto es chico en estados individuales, donde casi nunca hay interés minoritario.

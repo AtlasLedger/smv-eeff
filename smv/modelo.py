@@ -179,6 +179,34 @@ def _detectar_escala(hechos_por_anio: dict, idx: pd.DataFrame) -> pd.DataFrame:
     return esc.assign(escala_original="unidades")
 
 
+def _escala_interna(df: pd.DataFrame) -> pd.DataFrame:
+    """Detecta totales en unidades sin depender del índice de la SMV.
+
+    En la plantilla antigua de las SAB las líneas de detalle vienen en miles y los totales
+    (en MAYÚSCULAS) en unidades. Si el activo total es ~1000 veces la suma de las líneas
+    de detalle que lo preceden en el mismo estado, los totales vienen en unidades. En las
+    plantillas actuales los subtotales van en minúsculas y entran a la suma, así que la
+    razón queda cerca de 0.5 y no se marca nada. Hace falta porque en 2000-2004 el
+    índice de la SMV trae ceros para las SAB y no sirve para verificar.
+    """
+    cols = CLAVE_PRESENTACION + ["escala_original"]
+    if "Cuenta" not in df or df.empty:
+        return pd.DataFrame(columns=cols)
+    marcadas = []
+    for rpj, sub in df.groupby("RPJ", sort=False):
+        pos = sub.index[sub["Cuenta"].isin(CUENTAS_ACTIVO_TOTAL)]
+        if not len(pos):
+            continue
+        total = sub.loc[pos[0], "Monto1"]
+        antes = sub.loc[:pos[0]].iloc[:-1]
+        detalle = antes.loc[~antes["DescripcionCuenta"].map(_es_total), "Monto1"].sum()
+        if detalle and 990 <= total / detalle <= 1010:
+            marcadas.append({"rpj": rpj, "ejercicio": int(sub["Ejercicio"].iloc[0]),
+                             "periodo": sub["_periodo_consultado"].iloc[0],
+                             "tipo": sub["_tipo_consultado"].iloc[0], "escala_original": "unidades"})
+    return pd.DataFrame(marcadas, columns=cols)
+
+
 def _es_total(descripcion) -> bool:
     """Las líneas calculadas de las plantillas antiguas de las SAB van en MAYÚSCULAS."""
     texto = str(descripcion or "")
@@ -225,7 +253,7 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     salida = Path(salida)
     (salida / "hechos").mkdir(parents=True, exist_ok=True)
 
-    presentaciones, atributos, cuentas, indices, columnas_cp = [], [], [], [], []
+    presentaciones, atributos, cuentas, indices, columnas_cp, escalas_internas = [], [], [], [], [], []
     hechos_por_anio: dict[int, list[pd.DataFrame]] = {}
     patrimonio_por_anio: dict[int, list[pd.DataFrame]] = {}
     calidad = {"patrimonio_celdas_bloque_repetido": 0, "archivos_vacios": 0, "archivos_procesados": 0}
@@ -258,6 +286,8 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
                     "PatrimonioTotal": "smv_patrimonio_total", "TotalIngreso": "smv_total_ingreso",
                     "UtilidadNeta": "smv_utilidad_neta"}))
                 continue
+            if op == "balance":
+                escalas_internas.append(_escala_interna(df.reset_index(drop=True)))
             hechos_por_anio.setdefault(ejercicio, []).append(_hechos(df))
             presentaciones.append(_presentaciones(df))
             c = df.drop_duplicates("Cuenta")[["Cuenta", "estado", "plan", "DescripcionCuenta"]].copy()
@@ -268,12 +298,26 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     # --- Escala: algunas presentaciones antiguas vienen en unidades y no en miles
     idx = (pd.concat(indices, ignore_index=True).drop_duplicates(CLAVE_PRESENTACION)
            if indices else pd.DataFrame(columns=CLAVE_PRESENTACION + ["smv_activo_total"]))
+    if len(idx):
+        # En los primeros años el índice trae ceros en todos los totales de algunas empresas
+        # (sobre todo SAB) aunque sus estados tengan montos: es un "sin dato", no un cero.
+        smv_cols = [c for c in idx.columns if c.startswith("smv_")]
+        vacio = (idx[["smv_activo_total", "smv_pasivo_total", "smv_patrimonio_total"]] == 0).all(axis=1)
+        idx.loc[vacio, smv_cols] = float("nan")
+        calidad["indice_smv_filas_sin_dato"] = int(vacio.sum())
     totales: set = set()
     if cuentas:
         cu_all = pd.concat(cuentas, ignore_index=True)
         cu_all = cu_all[cu_all["DescripcionCuenta"].map(_es_total)]
         totales = set(zip(cu_all["ejercicio"].astype(int), cu_all["periodo"], cu_all["Cuenta"]))
     escalas = _detectar_escala(hechos_por_anio, idx)
+    if escalas_internas:
+        internas = pd.concat(escalas_internas, ignore_index=True)
+        calidad["totales_en_unidades_detectados_sin_indice"] = int(
+            len(internas.merge(escalas, on=CLAVE_PRESENTACION, how="left", indicator=True)
+                .query("_merge == 'left_only'")))
+        escalas = pd.concat([escalas, internas], ignore_index=True).drop_duplicates(CLAVE_PRESENTACION)
+        escalas["ejercicio"] = escalas["ejercicio"].astype("int16")
     calidad["presentaciones_con_totales_en_unidades"] = len(escalas)
     if len(escalas):
         hechos_por_anio = {a: [_reescalar(h, escalas, totales) for h in partes]
@@ -320,12 +364,8 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     pres["escala_original"] = pres["escala_original"].fillna("miles")
     if indices:
         pres = pres.merge(idx.drop(columns="moneda"), on=CLAVE_PRESENTACION, how="left")
-    if "smv_activo_total" in pres:
-        # Sin índice no se puede detectar la escala mixta de las SAB antiguas: se avisa.
-        sin_idx = (pres["plan"] == "I") & (pres["ejercicio"] <= 2011) & pres["smv_activo_total"].isna()
-        pres.loc[sin_idx, "escala_original"] = "no verificada"
-        calidad["sab_antiguas_sin_indice_escala_no_verificada"] = int(
-            pres.loc[sin_idx].drop_duplicates(CLAVE_PRESENTACION).shape[0])
+    # La escala se verifica de dos formas: contra el índice SMV y, sin índice, comparando
+    # el activo total con la suma de su detalle (_escala_interna).
     pres.to_parquet(salida / "presentaciones.parquet", index=False)
 
     # --- Empresas: último valor conocido + historial de nombres
@@ -341,6 +381,12 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
         "TipoEmpresa": "tipo_empresa", "TipoSector": "sector"})
     planes = pres.groupby("rpj")["plan"].agg(lambda s: ",".join(sorted(set(s))))
     empresas["planes"] = empresas["rpj"].map(planes)
+    # Qué estados tiene cada empresa. Ojo: en 2012-2014 el servicio de ORI devuelve unas
+    # 2,300 entidades más ("OTRAS EMPRESAS") que no tienen balance ni resultados en la base.
+    estados = pres.groupby("rpj")["estado"].agg(lambda s: ",".join(sorted(set(s))))
+    empresas["estados"] = empresas["rpj"].map(estados)
+    calidad["empresas_con_balance"] = int(empresas["estados"].str.contains("BG", na=False).sum())
+    calidad["empresas_solo_con_ori"] = int((empresas["estados"] == "ORI").sum())
     empresas.to_parquet(salida / "empresas.parquet", index=False)
 
     nombres = (at.groupby(["RPJ", "NombreEmpresa"], as_index=False)

@@ -7,7 +7,8 @@ Qué genera:
                          sector, moneda, conceptos estándar y ratios en columnas. Es la
                          tabla más cómoda para empezar.
 - resumen_trimestral.csv Igual, para los trimestres (montos del trimestre aislado).
-- empresas.csv, cuentas.csv, estandar.csv, ratios.csv
+- empresas.csv, cuentas.csv
+- estandar.csv.gz, ratios.csv.gz (comprimidos)
 - hechos/hechos_AAAA.csv.gz  Detalle por cuenta, un archivo comprimido por ejercicio.
 
 Los CSV usan coma como separador y punto decimal, en UTF-8 con BOM para que Excel
@@ -47,6 +48,8 @@ def resumen(est: pd.DataFrame, rat: pd.DataFrame, emp: pd.DataFrame, pres: pd.Da
                 .set_index(CLAVES)[["moneda", "plan"]])
     out = valores.join(ratios, how="outer").join(moneda).join(propuestos).reset_index()
     out = out.merge(emp[["rpj", "nombre", "ruc", "tipo_empresa", "sector", "ciiu"]], on="rpj", how="left")
+    # El resumen es para análisis: solo filas con balance o resultados.
+    out = out[out[[c for c in ["activo_total", "utilidad_neta", "ingresos"] if c in out]].notna().any(axis=1)]
     primeras = ["rpj", "nombre", "ruc", "tipo_empresa", "sector", "ciiu", "ejercicio", "periodo",
                 "tipo", "plan", "moneda", "conceptos_no_validados"]
     return out[primeras + [c for c in out.columns if c not in primeras]].sort_values(
@@ -77,8 +80,9 @@ def main() -> int:
     res[res["periodo"] != "A"].to_csv(csv / "resumen_trimestral.csv", **kw)
     emp.to_csv(csv / "empresas.csv", **kw)
     pd.read_parquet(data / "cuentas.parquet").to_csv(csv / "cuentas.csv", **kw)
-    est.to_csv(csv / "estandar.csv", **kw)
-    rat.to_csv(csv / "ratios.csv", **kw)
+    # Las tablas largas van comprimidas (Excel no las necesita: para eso están los resúmenes).
+    est.to_csv(csv / "estandar.csv.gz", index=False, compression="gzip")
+    rat.to_csv(csv / "ratios.csv.gz", index=False, compression="gzip")
 
     for carpeta in sorted((data / "hechos").glob("ejercicio=*")):
         anio = carpeta.name.split("=")[1]

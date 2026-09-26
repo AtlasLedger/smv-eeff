@@ -64,10 +64,10 @@ deuda_financiera,F,,,,,no_aplica,Para un banco la deuda es su materia prima (dep
 deuda_financiera,I,,,,1I1431+1I1470,propuesto,Otros pasivos financieros corriente + no corriente.
 deuda_financiera,V,,,,1V0309+1V0401,propuesto,Otros pasivos financieros corriente + no corriente.
 creditos_brutos,F,C,,,,no_aplica,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
-creditos_brutos,F,I,,,1F0115+1F0116+1F0117+1F0118+1F0119,directo,Definición estándar SBS. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+creditos_brutos,F,I,2006,,1F0115+1F0116+1F0117+1F0118+1F0119,directo,Definición estándar SBS. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
 creditos_atrasados,F,C,,,,no_aplica,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
-creditos_atrasados,F,I,,,1F0118+1F0119,directo,Definición estándar SBS de cartera atrasada. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
-provisiones_creditos,F,I,,,1F0121,directo,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+creditos_atrasados,F,I,2006,,1F0118+1F0119,directo,Definición estándar SBS de cartera atrasada. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+provisiones_creditos,F,I,2006,,1F0121,directo,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
 depositos,B,,,,1B0311,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Total obligaciones con el público."
 depositos,F,,,,1F2101,directo,
 ingresos,A,,,,2A01ST,directo,Coincide con índice SMV.
@@ -121,10 +121,10 @@ utilidad_antes_impuestos,D,,,2009,2D04ST+2D0501,propuesto,"Plantilla previa a NI
 utilidad_antes_impuestos,D,,2010,,2D04ST,directo,
 utilidad_antes_impuestos,E,C,,,2E1509,directo,En el consolidado de seguros el código cambia (2E1508 en individual).
 utilidad_antes_impuestos,E,I,,,2E1508,directo,
-utilidad_antes_impuestos,E,I,,,2E1503+2E1601,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2E1503 + participaciones de los trabajadores (2E1601)."
+utilidad_antes_impuestos,E,,,,2E1503+2E1601,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2E1503 + participaciones de los trabajadores (2E1601)."
 utilidad_antes_impuestos,F,C,,,2F2809,directo,El consolidado de bancos usa otra plantilla (formato de conglomerado financiero).
 utilidad_antes_impuestos,F,I,,,2F1302,directo,
-utilidad_antes_impuestos,F,I,,,2F1301+2F1402,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2F1301 (antes de participaciones e impuesto) + distribución legal de la renta neta (2F1402, participación de trabajadores)."
+utilidad_antes_impuestos,F,,,,2F1301+2F1402,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2F1301 (antes de participaciones e impuesto) + distribución legal de la renta neta (2F1402, participación de trabajadores)."
 utilidad_antes_impuestos,I,,,2011,2I2121+2I2130,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2011 2I2121 era antes de participaciones e impuesto; se suma Participaciones (2I2130)."
 utilidad_antes_impuestos,I,,2012,,2I2121,directo,
 utilidad_antes_impuestos,S,,,,2S1203+2S1301,propuesto,"Plantilla antigua de seguros (letra S, usada en 2005). Antes de participación e impuesto + participaciones (ver DECISIONES.md, punto 7)."
@@ -162,3 +162,12 @@ primas_ganadas_netas,E,,,,2E0602,directo,
 primas_ganadas_netas,S,,,,2S0304,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
 siniestros_netos,E,,,,2E0706,directo,
 siniestros_netos,S,,,,2S0403,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
+partidas_entre_pasivo_y_patrimonio,D,,,2005,1D0501+1D0502,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,B,,,,1B0901+1B0902,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,S,,,,1S0801+1S0802,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,F,,,2010,1F3201,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,E,,,2010,1E0701,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,I,,,2004,1I1500+1I1510,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+creditos_brutos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
+creditos_atrasados,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
+provisiones_creditos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."

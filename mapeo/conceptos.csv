@@ -24,3 +24,4 @@ margen_financiero_bruto,ER,Margen financiero bruto,Solo bancos y financieras: in
 provisiones_credito_gasto,ER,Gasto de provisiones de créditos directos,Solo bancos y financieras (con signo negativo).
 primas_ganadas_netas,ER,Primas ganadas netas,Solo seguros.
 siniestros_netos,ER,Siniestros incurridos netos,Solo seguros (con signo negativo).
+partidas_entre_pasivo_y_patrimonio,BG,Partidas entre pasivo y patrimonio,"Solo plantillas antiguas: interés minoritario, contingencias o ganancias diferidas presentados fuera del pasivo total y del patrimonio total."

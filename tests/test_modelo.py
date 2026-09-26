@@ -227,3 +227,21 @@ def test_resultados_trimestrales_sab_sin_monto_del_trimestre():
     h = _hechos(df).set_index("cuenta")
     assert pd.isna(h.loc["2I2161", "monto"]) and h.loc["2I2161", "monto_acumulado"] == 432.5
     assert h.loc["2D07ST", "monto"] == 432.5
+
+
+def test_escala_interna_sin_indice():
+    from smv.modelo import _escala_interna
+    base = {"RPJ": "B80127", "Ejercicio": 2003, "_periodo_consultado": "A", "_tipo_consultado": "I"}
+    antiguo = pd.DataFrame([
+        {**base, "Cuenta": "1I1010", "DescripcionCuenta": "Caja y bancos", "Monto1": 908.2},
+        {**base, "Cuenta": "1I1020", "DescripcionCuenta": "Valores negociables", "Monto1": 5750.9},
+        {**base, "Cuenta": "1I1071", "DescripcionCuenta": "TOTAL ACTIVO CORRIENTE", "Monto1": 6_659_100.0},
+        {**base, "Cuenta": "1I1131", "DescripcionCuenta": "TOTAL ACTIVOS", "Monto1": 6_659_100.0},
+    ])
+    assert list(_escala_interna(antiguo)["rpj"]) == ["B80127"]
+    actual = pd.DataFrame([
+        {**base, "RPJ": "X", "Cuenta": "1D0109", "DescripcionCuenta": "Efectivo", "Monto1": 100.0},
+        {**base, "RPJ": "X", "Cuenta": "1D01ST", "DescripcionCuenta": "Total Activos Corrientes", "Monto1": 100.0},
+        {**base, "RPJ": "X", "Cuenta": "1D020T", "DescripcionCuenta": "TOTAL DE ACTIVOS", "Monto1": 100.0},
+    ])
+    assert _escala_interna(actual).empty
