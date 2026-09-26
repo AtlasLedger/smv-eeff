@@ -34,10 +34,13 @@ jobs:
           ref: main
       - name: Armar el sitio
         run: |
-          mkdir -p _sitio/data
+          mkdir -p _sitio/data _sitio/docs _sitio/mapeo _sitio/validacion
           cp site/index.html _sitio/
           cp -r data/csv _sitio/data/
-          cp docs/diccionario.md mapeo/*.csv validacion/reporte.md _sitio/ 2>/dev/null || true
+          cp data/metadatos.json data/calidad.json _sitio/data/
+          cp docs/diccionario.md _sitio/docs/
+          cp mapeo/*.csv mapeo/DECISIONES.md _sitio/mapeo/
+          cp validacion/reporte.md _sitio/validacion/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _sitio

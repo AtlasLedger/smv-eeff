@@ -3,161 +3,672 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estados financieros SMV</title>
-<meta name="description" content="Base abierta, limpia y comparable de los estados financieros presentados a la SMV del Perú.">
+<meta name="theme-color" content="#071311">
+<title>AtlasLedger — Estados financieros SMV</title>
+<meta name="description" content="Explora y descarga estados financieros normalizados de empresas supervisadas por la SMV del Perú, de 2000 a 2026.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23071311'/%3E%3Cpath d='M12 48 27 15l7 16 8-16 12 33M18 38h31' fill='none' stroke='%2371e6b5' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
   :root {
-    --bg: #fbfbf9; --fg: #1d1d1b; --muted: #6b6b66; --line: #e3e2dd; --accent: #1f5f8b;
-    --warn-bg: #fff4e0; --warn-fg: #7a4b00; --card: #ffffff;
+    --ink:#eef5f0; --muted:#98aaa3; --faint:#6e817a; --bg:#071311; --panel:#0c1b18;
+    --line:rgba(223,242,233,.12); --line-strong:rgba(223,242,233,.2);
+    --mint:#71e6b5; --mint-dark:#0b6b4c; --gold:#e6bd72; --cream:#f0eee6;
+    --cream-ink:#13201d; --cream-muted:#5e6b66; --danger:#ff9d8d;
+    --shadow:0 24px 80px rgba(0,0,0,.26);
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #151514; --fg: #ebeae6; --muted: #a09f99; --line: #33332f; --accent: #7fb6de;
-            --warn-bg: #3a2c12; --warn-fg: #f3c77a; --card: #1d1d1b; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0; color:var(--ink);
+    background:
+      radial-gradient(circle at 78% 5%,rgba(29,131,91,.17),transparent 31rem),
+      radial-gradient(circle at 12% 24%,rgba(230,189,114,.07),transparent 26rem),
+      var(--bg);
+    font-family:"Avenir Next",Avenir,Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg);
-         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 980px; margin: 0 auto; padding: 32px 16px 64px; }
-  h1 { font-size: 1.7rem; margin: 0 0 8px; letter-spacing: -0.01em; }
-  h2 { font-size: 1.15rem; margin: 40px 0 12px; }
-  p { margin: 0 0 12px; }
-  a { color: var(--accent); }
-  .lead { color: var(--muted); max-width: 70ch; }
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 24px 0; }
-  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
-  .stat b { display: block; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
-  .stat span { color: var(--muted); font-size: 0.85rem; }
-  .controles { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-  input, select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
-                  background: var(--card); color: var(--fg); }
-  input { flex: 1 1 260px; }
-  .tabla { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
-  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
-  th, td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
-  th { position: sticky; top: 0; background: var(--card); font-weight: 600; }
-  th:first-child, td:first-child { text-align: left; }
-  td { font-variant-numeric: tabular-nums; }
-  .nota { font-size: 0.85rem; color: var(--muted); }
-  .aviso { background: var(--warn-bg); color: var(--warn-fg); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
-  ul.descargas { padding-left: 18px; }
-  ul.descargas li { margin-bottom: 4px; }
-  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+  body::before {
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.16;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:64px 64px; mask-image:linear-gradient(to bottom,black,transparent 65%);
+  }
+  a { color:inherit; }
+  button,input,select { font:inherit; }
+  button,a { -webkit-tap-highlight-color:transparent; }
+  ::selection { background:var(--mint); color:#06100d; }
+  .skip-link {
+    position:fixed; left:16px; top:-60px; z-index:100; padding:10px 14px;
+    border-radius:10px; background:var(--mint); color:#06100d; font-weight:700;
+  }
+  .skip-link:focus { top:16px; }
+  .visually-hidden {
+    position:absolute!important; width:1px!important; height:1px!important; padding:0!important;
+    margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important;
+    white-space:nowrap!important; border:0!important;
+  }
+  .shell { width:min(1600px,calc(100% - 64px)); margin-inline:auto; }
+  .reading { width:min(1240px,calc(100% - 64px)); margin-inline:auto; }
+
+  .topbar {
+    position:sticky; top:0; z-index:50; border-bottom:1px solid transparent;
+    background:rgba(7,19,17,.78); backdrop-filter:blur(18px);
+  }
+  .topbar-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand { display:inline-flex; align-items:center; gap:12px; text-decoration:none; font-weight:750; letter-spacing:-.02em; }
+  .brand-mark {
+    width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(113,230,181,.45);
+    border-radius:10px; color:var(--mint); background:linear-gradient(145deg,rgba(113,230,181,.12),rgba(113,230,181,.02));
+  }
+  .brand-mark svg { width:20px; height:20px; }
+  .brand span small { display:block; color:var(--faint); font-size:.64rem; font-weight:700; letter-spacing:.14em; line-height:1; text-transform:uppercase; }
+  .brand span strong { display:block; font-size:.98rem; }
+  .nav { display:flex; align-items:center; gap:6px; }
+  .nav a {
+    padding:9px 12px; border-radius:999px; color:var(--muted); text-decoration:none;
+    font-size:.88rem; font-weight:650; transition:color .2s,background .2s;
+  }
+  .nav a:hover,.nav a:focus-visible { color:var(--ink); background:rgba(255,255,255,.06); outline:none; }
+  .nav .nav-cta { margin-left:6px; color:#07130f; background:var(--mint); }
+  .nav .nav-cta:hover,.nav .nav-cta:focus-visible { color:#07130f; background:#91efc8; }
+
+  .hero { min-height:710px; display:grid; align-items:center; padding:84px 0 96px; }
+  .hero-grid { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr); align-items:center; gap:clamp(56px,8vw,132px); }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:9px; margin:0 0 24px; color:var(--mint);
+    font-size:.76rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  }
+  .eyebrow::before { content:""; width:28px; height:1px; background:currentColor; }
+  h1,h2,h3,p { margin-top:0; }
+  h1 { max-width:14ch; margin-bottom:26px; font-size:clamp(3.4rem,6.2vw,6.9rem); line-height:.94; letter-spacing:-.07em; font-weight:720; }
+  h1 em { color:var(--mint); font-style:normal; }
+  .hero-copy { max-width:67ch; margin-bottom:34px; color:var(--muted); font-size:clamp(1rem,1.35vw,1.18rem); }
+  .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+  .button {
+    min-height:48px; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    border:1px solid var(--line-strong); border-radius:999px; padding:0 20px;
+    color:var(--ink); background:rgba(255,255,255,.035); text-decoration:none;
+    font-size:.9rem; font-weight:750; transition:transform .2s,border-color .2s,background .2s;
+  }
+  .button:hover,.button:focus-visible { transform:translateY(-2px); border-color:rgba(113,230,181,.55); background:rgba(113,230,181,.08); outline:none; }
+  .button.primary { border-color:var(--mint); color:#07130f; background:var(--mint); }
+  .button.primary:hover,.button.primary:focus-visible { background:#91efc8; }
+  .button svg { width:16px; height:16px; }
+  .data-card {
+    position:relative; overflow:hidden; border:1px solid var(--line-strong); border-radius:28px;
+    padding:28px; background:linear-gradient(155deg,rgba(21,46,40,.96),rgba(8,24,21,.92)); box-shadow:var(--shadow);
+  }
+  .data-card::after { content:""; position:absolute; width:220px; height:220px; right:-100px; top:-100px; border-radius:50%; background:rgba(113,230,181,.13); }
+  .status-line {
+    position:relative; z-index:1; display:flex; align-items:center; gap:9px; padding-bottom:24px;
+    border-bottom:1px solid var(--line); color:var(--muted); font-size:.78rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  }
+  .live-dot { width:8px; height:8px; border-radius:50%; background:var(--mint); box-shadow:0 0 0 5px rgba(113,230,181,.11),0 0 18px rgba(113,230,181,.7); }
+  .hero-metrics { position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; }
+  .hero-metric { min-height:126px; padding:24px 18px 18px 0; border-bottom:1px solid var(--line); }
+  .hero-metric:nth-child(odd) { border-right:1px solid var(--line); }
+  .hero-metric:nth-child(even) { padding-left:24px; }
+  .hero-metric:nth-last-child(-n+2) { border-bottom:0; }
+  .hero-metric strong { display:block; margin-bottom:4px; font-size:clamp(1.65rem,3vw,2.45rem); line-height:1; letter-spacing:-.045em; font-variant-numeric:tabular-nums; }
+  .hero-metric span { color:var(--muted); font-size:.79rem; }
+
+  .section { padding:110px 0; scroll-margin-top:68px; }
+  .section-number {
+    display:inline-flex; align-items:center; gap:10px; margin-bottom:18px; color:var(--mint);
+    font-size:.72rem; font-weight:850; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .section-number::after { content:""; width:44px; height:1px; background:currentColor; opacity:.55; }
+  .section-heading { display:flex; align-items:end; justify-content:space-between; gap:40px; margin-bottom:36px; }
+  .section-heading h2 { margin-bottom:0; font-size:clamp(2.25rem,4vw,4rem); line-height:1; letter-spacing:-.05em; }
+  .section-heading p { max-width:52ch; margin-bottom:2px; color:var(--muted); }
+
+  .explorer-panel { overflow:hidden; border:1px solid var(--line-strong); border-radius:24px; background:rgba(10,27,23,.88); box-shadow:var(--shadow); }
+  .toolbar { display:grid; grid-template-columns:minmax(320px,1fr) 220px; gap:12px; padding:18px; border-bottom:1px solid var(--line); background:rgba(255,255,255,.015); }
+  .field { position:relative; }
+  .field svg { position:absolute; left:16px; top:50%; width:18px; height:18px; color:var(--faint); transform:translateY(-50%); pointer-events:none; }
+  .field input,.field select {
+    width:100%; height:50px; border:1px solid var(--line); border-radius:13px;
+    color:var(--ink); background:#0a1715; outline:none; transition:border-color .2s,box-shadow .2s;
+  }
+  .field input { padding:0 16px 0 48px; }
+  .field select { appearance:none; padding:0 42px 0 16px; cursor:pointer; }
+  .field.select::after { content:"⌄"; position:absolute; right:16px; top:11px; color:var(--muted); pointer-events:none; }
+  .field input:focus,.field select:focus { border-color:rgba(113,230,181,.7); box-shadow:0 0 0 4px rgba(113,230,181,.08); }
+  .field input::placeholder { color:#64766f; }
+  .quick-row { display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:0 18px 16px; border-bottom:1px solid var(--line); }
+  .quick-label { margin-right:2px; color:var(--faint); font-size:.74rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .quick-chip { border:1px solid var(--line); border-radius:999px; padding:6px 10px; color:var(--muted); background:transparent; font-size:.76rem; cursor:pointer; }
+  .quick-chip:hover,.quick-chip:focus-visible { border-color:rgba(113,230,181,.45); color:var(--ink); outline:none; }
+  .table-meta { min-height:45px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 18px; color:var(--faint); font-size:.76rem; }
+  .table-meta strong { color:var(--muted); font-weight:700; }
+  .scroll-note { display:none; }
+  .table-wrap { max-height:590px; overflow:auto; border-top:1px solid var(--line); scrollbar-color:rgba(113,230,181,.3) transparent; scrollbar-width:thin; }
+  table { width:max-content; min-width:100%; border-collapse:separate; border-spacing:0; font-size:.82rem; }
+  th,td {
+    min-width:116px; padding:13px 14px; border-right:1px solid rgba(223,242,233,.055);
+    border-bottom:1px solid rgba(223,242,233,.075); text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums;
+  }
+  th { color:#b9c9c3; background:#0d211d; font-weight:750; }
+  thead .group-row th {
+    position:sticky; top:0; z-index:4; min-width:auto; height:34px; padding-block:8px;
+    color:var(--mint); background:#0a1a17; font-size:.64rem; letter-spacing:.12em; text-align:center; text-transform:uppercase;
+  }
+  thead .label-row th { position:sticky; top:34px; z-index:4; height:48px; background:#0d211d; font-size:.71rem; line-height:1.15; }
+  th.company-head {
+    position:sticky!important; top:0!important; left:0; z-index:8!important; min-width:290px!important;
+    width:290px; text-align:left!important; background:#0a1a17!important;
+  }
+  td:first-child:not(.empty-cell) {
+    position:sticky; left:0; z-index:2; width:290px; min-width:290px; max-width:290px;
+    color:var(--ink); background:#0d1e1a; font-weight:650; line-height:1.25; text-align:left; white-space:normal;
+  }
+  tbody tr:nth-child(even) td { background-color:rgba(255,255,255,.018); }
+  tbody tr:nth-child(even) td:first-child:not(.empty-cell) { background:#10231f; }
+  tbody tr:hover td { background-color:rgba(113,230,181,.055); }
+  tbody tr:hover td:first-child:not(.empty-cell) { background:#143027; }
+  td:last-child,th:last-child { border-right:0; }
+  .value-negative { color:var(--danger); }
+  .empty-cell { height:180px; color:var(--faint); text-align:center!important; white-space:normal; }
+  .empty-cell strong { display:block; margin-bottom:6px; color:var(--muted); font-size:.95rem; }
+  .confidence {
+    display:inline-flex; align-items:center; margin-left:6px; border:1px solid rgba(230,189,114,.3);
+    border-radius:999px; padding:2px 6px; color:var(--gold); background:rgba(230,189,114,.07);
+    font-size:.61rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .explorer-foot { display:flex; justify-content:space-between; gap:24px; padding:16px 18px; border-top:1px solid var(--line); color:var(--faint); font-size:.75rem; }
+  .explorer-foot p { margin:0; }
+  .explorer-foot a { color:var(--mint); text-underline-offset:3px; }
+
+  .light-band { position:relative; color:var(--cream-ink); background:var(--cream); }
+  .light-band::before {
+    content:""; position:absolute; inset:0; opacity:.22;
+    background-image:radial-gradient(rgba(19,32,29,.18) .7px,transparent .7px);
+    background-size:10px 10px; pointer-events:none;
+  }
+  .light-band .reading { position:relative; }
+  .light-band .section-number { color:var(--mint-dark); }
+  .light-band .section-heading p { color:var(--cream-muted); }
+  .quality-grid { display:grid; grid-template-columns:1.35fr repeat(3,1fr); border:1px solid rgba(19,32,29,.14); border-radius:22px; overflow:hidden; background:rgba(255,255,255,.44); }
+  .quality-intro,.quality-stat { min-height:190px; padding:28px; border-right:1px solid rgba(19,32,29,.12); }
+  .quality-stat:last-child { border-right:0; }
+  .quality-intro { display:flex; flex-direction:column; justify-content:space-between; }
+  .quality-intro h3 { margin-bottom:12px; font-size:1.55rem; letter-spacing:-.03em; }
+  .quality-intro p { margin:0; color:var(--cream-muted); font-size:.9rem; }
+  .quality-kicker { color:var(--mint-dark); font-size:.7rem; font-weight:850; letter-spacing:.12em; text-transform:uppercase; }
+  .quality-stat { display:flex; flex-direction:column; justify-content:end; }
+  .quality-stat strong { display:block; margin-bottom:8px; font-size:clamp(2rem,3.6vw,3.5rem); line-height:.9; letter-spacing:-.055em; font-variant-numeric:tabular-nums; }
+  .quality-stat span { color:var(--cream-muted); font-size:.78rem; line-height:1.35; }
+  .process-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+  .process-card { min-height:235px; border:1px solid rgba(19,32,29,.13); border-radius:18px; padding:26px; background:rgba(255,255,255,.35); }
+  .process-card .step { display:inline-grid; width:34px; height:34px; place-items:center; margin-bottom:38px; border-radius:50%; color:var(--cream); background:var(--cream-ink); font-size:.72rem; font-weight:800; }
+  .process-card h3 { margin-bottom:10px; font-size:1.08rem; }
+  .process-card p { margin:0; color:var(--cream-muted); font-size:.87rem; }
+  .docs-layout { display:grid; grid-template-columns:.82fr 1.18fr; gap:44px; margin-top:72px; padding-top:64px; border-top:1px solid rgba(19,32,29,.16); }
+  .docs-copy h3 { margin-bottom:16px; font-size:clamp(1.8rem,3vw,2.6rem); line-height:1.05; letter-spacing:-.04em; }
+  .docs-copy p { color:var(--cream-muted); }
+  .text-link { display:inline-flex; align-items:center; gap:8px; color:var(--mint-dark); font-size:.85rem; font-weight:800; text-underline-offset:4px; }
+  .accordions { border-top:1px solid rgba(19,32,29,.17); }
+  details { border-bottom:1px solid rgba(19,32,29,.17); }
+  summary { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:20px 0; font-weight:760; cursor:pointer; list-style:none; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--mint-dark); font-size:1.35rem; font-weight:500; }
+  details[open] summary::after { content:"−"; }
+  .detail-content { padding:0 30px 24px 0; color:var(--cream-muted); font-size:.88rem; }
+  .detail-content p:last-child { margin-bottom:0; }
+  .detail-content dl { display:grid; grid-template-columns:145px 1fr; gap:9px 18px; margin:0; }
+  .detail-content dt { color:var(--cream-ink); font-weight:750; }
+  .detail-content dd { margin:0; }
+
+  .downloads-grid { display:grid; grid-template-columns:repeat(12,1fr); gap:16px; }
+  .download-card {
+    grid-column:span 4; min-height:290px; display:flex; flex-direction:column; border:1px solid var(--line);
+    border-radius:20px; padding:26px; background:linear-gradient(145deg,rgba(17,39,33,.86),rgba(8,23,20,.86));
+    transition:transform .2s,border-color .2s;
+  }
+  .download-card:hover { transform:translateY(-4px); border-color:rgba(113,230,181,.34); }
+  .download-card.featured {
+    grid-column:span 8;
+    background:radial-gradient(circle at 90% 0%,rgba(113,230,181,.15),transparent 18rem),linear-gradient(145deg,#132d26,#0a1c18);
+  }
+  .file-tag { align-self:flex-start; margin-bottom:48px; border:1px solid var(--line); border-radius:999px; padding:5px 9px; color:var(--muted); font-size:.65rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+  .file-tag.recommended { border-color:rgba(113,230,181,.3); color:var(--mint); background:rgba(113,230,181,.06); }
+  .download-card h3 { margin-bottom:10px; font-size:1.35rem; letter-spacing:-.035em; }
+  .download-card p { max-width:57ch; margin-bottom:26px; color:var(--muted); font-size:.86rem; }
+  .download-actions { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:auto; }
+  .file-link { display:inline-flex; align-items:center; gap:8px; color:var(--mint); font-size:.82rem; font-weight:800; text-decoration:none; }
+  .file-link:hover { text-decoration:underline; text-underline-offset:4px; }
+  .file-link svg { width:15px; height:15px; }
+  .mini-links { display:flex; flex-wrap:wrap; gap:9px; margin-top:auto; }
+  .mini-links a { border:1px solid var(--line); border-radius:10px; padding:8px 10px; color:var(--muted); text-decoration:none; font-size:.75rem; font-weight:700; }
+  .mini-links a:hover { color:var(--ink); border-color:rgba(113,230,181,.35); }
+  .year-picker { display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:auto; }
+  .year-picker select { min-width:0; height:42px; border:1px solid var(--line); border-radius:10px; padding:0 12px; color:var(--ink); background:#091814; outline:none; }
+  .year-picker .button { min-height:42px; padding-inline:15px; font-size:.76rem; }
+  .archive-strip { display:flex; align-items:center; justify-content:space-between; gap:30px; margin-top:16px; border:1px solid rgba(230,189,114,.22); border-radius:18px; padding:22px 26px; background:rgba(230,189,114,.045); }
+  .archive-strip strong { display:block; margin-bottom:3px; }
+  .archive-strip span { color:var(--muted); font-size:.8rem; }
+  .archive-strip a { color:var(--gold); white-space:nowrap; }
+
+  .about { border-top:1px solid var(--line); padding:50px 0; }
+  .footer-grid { display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:50px; }
+  .footer-title { max-width:34ch; margin-bottom:16px; font-size:1.05rem; font-weight:740; }
+  .footer-copy { max-width:55ch; color:var(--faint); font-size:.78rem; }
+  .footer-column strong { display:block; margin-bottom:14px; color:var(--muted); font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; }
+  .footer-column a { display:block; margin:7px 0; color:var(--faint); font-size:.8rem; text-decoration:none; }
+  .footer-column a:hover { color:var(--mint); }
+  .footer-bottom { display:flex; justify-content:space-between; gap:30px; margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:#5f716a; font-size:.72rem; }
+
+  @media (max-width:1100px) {
+    .hero { min-height:auto; }
+    .hero-grid { grid-template-columns:1fr; gap:54px; }
+    .data-card { max-width:700px; }
+    .section-heading { align-items:start; flex-direction:column; gap:18px; }
+    .quality-grid { grid-template-columns:1fr 1fr; }
+    .quality-intro,.quality-stat:nth-child(2) { border-bottom:1px solid rgba(19,32,29,.12); }
+    .quality-stat:nth-child(2) { border-right:0; }
+    .process-grid { grid-template-columns:1fr; }
+    .process-card { min-height:0; }
+    .process-card .step { margin-bottom:24px; }
+    .download-card,.download-card.featured { grid-column:span 6; }
+  }
+  @media (max-width:760px) {
+    .shell,.reading { width:min(100% - 32px,1600px); }
+    .topbar-inner { min-height:64px; }
+    .nav a { display:none; }
+    .nav a[href="#metodologia"],.nav .nav-cta { display:inline-flex; }
+    .brand span small { display:none; }
+    .hero { padding:64px 0 76px; }
+    h1 { font-size:clamp(3.05rem,15vw,5rem); }
+    .section { padding:78px 0; }
+    .toolbar { grid-template-columns:1fr; }
+    .scroll-note { display:inline; }
+    .explorer-foot { flex-direction:column; gap:8px; }
+    .quality-grid { grid-template-columns:1fr; }
+    .quality-intro,.quality-stat { min-height:150px; border-right:0; border-bottom:1px solid rgba(19,32,29,.12); }
+    .quality-stat:last-child { border-bottom:0; }
+    .docs-layout { grid-template-columns:1fr; gap:28px; }
+    .detail-content dl { grid-template-columns:1fr; gap:4px; }
+    .detail-content dd { margin-bottom:10px; }
+    .download-card,.download-card.featured { grid-column:1/-1; }
+    .archive-strip { align-items:flex-start; flex-direction:column; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+    .footer-grid>:first-child { grid-column:1/-1; }
+    .footer-bottom { flex-direction:column; gap:8px; }
+  }
+  @media (max-width:480px) {
+    .hero-actions .button { width:100%; }
+    .hero-metric { min-height:112px; padding-right:12px; }
+    .hero-metric:nth-child(even) { padding-left:16px; }
+    .table-meta { align-items:flex-start; flex-direction:column; padding-block:10px; gap:2px; }
+    th.company-head,td:first-child:not(.empty-cell) { width:230px; min-width:230px!important; max-width:230px; }
+    .year-picker { grid-template-columns:1fr; }
+  }
+  @media (max-width:420px) {
+    .brand>span:last-child { display:none; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; }
+    *,*::before,*::after { transition-duration:.01ms!important; animation-duration:.01ms!important; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Estados financieros SMV</h1>
-  <p class="lead">Base abierta y comparable de los estados financieros que las empresas supervisadas
-  por la Superintendencia del Mercado de Valores del Perú presentan cada trimestre. Los datos
-  vienen del portal de datos abiertos de la SMV; aquí se limpian, se ordenan y se llevan a
-  conceptos comparables entre bancos, aseguradoras, AFP y empresas en general.</p>
+<a class="skip-link" href="#contenido">Ir al contenido</a>
 
-  <div class="stats" id="stats">
-    <div class="stat"><b id="s-empresas">…</b><span>empresas</span></div>
-    <div class="stat"><b id="s-anios">…</b><span>ejercicios</span></div>
-    <div class="stat"><b id="s-filas">…</b><span>estados anuales en el resumen</span></div>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="#inicio" aria-label="AtlasLedger, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 18.5 10.2 5l3.1 6.6L16.4 5 22 18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.8 14.2h12.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </span>
+      <span><small>AtlasLedger</small><strong>SMV · EEFF</strong></span>
+    </a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#explorar">Explorar</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#descargas">Descargas</a>
+      <a class="nav-cta" href="https://github.com/AtlasLedger/smv-eeff" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
   </div>
+</header>
 
-  <h2>Buscar una empresa</h2>
-  <div class="controles">
-    <input id="q" type="search" placeholder="Nombre o RUC, por ejemplo: alicorp" autocomplete="off">
-    <select id="tipo">
-      <option value="C">Consolidado</option>
-      <option value="I">Individual</option>
-    </select>
-  </div>
-  <div class="tabla"><table id="t"><thead></thead><tbody></tbody></table></div>
-  <p class="nota" id="nota">Montos en miles de la moneda de reporte. Los valores con
-  <span class="aviso">criterio</span> dependen de una decisión de criterio contable documentada
-  (ver <code>mapeo/DECISIONES.md</code> en el repositorio).</p>
+<main id="contenido">
+  <section class="hero shell" id="inicio">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Datos financieros abiertos · Perú</p>
+        <h1>Información financiera, <em>lista para comparar.</em></h1>
+        <p class="hero-copy">Estados financieros de empresas supervisadas por la SMV, limpios y normalizados en una sola base. Compara bancos, aseguradoras, AFP y empresas de distintos sectores sin reconstruir años de archivos.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#explorar">Explorar empresas <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m7 4 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="button" href="#descargas">Descargar datos</a>
+        </div>
+      </div>
+      <aside class="data-card" aria-label="Cobertura de la base">
+        <div class="status-line"><span class="live-dot"></span><span id="build-date">Base publicada y operativa</span></div>
+        <div class="hero-metrics">
+          <div class="hero-metric"><strong id="s-empresas">682</strong><span>empresas con balance</span></div>
+          <div class="hero-metric"><strong id="s-anios">2000–2026</strong><span>cobertura histórica</span></div>
+          <div class="hero-metric"><strong id="s-hechos">9.1 M</strong><span>montos por cuenta</span></div>
+          <div class="hero-metric"><strong id="s-filas">—</strong><span>estados anuales resumidos</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-  <h2>Descargas</h2>
-  <ul class="descargas">
-    <li><a href="data/csv/resumen_anual.csv">resumen_anual.csv</a>: una fila por empresa y año, con conceptos y ratios (la forma más fácil de empezar, abre en Excel).</li>
-    <li><a href="data/csv/resumen_trimestral.csv">resumen_trimestral.csv</a>: lo mismo por trimestre.</li>
-    <li><a href="data/csv/empresas.csv">empresas.csv</a>, <a href="data/csv/cuentas.csv">cuentas.csv</a>: dimensiones.</li>
-    <li>Detalle por cuenta: <code>data/hechos/</code> (Parquet) y <code>data/csv/hechos/</code> (CSV comprimido por año).</li>
-  </ul>
-  <p class="nota">El diccionario de datos, la validación contra estados publicados y el código
-  están en el repositorio.</p>
+  <section class="section shell" id="explorar">
+    <span class="section-number">01 · Explorador</span>
+    <div class="section-heading">
+      <h2>Busca. Compara. Entiende.</h2>
+      <p>Consulta los principales estados e indicadores por empresa y año. La tabla aprovecha todo el ancho disponible; en pantallas pequeñas puedes desplazarla.</p>
+    </div>
+    <div class="explorer-panel">
+      <div class="toolbar">
+        <label class="field">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span class="visually-hidden">Buscar por empresa o RUC</span>
+          <input id="q" type="search" placeholder="Busca por empresa o RUC…" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field select">
+          <span class="visually-hidden">Tipo de estado financiero</span>
+          <select id="tipo">
+            <option value="C">Estados consolidados</option>
+            <option value="I">Estados individuales</option>
+          </select>
+        </label>
+      </div>
+      <div class="quick-row" aria-label="Búsquedas sugeridas">
+        <span class="quick-label">Prueba con</span>
+        <button class="quick-chip" type="button" data-query="alicorp" data-type="C">Alicorp</button>
+        <button class="quick-chip" type="button" data-query="credicorp" data-type="C">Credicorp</button>
+        <button class="quick-chip" type="button" data-query="buenaventura" data-type="C">Buenaventura</button>
+        <button class="quick-chip" type="button" data-query="rimac" data-type="I">Rimac</button>
+      </div>
+      <div class="table-meta">
+        <span id="result-status" aria-live="polite">Cargando base de consulta…</span>
+        <span class="scroll-note">Desliza para ver todos los ratios →</span>
+      </div>
+      <div class="table-wrap" tabindex="0" aria-label="Resultados financieros; la tabla permite desplazamiento horizontal">
+        <table id="t">
+          <thead>
+            <tr class="group-row">
+              <th class="company-head" rowspan="2" scope="col">Empresa</th>
+              <th colspan="2" scope="colgroup">Periodo</th>
+              <th colspan="4" scope="colgroup">Cifras · miles</th>
+              <th colspan="3" scope="colgroup">Ratios</th>
+            </tr>
+            <tr class="label-row">
+              <th scope="col">Año</th><th scope="col">Moneda</th><th scope="col">Activo</th>
+              <th scope="col">Patrimonio</th><th scope="col">Ingresos</th><th scope="col">Utilidad neta</th>
+              <th scope="col">Margen<br>neto</th><th scope="col">ROE</th><th scope="col">Pasivo /<br>patrimonio</th>
+            </tr>
+          </thead>
+          <tbody><tr><td class="empty-cell" colspan="10"><strong>Preparando los datos</strong>Esto tomará solo unos segundos.</td></tr></tbody>
+        </table>
+      </div>
+      <div class="explorer-foot">
+        <p>Montos en miles de la moneda de reporte. “Criterio” identifica conceptos cuya equivalencia contable fue validada y documentada.</p>
+        <p><a href="#glosario">Ver glosario y metodología</a></p>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    Fuente: Superintendencia del Mercado de Valores (SMV), datos abiertos bajo licencia ODbL 1.0.
-    Esta base derivada se publica bajo ODbL 1.0. Proyecto independiente, no afiliado a la SMV.
-  </footer>
+  <section class="section light-band" id="metodologia">
+    <div class="reading">
+      <span class="section-number">02 · Metodología y validación</span>
+      <div class="section-heading">
+        <h2>Confianza que se puede auditar.</h2>
+        <p>No es solo una colección de archivos. Cada transformación conserva trazabilidad y se somete a controles contables y comparaciones externas.</p>
+      </div>
+      <div class="quality-grid">
+        <article class="quality-intro">
+          <span class="quality-kicker">Control cruzado SMV</span>
+          <div><h3>La base se verifica en cada construcción.</h3><p>Los totales se cruzan con el índice oficial y las excepciones quedan documentadas.</p></div>
+        </article>
+        <article class="quality-stat"><strong id="q-comparaciones">208,788</strong><span>comparaciones contra el índice publicado por la SMV</span></article>
+        <article class="quality-stat"><strong id="q-discrepancias">5</strong><span>discrepancias de fuente, identificadas y explicadas</span></article>
+        <article class="quality-stat"><strong>173 + 4</strong><span>cifras exactas + diferencias explicadas en validación externa</span></article>
+      </div>
+      <div class="process-grid">
+        <article class="process-card"><span class="step">01</span><h3>Extraer sin perder el origen</h3><p>Las respuestas originales de la SMV se conservan en caché. Así se puede reconstruir todo sin volver a interpretar la fuente.</p></article>
+        <article class="process-card"><span class="step">02</span><h3>Limpiar y normalizar</h3><p>Se corrigen problemas de codificación, escala e identificadores, y se organizan los datos en un modelo consistente.</p></article>
+        <article class="process-card"><span class="step">03</span><h3>Comparar con trazabilidad</h3><p>Cada concepto estándar conserva las cuentas que lo componen y distingue equivalencias directas de decisiones validadas.</p></article>
+      </div>
+      <div class="docs-layout" id="glosario">
+        <div class="docs-copy">
+          <span class="quality-kicker">Documentación integrada</span>
+          <h3>Cómo leer correctamente los datos.</h3>
+          <p>Las definiciones esenciales están aquí. Para una auditoría completa, también puedes abrir el diccionario, las decisiones contables y el reporte de validación.</p>
+          <a class="text-link" href="docs/diccionario.md" target="_blank">Abrir diccionario completo ↗</a>
+        </div>
+        <div class="accordions">
+          <details open>
+            <summary>Unidades, periodos y moneda</summary>
+            <div class="detail-content"><dl>
+              <dt>Montos</dt><dd>Están expresados en miles de la moneda en que reportó la empresa.</dd>
+              <dt>Moneda</dt><dd>PEN o USD. La base no convierte monedas.</dd>
+              <dt>Periodo</dt><dd>“A” es anual; 1 a 4 corresponden a trimestres.</dd>
+              <dt>Tipo</dt><dd>“I” es individual y “C” es consolidado.</dd>
+            </dl></div>
+          </details>
+          <details>
+            <summary>Qué significan los ratios</summary>
+            <div class="detail-content"><dl>
+              <dt>Margen neto</dt><dd>Utilidad neta dividida entre ingresos.</dd>
+              <dt>ROE</dt><dd>Utilidad neta dividida entre patrimonio promedio; se calcula para datos anuales.</dd>
+              <dt>Pasivo / patrimonio</dt><dd>Pasivo total dividido entre patrimonio.</dd>
+              <dt>Liquidez</dt><dd>Activo corriente dividido entre pasivo corriente.</dd>
+            </dl></div>
+          </details>
+          <details>
+            <summary>Directo vs. validado por criterio</summary>
+            <div class="detail-content">
+              <p><strong>Directo</strong> significa que la equivalencia no requiere interpretación. <strong>Validado</strong> identifica una decisión contable estudiada contra los datos y documentada, por ejemplo la definición de ingresos en bancos o aseguradoras.</p>
+              <p><a class="text-link" href="mapeo/DECISIONES.md" target="_blank">Revisar decisiones contables ↗</a></p>
+            </div>
+          </details>
+          <details>
+            <summary>Cómo se comprobó la calidad</summary>
+            <div class="detail-content">
+              <p>Además del control contra el índice de la SMV, se contrastaron 177 cifras con estados publicados por Alicorp, BCP, Credicorp, Buenaventura y Rimac: 173 coincidieron y 4 diferencias quedaron explicadas.</p>
+              <p>La identidad contable de las plantillas antiguas se cumple en <span id="q-identidad">99.92 %</span>. Solo <span id="q-balances">3</span> balances del histórico presentan descuadres atribuibles a la fuente.</p>
+              <p><a class="text-link" href="validacion/reporte.md" target="_blank">Abrir reporte de validación ↗</a></p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell" id="descargas">
+    <span class="section-number">03 · Descargas</span>
+    <div class="section-heading">
+      <h2>El formato correcto para cada uso.</h2>
+      <p>Empieza con un resumen para Excel o descarga el detalle por cuenta para análisis reproducibles.</p>
+    </div>
+    <div class="downloads-grid">
+      <article class="download-card featured">
+        <span class="file-tag recommended">Recomendado para empezar</span>
+        <h3>Resumen anual</h3>
+        <p>Una fila por empresa y año, con conceptos financieros comparables y ratios listos para filtrar, graficar o abrir en Excel.</p>
+        <div class="download-actions"><a class="file-link" href="data/csv/resumen_anual.csv" download>Descargar CSV <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v9m0 0 3.5-3.5M10 12 6.5 8.5M4 15.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </article>
+      <article class="download-card">
+        <span class="file-tag">Análisis temporal</span>
+        <h3>Resumen trimestral</h3>
+        <p>La misma estructura comparable, separada por trimestre para estudiar evolución dentro del año.</p>
+        <div class="download-actions"><a class="file-link" href="data/csv/resumen_trimestral.csv" download>Descargar CSV ↓</a></div>
+      </article>
+      <article class="download-card">
+        <span class="file-tag">Catálogos</span>
+        <h3>Empresas y cuentas</h3>
+        <p>Tablas maestras para identificar empresas, RUC, sectores, planes contables y descripciones de cuentas.</p>
+        <div class="mini-links"><a href="data/csv/empresas.csv" download>empresas.csv ↓</a><a href="data/csv/cuentas.csv" download>cuentas.csv ↓</a></div>
+      </article>
+      <article class="download-card">
+        <span class="file-tag">Máximo detalle</span>
+        <h3>Movimientos por cuenta</h3>
+        <p>Todos los registros contables del año seleccionado, en CSV comprimido. Ideal para Python, R o DuckDB.</p>
+        <div class="year-picker"><select id="detail-year" aria-label="Año del detalle por cuenta"></select><a class="button" id="detail-download" href="data/csv/hechos/hechos_2026.csv.gz" download>Descargar .gz</a></div>
+      </article>
+      <article class="download-card">
+        <span class="file-tag">Reproducibilidad</span>
+        <h3>Base completa y código</h3>
+        <p>Los archivos Parquet, el código de construcción, las reglas de mapeo y el historial están disponibles en GitHub.</p>
+        <div class="mini-links"><a href="https://github.com/AtlasLedger/smv-eeff/tree/main/data" target="_blank" rel="noopener">Ver Parquet ↗</a><a href="https://github.com/AtlasLedger/smv-eeff" target="_blank" rel="noopener">Ver código ↗</a></div>
+      </article>
+    </div>
+    <div class="archive-strip">
+      <div><strong>¿Necesitas una versión citable y congelada?</strong><span>Zenodo conserva la versión completa v1.0.0 y asigna un DOI permanente.</span></div>
+      <a class="file-link" href="https://doi.org/10.5281/zenodo.22981481" target="_blank" rel="noopener">Abrir en Zenodo ↗</a>
+    </div>
+  </section>
 </main>
+
+<footer class="about">
+  <div class="shell">
+    <div class="footer-grid">
+      <div><p class="footer-title">Una base abierta para investigar el mercado empresarial peruano con menos fricción.</p><p class="footer-copy">Fuente: Superintendencia del Mercado de Valores del Perú, portal de datos abiertos. Proyecto independiente, no afiliado a la SMV.</p></div>
+      <div class="footer-column"><strong>Documentación</strong><a href="docs/diccionario.md" target="_blank">Diccionario de datos</a><a href="validacion/reporte.md" target="_blank">Reporte de validación</a><a href="mapeo/DECISIONES.md" target="_blank">Decisiones contables</a></div>
+      <div class="footer-column"><strong>Proyecto</strong><a href="https://github.com/AtlasLedger/smv-eeff" target="_blank" rel="noopener">Repositorio en GitHub</a><a href="https://doi.org/10.5281/zenodo.22981480" target="_blank" rel="noopener">DOI permanente</a><a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener">Licencia ODbL 1.0</a></div>
+    </div>
+    <div class="footer-bottom"><span>AtlasLedger · SMV EEFF</span><span>Datos abiertos · Código MIT · Base ODbL 1.0</span></div>
+  </div>
+</footer>
 
 <script>
 const COLUMNAS = [
-  ["ejercicio", "Año", "t"], ["moneda", "Moneda", "t"],
-  ["activo_total", "Activo", "n"], ["patrimonio_total", "Patrimonio", "n"],
-  ["ingresos", "Ingresos", "n"], ["utilidad_neta", "Utilidad neta", "n"],
-  ["ratio_margen_neto", "Margen neto", "p"], ["ratio_roe", "ROE", "p"],
-  ["ratio_pasivo_patrimonio", "Pasivo/Patrimonio", "x"],
+  ["ejercicio","t"],["moneda","t"],["activo_total","n"],["patrimonio_total","n"],
+  ["ingresos","n"],["utilidad_neta","n"],["ratio_margen_neto","p"],
+  ["ratio_roe","p"],["ratio_pasivo_patrimonio","x"]
 ];
+const estado = { datos:[], listo:false };
+const tbody = document.querySelector("#t tbody");
+const estadoResultados = document.getElementById("result-status");
 
 function parseCSV(texto) {
-  const filas = []; let fila = [], campo = "", comillas = false;
-  for (let i = 0; i < texto.length; i++) {
-    const c = texto[i];
+  const filas=[]; let fila=[],campo="",comillas=false;
+  for (let i=0;i<texto.length;i++) {
+    const c=texto[i];
     if (comillas) {
-      if (c === '"' && texto[i + 1] === '"') { campo += '"'; i++; }
-      else if (c === '"') comillas = false;
-      else campo += c;
-    } else if (c === '"') comillas = true;
-    else if (c === ",") { fila.push(campo); campo = ""; }
-    else if (c === "\n") { fila.push(campo); filas.push(fila); fila = []; campo = ""; }
-    else if (c !== "\r") campo += c;
+      if (c === '"' && texto[i+1] === '"') { campo+='"'; i++; }
+      else if (c === '"') comillas=false;
+      else campo+=c;
+    } else if (c === '"') comillas=true;
+    else if (c === ",") { fila.push(campo); campo=""; }
+    else if (c === "\n") { fila.push(campo); filas.push(fila); fila=[]; campo=""; }
+    else if (c !== "\r") campo+=c;
   }
   if (campo || fila.length) { fila.push(campo); filas.push(fila); }
-  const cab = filas.shift().map(h => h.replace(/^﻿/, ""));
-  return filas.filter(f => f.length === cab.length).map(f => Object.fromEntries(cab.map((h, i) => [h, f[i]])));
+  const cabecera=filas.shift().map(function(h){ return h.replace(/^\uFEFF/,""); });
+  return filas.filter(function(f){ return f.length===cabecera.length; }).map(function(f){
+    return Object.fromEntries(cabecera.map(function(h,i){ return [h,f[i]]; }));
+  });
 }
-
-const fmtN = v => v === "" ? "" : Number(v).toLocaleString("es-PE", { maximumFractionDigits: 0 });
-const fmtP = v => v === "" ? "" : (Number(v) * 100).toLocaleString("es-PE", { maximumFractionDigits: 1 }) + " %";
-const fmtX = v => v === "" ? "" : Number(v).toLocaleString("es-PE", { maximumFractionDigits: 2 });
-const normal = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-
-let datos = [];
-
+function escapar(valor) {
+  return String(valor==null?"":valor).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function normalizar(valor) { return String(valor||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
+function formatoNumero(valor) { return Number(valor).toLocaleString("es-PE",{maximumFractionDigits:0}); }
+function formatoPorcentaje(valor) { return (Number(valor)*100).toLocaleString("es-PE",{maximumFractionDigits:1})+" %"; }
+function formatoRatio(valor) { return Number(valor).toLocaleString("es-PE",{maximumFractionDigits:2}); }
+function celda(valor,tipo) {
+  if (valor === "" || valor == null) return '<td aria-label="Sin dato">—</td>';
+  if (tipo === "t") return "<td>"+escapar(valor)+"</td>";
+  const numero=Number(valor);
+  const clase=numero<0?' class="value-negative"':"";
+  const texto=tipo==="p"?formatoPorcentaje(numero):tipo==="x"?formatoRatio(numero):formatoNumero(numero);
+  return "<td"+clase+">"+escapar(texto)+"</td>";
+}
 function pintar() {
-  const q = normal(document.getElementById("q").value.trim());
-  const tipo = document.getElementById("tipo").value;
-  const thead = document.querySelector("#t thead"), tbody = document.querySelector("#t tbody");
-  if (q.length < 2) {
-    thead.innerHTML = ""; tbody.innerHTML = "<tr><td>Escribe al menos dos letras.</td></tr>"; return;
+  if (!estado.listo) return;
+  const original=document.getElementById("q").value.trim();
+  const consulta=normalizar(original);
+  const tipo=document.getElementById("tipo").value;
+  if (consulta.length<2) {
+    estadoResultados.textContent="Escribe al menos dos letras o selecciona un ejemplo.";
+    tbody.innerHTML='<tr><td class="empty-cell" colspan="10"><strong>Encuentra una empresa</strong>Busca por razón social o RUC para ver su historia financiera.</td></tr>';
+    return;
   }
-  const filas = datos.filter(d => d.tipo === tipo && (normal(d.nombre).includes(q) || d.ruc.includes(q)))
-                     .sort((a, b) => a.nombre.localeCompare(b.nombre) || b.ejercicio - a.ejercicio)
-                     .slice(0, 200);
-  thead.innerHTML = "<tr><th>Empresa</th>" + COLUMNAS.map(c => `<th>${c[1]}</th>`).join("") + "</tr>";
-  if (!filas.length) { tbody.innerHTML = "<tr><td>Sin resultados para ese tipo de estado.</td></tr>"; return; }
-  tbody.innerHTML = filas.map(d => {
-    const celdas = COLUMNAS.map(([k, , t]) => {
-      const v = d[k] ?? "";
-      return `<td>${t === "n" ? fmtN(v) : t === "p" ? fmtP(v) : t === "x" ? fmtX(v) : v}</td>`;
-    }).join("");
-    const aviso = d.conceptos_con_criterio ? ` <span class="aviso" title="${d.conceptos_con_criterio}">criterio</span>` : "";
-    return `<tr><td>${d.nombre}${aviso}</td>${celdas}</tr>`;
+  const coincidencias=estado.datos.filter(function(d){
+    return d.tipo===tipo && (normalizar(d.nombre).includes(consulta) || String(d.ruc||"").includes(consulta));
+  }).sort(function(a,b){ return a.nombre.localeCompare(b.nombre) || Number(b.ejercicio)-Number(a.ejercicio); });
+  if (!coincidencias.length) {
+    estadoResultados.textContent="0 resultados para “"+original+"”.";
+    tbody.innerHTML='<tr><td class="empty-cell" colspan="10"><strong>Sin coincidencias</strong>Prueba con otra empresa o cambia el tipo de estado.</td></tr>';
+    return;
+  }
+  const limite=500,visibles=coincidencias.slice(0,limite);
+  estadoResultados.innerHTML="<strong>"+coincidencias.length.toLocaleString("es-PE")+"</strong> registros encontrados"+
+    (coincidencias.length>limite?" · mostrando los primeros "+limite:"");
+  tbody.innerHTML=visibles.map(function(d){
+    const etiqueta=d.conceptos_con_criterio
+      ?' <span class="confidence" title="'+escapar(d.conceptos_con_criterio)+'">criterio</span>':"";
+    return "<tr><td>"+escapar(d.nombre)+etiqueta+"</td>"+COLUMNAS.map(function(col){ return celda(d[col[0]],col[1]); }).join("")+"</tr>";
   }).join("");
 }
+function buscarEjemplo(consulta,tipo) {
+  const input=document.getElementById("q");
+  input.value=consulta;
+  if (tipo) document.getElementById("tipo").value=tipo;
+  pintar();
+  input.focus();
+}
+document.querySelectorAll("[data-query]").forEach(function(boton){
+  boton.addEventListener("click",function(){ buscarEjemplo(boton.dataset.query,boton.dataset.type); });
+});
+document.getElementById("q").addEventListener("input",pintar);
+document.getElementById("tipo").addEventListener("change",pintar);
 
-fetch("data/csv/resumen_anual.csv")
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-  .then(t => {
-    datos = parseCSV(t);
-    document.getElementById("s-empresas").textContent = new Set(datos.map(d => d.rpj)).size.toLocaleString("es-PE");
-    const anios = datos.map(d => +d.ejercicio);
-    document.getElementById("s-anios").textContent = `${Math.min(...anios)}–${Math.max(...anios)}`;
-    document.getElementById("s-filas").textContent = datos.length.toLocaleString("es-PE");
-    pintar();
-  })
-  .catch(() => {
-    document.querySelector("#t tbody").innerHTML = "<tr><td>No se pudo cargar el resumen.</td></tr>";
-  });
-document.getElementById("q").addEventListener("input", pintar);
-document.getElementById("tipo").addEventListener("change", pintar);
+fetch("data/csv/resumen_anual.csv").then(function(r){
+  if (!r.ok) throw new Error(r.status); return r.text();
+}).then(function(texto){
+  estado.datos=parseCSV(texto); estado.listo=true;
+  document.getElementById("s-filas").textContent=estado.datos.length.toLocaleString("es-PE");
+  pintar();
+}).catch(function(){
+  estadoResultados.textContent="No se pudo cargar la base de consulta.";
+  tbody.innerHTML='<tr><td class="empty-cell" colspan="10"><strong>Error de carga</strong>Intenta recargar la página en unos segundos.</td></tr>';
+});
+
+fetch("data/metadatos.json").then(function(r){ return r.ok?r.json():Promise.reject(); }).then(function(meta){
+  if (meta.empresas_con_balance) document.getElementById("s-empresas").textContent=Number(meta.empresas_con_balance).toLocaleString("es-PE");
+  if (Array.isArray(meta.ejercicios) && meta.ejercicios.length===2) {
+    document.getElementById("s-anios").textContent=meta.ejercicios[0]+"–"+meta.ejercicios[1];
+    poblarAnios(meta.ejercicios[0],meta.ejercicios[1]);
+  }
+  if (meta.filas_hechos) document.getElementById("s-hechos").textContent=new Intl.NumberFormat("es-PE",{notation:"compact",maximumFractionDigits:1}).format(meta.filas_hechos);
+  if (meta.construido_utc) {
+    const fecha=new Date(meta.construido_utc);
+    document.getElementById("build-date").textContent="Actualizada "+fecha.toLocaleDateString("es-PE",{day:"numeric",month:"short",year:"numeric",timeZone:"America/Lima"});
+  }
+}).catch(function(){});
+
+fetch("data/calidad.json").then(function(r){ return r.ok?r.json():Promise.reject(); }).then(function(calidad){
+  document.getElementById("q-comparaciones").textContent=Number(calidad.control_cruzado_indice_smv_comparaciones).toLocaleString("es-PE");
+  document.getElementById("q-discrepancias").textContent=Number(calidad.control_cruzado_indice_smv_discrepancias).toLocaleString("es-PE");
+  document.getElementById("q-balances").textContent=Number(calidad.balances_que_no_cuadran).toLocaleString("es-PE");
+  document.getElementById("q-identidad").textContent=(Number(calidad.identidad_resultado_antes_extraordinarias_tasa)*100).toLocaleString("es-PE",{maximumFractionDigits:2})+" %";
+}).catch(function(){});
+
+const selectorAnio=document.getElementById("detail-year");
+function poblarAnios(desde,hasta) {
+  selectorAnio.innerHTML="";
+  for (let anio=hasta;anio>=desde;anio--) {
+    const opcion=document.createElement("option");
+    opcion.value=String(anio);
+    opcion.textContent=String(anio);
+    selectorAnio.appendChild(opcion);
+  }
+  const enlace=document.getElementById("detail-download");
+  enlace.href="data/csv/hechos/hechos_"+hasta+".csv.gz";
+  enlace.setAttribute("download","hechos_"+hasta+".csv.gz");
+}
+poblarAnios(2000,2026);
+selectorAnio.addEventListener("change",function(){
+  const enlace=document.getElementById("detail-download");
+  enlace.href="data/csv/hechos/hechos_"+selectorAnio.value+".csv.gz";
+  enlace.setAttribute("download","hechos_"+selectorAnio.value+".csv.gz");
+});
 </script>
 </body>
 </html>
