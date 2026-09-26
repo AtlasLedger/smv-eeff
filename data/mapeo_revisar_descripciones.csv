@@ -1,0 +1,229 @@
+cuenta,conceptos,descripcion,desde,hasta
+1A0309,deuda_financiera,Obligaciones Financieras,2010-T1,2012-A
+1A0309,deuda_financiera,Parte corriente de deudas a largo plazo,2011-T1,2026-T2
+1A0309,deuda_financiera,Parte corriente de las deudas a largo plazo,2013-A,2025-A
+1A0401,deuda_financiera,Obligaciones Financieras,2010-T1,2012-A
+1A0401,deuda_financiera,Deudas a largo plazo,2011-T1,2026-T2
+1B0801,pasivo_total,Total del pasivo,2000-A,2000-A
+1B0801,pasivo_total,TOTAL PASIVO,2001-A,2005-A
+1C0401,deuda_financiera,Deudas a largo plazo,2004-T2,2005-A
+1C0401,deuda_financiera,Obligaciones Financieras,2006-T1,2014-A
+1D0109,efectivo,Efectivo y Equivalentes de efectivo,2006-A,2010-T4
+1D0109,efectivo,Efectivo y equivalentes de efectivo,2006-T1,2006-T4
+1D0109,efectivo,Efectivo y Equivalentes al Efectivo,2010-A,2026-T2
+1D01ST,activo_corriente,TOTAL ACTIVO CORRIENTE,2000-T1,2002-A
+1D01ST,activo_corriente,Total Activo Corriente,2002-A,2010-T4
+1D01ST,activo_corriente,Total Activos Corrientes,2010-A,2026-T2
+1D020T,activo_total,TOTAL ACTIVO,2000-T1,2010-T4
+1D020T,activo_total,TOTAL DE ACTIVOS,2010-A,2026-T2
+1D020T,activo_total,TOTAL ACTIVOS,2016-A,2026-T2
+1D0301,deuda_financiera,Sobregiros y Pagarés Bancarios,2000-T1,2002-T4
+1D0301,deuda_financiera,Sobregiros y Préstamos Bancarios,2001-A,2002-A
+1D0309,deuda_financiera,Obligaciones Financieras,2006-T1,2010-T4
+1D0309,deuda_financiera,Otros Pasivos Financieros,2010-A,2026-T2
+1D03ST,pasivo_corriente,TOTAL PASIVO CORRIENTE,2000-T1,2002-A
+1D03ST,pasivo_corriente,Total Pasivo Corriente,2002-A,2010-T4
+1D03ST,pasivo_corriente,Total Pasivos Corrientes,2010-A,2026-T2
+1D0401,deuda_financiera,Deudas a Largo Plazo,2000-T1,2002-A
+1D0401,deuda_financiera,Deudas a largo plazo,2002-A,2005-A
+1D0401,deuda_financiera,Obligaciones Financieras,2006-T1,2010-T4
+1D0401,deuda_financiera,Otros Pasivos Financieros,2010-A,2026-T2
+1D040T,pasivo_total,TOTAL PASIVO,2000-T1,2002-A
+1D040T,pasivo_total,Total Pasivo,2002-A,2010-T4
+1D040T,pasivo_total,Total Pasivos,2010-A,2026-T2
+1D0501,partidas_entre_pasivo_y_patrimonio,Contingencias,2000-T1,2002-A
+1D0501,partidas_entre_pasivo_y_patrimonio,Contingencias (Solo debe mostrarse cuando exista),2002-A,2005-A
+1D07ST,patrimonio_total,TOTAL PATRIMONIO NETO,2000-T1,2002-A
+1D07ST,patrimonio_total,Total Patrimonio Neto,2002-A,2010-T4
+1D07ST,patrimonio_total,Total Patrimonio,2010-A,2026-T2
+1E0101,efectivo,Caja y bancos,2000-T1,2005-T4
+1E0101,efectivo,Caja y Bancos,2006-T1,2009-A
+1E0101,efectivo,Disponible,2006-T1,2026-T2
+1E0101,efectivo,Efectivo y Equivalente de Efectivo,2010-T1,2026-T2
+1E0310,deuda_financiera,Obligaciones financieras,2001-T1,2005-T4
+1E0310,deuda_financiera,Adeudados y Obligaciones Financieras,2006-T1,2012-A
+1E0310,deuda_financiera,Obligaciones Financieras,2006-T1,2026-T2
+1E0310,deuda_financiera,Cuentas por pagar,2011-T1,2012-T4
+1E0401,deuda_financiera,Obligaciones financieras,2000-T1,2005-T4
+1E0401,deuda_financiera,Adeudados y Obligaciones Financieras,2006-T1,2012-A
+1E0401,deuda_financiera,Obligaciones Financieras,2006-T1,2026-T2
+1E0401,deuda_financiera,Cuentas por pagar,2011-T1,2012-T4
+1E0701,partidas_entre_pasivo_y_patrimonio,Interés minoritario,2000-T1,2005-T4
+1E0701,partidas_entre_pasivo_y_patrimonio,Total Interés Minoritario,2006-T1,2009-A
+1E0701,partidas_entre_pasivo_y_patrimonio,Interés Minoritario,2010-T1,2012-A
+1E0701,partidas_entre_pasivo_y_patrimonio,Participaciones No Controladoras,2011-T1,2026-T2
+1F0101,efectivo,FONDOS DISPONIBLES,2000-T1,2000-T4
+1F0101,efectivo,Disponible,2001-T1,2012-A
+1F0101,efectivo,DISPONIBLE,2006-T1,2026-T2
+1F0101,efectivo,Disponibles,2013-T1,2026-T2
+1F2001,activo_total,TOTAL ACTIVO,2000-T1,2026-T2
+1F2001,activo_total,TOTAL DEL ACTIVO,2006-T1,2026-T2
+1F2101,depositos,DEPOSITOS,2000-T1,2000-T4
+1F2101,depositos,Obligaciones con el público,2001-T1,2026-T2
+1F2101,depositos,OBLIGACIONES CON EL PUBLICO,2006-T1,2026-T2
+1F3101,pasivo_total,TOTAL PASIVO,2000-T1,2026-T2
+1F3101,pasivo_total,TOTAL DEL PASIVO,2006-T1,2026-T2
+1F3201,partidas_entre_pasivo_y_patrimonio,Interés minoritario,2000-T1,2005-T4
+1F3201,partidas_entre_pasivo_y_patrimonio,Total Interés Minoritario,2006-T1,2009-A
+1F3201,partidas_entre_pasivo_y_patrimonio,Interés Minoritario,2010-T1,2012-A
+1F3201,partidas_entre_pasivo_y_patrimonio,Participaciones No Controladoras,2011-T1,2026-T2
+1F3201,partidas_entre_pasivo_y_patrimonio,Participaciones no controladoras,2013-A,2025-A
+1F3306,patrimonio_total,TOTAL PATRIMONIO NETO,2000-T1,2005-T4
+1F3306,patrimonio_total,TOTAL PATRIMONIO,2003-T1,2026-T2
+1F3306,patrimonio_total,TOTAL DEL PATRIMONIO,2006-T1,2026-T2
+1I1010,efectivo,Caja y bancos,2000-T1,2012-T4
+1I1010,efectivo,Efectivo y Equivalentes de Efectivo,2012-A,2026-T2
+1I1071,activo_corriente,TOTAL ACTIVO CORRIENTE,2000-T1,2012-T4
+1I1071,activo_corriente,Total Activos Corrientes,2012-A,2026-T2
+1I1461,pasivo_corriente,TOTAL PASIVO CORRIENTE,2000-T1,2012-T4
+1I1461,pasivo_corriente,TOTAL PASIVOS CORRIENTES,2012-A,2026-T2
+1I1470,deuda_financiera,Deudas a largo plazo,2000-T1,2012-T4
+1I1470,deuda_financiera,Otros Pasivos Financieros,2012-A,2026-T2
+1I1491,pasivo_total,TOTAL PASIVO,2000-T1,2012-T4
+1I1491,pasivo_total,TOTAL PASIVOS,2012-A,2026-T2
+2A03ST,utilidad_operativa,Utilidad Operativa,2010-T1,2012-A
+2A03ST,utilidad_operativa,Utilidad (pérdida) operativa,2013-T1,2026-T2
+2A0502,impuesto_renta,Impuesto a la Renta,2010-T1,2012-A
+2A0502,impuesto_renta,Impuesto a la Renta Corriente y Diferido,2013-T1,2026-T2
+2A08ST,utilidad_antes_impuestos,Resultado antes del Impuesto a la Renta,2011-T1,2026-T2
+2A08ST,utilidad_antes_impuestos,Resultado antes de Impuesto a la Renta,2013-A,2025-A
+2B0201,"ingresos,ingresos_intereses",Total Ingreso Financiero,2000-A,2000-A
+2B0201,"ingresos,ingresos_intereses",INGRESOS FINANCIEROS,2001-A,2005-A
+2B0401,gastos_intereses,Total Gasto Financiero,2000-A,2000-A
+2B0401,gastos_intereses,GASTOS FINANCIEROS,2001-A,2005-A
+2B1001,utilidad_antes_impuestos,Resultado del Ejercicio antes de Impuesto a la Renta y Partidas Extraordinarias,2000-A,2000-A
+2B1001,utilidad_antes_impuestos,RESULTADO ANTES DE IMPUESTO A LA RENTA Y PARTIDAS EXTRAORDINARIAS,2001-A,2005-A
+2C04ST,utilidad_antes_impuestos,"Resultado antes de Gastos Extraordinarios, Participaciones y del Impuesto a la Renta",2004-T2,2005-A
+2C04ST,utilidad_antes_impuestos,Resultado antes de Participaciones y del Impuesto a la Renta,2006-T1,2014-A
+2C0501,utilidad_antes_impuestos,Participación de los trabajadores corrientes y diferidos,2004-T2,2005-A
+2C0501,utilidad_antes_impuestos,Participación de los trabajadores,2006-T1,2014-A
+2C0502,impuesto_renta,Impuesto a la Renta corriente y diferido,2004-T2,2005-A
+2C0502,impuesto_renta,Impuesto a la Renta,2006-T1,2014-A
+2D01ST,ingresos,TOTAL DE INGRESOS BRUTOS,2000-T1,2002-A
+2D01ST,ingresos,Total de Ingresos Brutos,2002-A,2010-T4
+2D01ST,ingresos,Total de Ingresos de Actividades Ordinarias,2010-A,2012-T4
+2D01ST,ingresos,Ingresos de actividades ordinarias,2012-A,2016-T4
+2D01ST,ingresos,Ingresos de Actividades Ordinarias,2016-A,2026-T2
+2D02ST,utilidad_bruta,UTILIDAD BRUTA,2000-T1,2002-A
+2D02ST,utilidad_bruta,Utilidad Bruta,2002-A,2010-T4
+2D02ST,utilidad_bruta,Ganancia (Pérdida) Bruta,2010-A,2026-T2
+2D03ST,utilidad_operativa,UTILIDAD OPERATIVA,2000-T1,2002-A
+2D03ST,utilidad_operativa,Utilidad Operativa,2002-A,2010-T4
+2D03ST,utilidad_operativa,Ganancia (Pérdida) Operativa,2010-A,2026-T2
+2D03ST,utilidad_operativa,Ganancia (Pérdida) por actividades de operación,2012-A,2016-T4
+2D04ST,utilidad_antes_impuestos,"RESULTADOS ANTES DE PARTIDAS EXTRAORDINARIAS, PARTICIPACIONES Y DEL IMPUESTO A LA RENTA",2000-T1,2002-A
+2D04ST,utilidad_antes_impuestos,"Resultado antes de Gastos Extraordinarios, Participaciones y del Impuesto a la Renta",2002-A,2005-A
+2D04ST,utilidad_antes_impuestos,Resultado antes de Participaciones y del Impuesto a la Renta,2006-T1,2010-T4
+2D04ST,utilidad_antes_impuestos,Resultado antes de Impuesto a las Ganancias,2010-A,2016-T4
+2D04ST,utilidad_antes_impuestos,Ganancia (Pérdida) antes de Impuestos,2016-A,2026-T2
+2D0501,utilidad_antes_impuestos,Participaciones,2000-T1,2002-A
+2D0501,utilidad_antes_impuestos,Participación de los trabajadores corrientes y diferidos,2002-A,2005-A
+2D0501,utilidad_antes_impuestos,Participación de los trabajadores,2006-T1,2010-T4
+2D0502,impuesto_renta,Impuesto a la Renta,2000-T1,2010-T4
+2D0502,impuesto_renta,Impuesto a la Renta corriente y diferido,2002-A,2005-A
+2D0502,impuesto_renta,Gasto por Impuesto a las Ganancias,2010-A,2016-T4
+2D0502,impuesto_renta,Ingreso (Gasto) por Impuesto,2016-A,2026-T2
+2D07ST,utilidad_neta,UTILIDAD (PERDIDA) NETA DEL EJERCICIO,2000-T1,2002-A
+2D07ST,utilidad_neta,Utilidad (Perdida) Neta del Ejercicio,2002-A,2010-T4
+2D07ST,utilidad_neta,Ganancia (Pérdida) Neta del Ejercicio,2010-A,2026-T2
+2E0101,ingresos,Primas de seguros (neto),2000-T1,2005-T4
+2E0101,ingresos,Primas de seguros (netas),2003-T1,2005-T4
+2E0101,ingresos,Primas de Seguros (Neto),2006-T1,2026-T2
+2E0101,ingresos,Primas de Seguros Netas,2006-T1,2026-T2
+2E0102,ingresos,Primas de reaseguros aceptados (neto),2000-T1,2000-T4
+2E0102,ingresos,Reaseguro aceptado (neto),2001-T1,2005-T4
+2E0102,ingresos,Reaseguro Aceptado (Neto),2006-T1,2026-T2
+2E0102,ingresos,Reaseguro Aceptado Neto,2006-T1,2026-T2
+2E0602,primas_ganadas_netas,PRIMAS GANADAS NETAS,2001-T1,2026-T2
+2E0602,primas_ganadas_netas,PRIMAS Y APORTES GANADOS NETOS,2006-T1,2026-T2
+2E0706,siniestros_netos,SINIESTROS INCURRIDOS (NETOS),2001-T1,2026-T2
+2E0706,siniestros_netos,SINIESTROS Y PRESTACIONES INCURRIDOS NETOS,2006-T1,2026-T2
+2E1202,gastos_financieros,Gastos de inversiones y financieros.,2000-T1,2026-T2
+2E1202,gastos_financieros,Gastos de inversiones y financieros,2003-T1,2005-T4
+2E1202,gastos_financieros,Gastos de Inversiones y Financieros.,2006-T1,2012-A
+2E1202,gastos_financieros,Gastos de Inversiones y Otros Gastos Financieros.,2010-T1,2012-A
+2E1202,gastos_financieros,Gastos de Inversiones y Gastos Financieros.,2013-T1,2026-T2
+2E1503,"utilidad_antes_impuestos,utilidad_operativa","RESULTADO ANTES DE PARTICIPACION, IMPUESTA A LA RENTA Y PARTIDAS EXTRAORDINARIAS",2001-T1,2002-T4
+2E1503,"utilidad_antes_impuestos,utilidad_operativa","RESULTADO ANTES DE PARTICIPACION, IMPUESTO A LA RENTA Y PARTIDAS EXTRAORDINARIAS",2003-T1,2009-A
+2E1503,"utilidad_antes_impuestos,utilidad_operativa","RESULTADO DEL EJERCICIO ANTES DE PARTIDAS EXTRAORDINARIAS, PARTICIPACIÓN DE LOS TRABAJADORES E IMPUESTO A LA RENTA",2006-T1,2012-A
+2E1503,"utilidad_antes_impuestos,utilidad_operativa",RESULTADO DE OPERACIÓN ANTES DE PARTICIPACIONES E IMPUESTO A LA RENTA,2010-T1,2012-A
+2E1508,"utilidad_antes_impuestos,utilidad_operativa",RESULTADO DE OPERACIÓN ANTES DE IMPUESTO A LA RENTA,2011-T1,2015-A
+2E1508,"utilidad_antes_impuestos,utilidad_operativa",RESULTADO DE OPERACIÓN ANTES DE IMPUESTO,2016-T1,2026-T2
+2E1601,utilidad_antes_impuestos,Participaciones,2000-T1,2002-T4
+2E1601,utilidad_antes_impuestos,Participaciones de los trabajadores corrientes y diferidos,2003-T1,2012-A
+2E1601,utilidad_antes_impuestos,Participación de los Trabajadores,2006-T1,2012-A
+2E1602,impuesto_renta,Impuesto a la renta,2000-T1,2002-T4
+2E1602,impuesto_renta,Impuesto a la Renta corriente y diferido,2003-T1,2012-A
+2E1602,impuesto_renta,Impuesto a la Renta,2006-T1,2015-A
+2E1602,impuesto_renta,Gasto por Impuesto a las Ganancias corriente y diferida,2011-T1,2012-T4
+2E1602,impuesto_renta,Impuesto a las Ganancias Corriente y Diferida,2013-T1,2026-T2
+2E1602,impuesto_renta,Impuesto a las Ganancias,2016-T1,2026-T2
+2E2101,utilidad_neta,UTILIDAD (PÉRDIDA) NETA DEL EJERCICIO,2000-T1,2026-T2
+2E2101,utilidad_neta,RESULTADO NETO DEL EJERCICIO,2006-T1,2009-A
+2E2101,utilidad_neta,RESULTADO NETO DEL EJERCICIO DEL GRUPO CONSOLIDABLE,2006-T1,2012-A
+2E2101,utilidad_neta,Ganancia (Pérdida) Neta del Ejercicio,2011-T1,2026-T2
+2F0101,"ingresos,ingresos_intereses,margen_financiero_bruto",INGRESOS FINANCIEROS :,2000-T1,2002-T4
+2F0101,"ingresos,ingresos_intereses,margen_financiero_bruto",INGRESOS FINANCIEROS,2001-T1,2012-A
+2F0101,"ingresos,ingresos_intereses,margen_financiero_bruto",Ingresos Financieros,2006-T1,2012-A
+2F0101,"ingresos,ingresos_intereses,margen_financiero_bruto",Ingresos por intereses,2013-T1,2026-T2
+2F0101,"ingresos,ingresos_intereses,margen_financiero_bruto",TOTAL INGRESOS POR INTERESES,2013-T1,2026-T2
+2F01ST,ingresos,INGRESOS,2001-T1,2005-T4
+2F01ST,ingresos,INGRESOS POR SERVICIOS Y VENTA DE BIENES,2006-T1,2012-A
+2F01ST,ingresos,Ingresos de Actividades Ordinarias,2011-T1,2012-T4
+2F01ST,ingresos,INGRESOS DE ACTIVIDADES ORDINARIAS,2013-T1,2026-T2
+2F0301,"gastos_intereses,margen_financiero_bruto",GASTOS FINANCIEROS :,2000-T1,2000-T4
+2F0301,"gastos_intereses,margen_financiero_bruto",GASTOS FINANCIEROS,2001-T1,2012-A
+2F0301,"gastos_intereses,margen_financiero_bruto",Gastos Financieros,2006-T1,2012-A
+2F0301,"gastos_intereses,margen_financiero_bruto",Gastos por intereses,2013-T1,2026-T2
+2F0301,"gastos_intereses,margen_financiero_bruto",TOTAL GASTOS POR INTERESES,2013-T1,2026-T2
+2F1301,utilidad_antes_impuestos,RESULTADO ANTES DE PARTICIPACIONES E IMPUESTOS A LA RENTA,2000-T1,2000-T4
+2F1301,utilidad_antes_impuestos,Resultado del Ejercicio antes de Impuesto a la Renta y Partidas Extraordinarias,2001-T1,2005-T4
+2F1301,utilidad_antes_impuestos,RESULTADO DEL EJERCICIO ANTES DE IMPUESTO A LA RENTA Y PARTIDAS EXTRAORDINARIAS,2003-T1,2005-T4
+2F1301,utilidad_antes_impuestos,RESULTADO DEL EJERCICIO ANTES DE PARTICIPACIONES E IMPUESTO A LA RENTA,2006-T1,2012-A
+2F1301,utilidad_antes_impuestos,RESULTADOS DEL EJERCICIO ANTES DE PARTICIPACIONES E IMPUESTO A LA RENTA,2006-T1,2012-A
+2F1402,utilidad_antes_impuestos,Participaciones,2000-T1,2000-T4
+2F1402,utilidad_antes_impuestos,Participación de los trabajadores,2001-T1,2002-T4
+2F1402,utilidad_antes_impuestos,Participación de los trabajadores corrientes y diferidos,2003-T1,2005-T4
+2F1402,utilidad_antes_impuestos,DISTRIBUCIÓN LEGAL DE LA RENTA NETA,2006-T1,2012-A
+2F1402,utilidad_antes_impuestos,Participación de los Trabajadores,2006-T1,2012-A
+2F1403,impuesto_renta,Impuesto a la Renta,2000-T1,2012-A
+2F1403,impuesto_renta,Impuesto a la Renta corriente y diferido,2003-T1,2005-T4
+2F1403,impuesto_renta,IMPUESTO A LA RENTA,2006-T1,2026-T2
+2F1403,impuesto_renta,Gasto por Impuesto a las Ganancias,2011-T1,2026-T2
+2F1403,impuesto_renta,Gasto por impuesto a las ganancias,2013-A,2025-A
+2F1901,utilidad_neta,RESULTADO NETO DEL EJERCICIO,2000-T1,2026-T2
+2F1901,utilidad_neta,Utilidad (Pérdida) Neta del Ejercicio,2001-T1,2005-T4
+2F1901,utilidad_neta,UTILIDAD (PERDIDA) NETA DEL EJERCICIO,2003-T1,2005-T4
+2F1901,utilidad_neta,RESULTADO NETO DEL EJERCICIO DEL GRUPO CONSOLIDABLE,2006-T1,2012-A
+2F1901,utilidad_neta,Ganancia (Pérdida) Neta del Ejercicio,2011-T1,2012-T4
+2F1901,utilidad_neta,Resultado neto del ejercicio,2013-A,2025-A
+2F1901,utilidad_neta,Resultado Neto del Ejercicio,2013-T1,2026-T2
+2F2301,margen_financiero_bruto,MARGEN FINANCIERO BRUTO,2001-T1,2026-T2
+2F2301,margen_financiero_bruto,MARGEN BRUTO,2006-T1,2026-T2
+2F2304,provisiones_credito_gasto,Provisión para incobrabilidad de cartera de créditos del ejercicio,2001-T1,2005-T4
+2F2304,provisiones_credito_gasto,Provisión para incobrabilidad de cartera de créditos,2003-T1,2005-T4
+2F2304,provisiones_credito_gasto,Provisiones para Incobrabilidad de Créditos del Ejercicio,2006-T1,2009-A
+2F2304,provisiones_credito_gasto,Provisión para Incobrabilidad de Créditos,2006-T1,2012-A
+2F2304,provisiones_credito_gasto,Provisión para créditos,2013-T1,2026-T2
+2F2305,provisiones_credito_gasto,Provisión para incobrabilidad de cartera de créditos de ejercicios anteriores,2001-T1,2005-T4
+2F2305,provisiones_credito_gasto,Provisiones para Incobrabilidad de Créditos de Ejercicios Anteriores,2006-T1,2009-A
+2F2306,provisiones_credito_gasto,(-) Provisiones para Incobrabilidad de Créditos directos,2010-T1,2012-A
+2F2306,provisiones_credito_gasto,(-) Provisiones para créditos directos,2013-T1,2026-T2
+2F2406,ingresos,Comisiones,2006-T1,2012-A
+2F2406,ingresos,Comisiones (netas),2013-T1,2026-T2
+2I2011,ingresos,Comisiones y servicios en el mercado de valores,2003-T4,2012-T4
+2I2011,ingresos,Ingresos Brutos por Comisiones y servicios en el mercado de valores,2012-A,2026-T2
+2I2020,ingresos,Venta de valores propios,2000-T1,2012-T4
+2I2020,ingresos,Venta de Inversiones Financieras,2012-A,2026-T2
+2I2050,ingresos,Costo de enajenación de valores,2000-T1,2012-T4
+2I2050,ingresos,Costo de enajenación de inversiones financieros,2012-A,2026-T2
+2I2071,utilidad_operativa,UTILIDAD OPERATIVA,2000-T1,2012-T4
+2I2071,utilidad_operativa,Ganancia (Pérdida) Operativa,2012-A,2026-T2
+2I2121,utilidad_antes_impuestos,RESULTADO ANTES DE PARTICIP. E IMPUESTO A LA RENTA,2000-T1,2012-T4
+2I2121,utilidad_antes_impuestos,Resultado antes del Impuesto a las Ganancias,2012-A,2026-T2
+2I2140,impuesto_renta,Impuesto a la renta corriente y diferido,2000-T1,2012-T4
+2I2140,impuesto_renta,Gasto por Impuesto a las Ganancias,2012-A,2026-T2
+2I2161,utilidad_neta,UTILIDAD (PERDIDA) DEL PERIODO,2000-T1,2012-T4
+2I2161,utilidad_neta,Utilidad (Perdida) Neta del Ejercicio,2012-A,2026-T2
+2S0102,ingresos,Primas de Reaseguros Aceptados (Neto),2000-A,2000-A
+2S0102,ingresos,Reaseguro Aceptado (Neto),2001-A,2005-A

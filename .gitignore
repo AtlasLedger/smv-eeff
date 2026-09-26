@@ -5,5 +5,3 @@ __pycache__/
 .venv/
 .pytest_cache/
 data.tmp/
-# Salida generada; se versiona recién cuando el histórico esté completo (ver BITACORA.md)
-data/
