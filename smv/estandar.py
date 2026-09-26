@@ -136,14 +136,24 @@ def control_cruzado(est: pd.DataFrame, presentaciones: pd.DataFrame) -> tuple[pd
     no puede reportarse como "0 discrepancias".
     """
     pares = {"activo_total": "smv_activo_total", "pasivo_total": "smv_pasivo_total",
-             "patrimonio_total": "smv_patrimonio_total", "utilidad_neta": "smv_utilidad_neta"}
+             "patrimonio_total": "smv_patrimonio_total", "utilidad_neta": "smv_utilidad_neta",
+             "ingresos": "smv_total_ingreso"}
     p = presentaciones.drop_duplicates(CLAVES)
     salida, comparadas = [], 0
     for concepto, col_smv in pares.items():
         if col_smv not in p:
             continue
-        e = est[est["concepto"] == concepto][CLAVES + ["valor"]]
+        e = est[est["concepto"] == concepto]
+        if concepto == "ingresos":
+            # Solo donde la definición es la misma que usa la SMV; en los 'propuesto' la
+            # diferencia es intencional (ver mapeo/DECISIONES.md).
+            e = e[e["confianza"] == "directo"]
+        e = e[CLAVES + ["valor"]]
         m = e.merge(p[CLAVES + [col_smv]], on=CLAVES).dropna(subset=[col_smv, "valor"])
+        if concepto == "ingresos":
+            # El índice pone 0 cuando la línea total de ingresos no vino en la presentación
+            # (ej. CAVALI trimestral 2013-2016): es "sin dato", no un ingreso de cero.
+            m = m[m[col_smv] != 0]
         comparadas += len(m)
         m = m[(m["valor"] - m[col_smv]).abs() > 1]
         salida.append(m.rename(columns={col_smv: "valor_smv"}).assign(concepto=concepto))

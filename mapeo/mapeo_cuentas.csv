@@ -27,7 +27,8 @@ patrimonio_total,I,,,,1I1551,directo,Coincide con índice SMV.
 patrimonio_total,S,,,,1S09ST,directo,"Plantilla antigua de seguros (letra S, usada en 2005). Coincide con el índice SMV."
 patrimonio_total,V,,,,1V07ST,directo,Coincide con índice SMV.
 activo_corriente,A,,,,1A01ST,directo,
-activo_corriente,B,,,,1B0219,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Esta plantilla sí separaba corriente/no corriente."
+activo_corriente,B,,,2000,,no_aplica,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). No tiene esta línea.
+activo_corriente,B,,2001,,1B0219,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Esta plantilla sí separaba corriente/no corriente."
 activo_corriente,C,,,,1C01ST,directo,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF."
 activo_corriente,D,,,,1D01ST,directo,
 activo_corriente,E,,,,1E01ST,directo,
@@ -37,7 +38,8 @@ activo_corriente,I,,,,1I1071,directo,
 activo_corriente,S,,,,1S01ST,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
 activo_corriente,V,,,,1V01ST,directo,
 pasivo_corriente,A,,,,1A03ST,directo,
-pasivo_corriente,B,,,,1B03ST,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
+pasivo_corriente,B,,,2000,,no_aplica,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). No tiene esta línea.
+pasivo_corriente,B,,2001,,1B03ST,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
 pasivo_corriente,C,,,,1C03ST,directo,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF."
 pasivo_corriente,D,,,,1D03ST,directo,
 pasivo_corriente,E,,,,1E0309,directo,
@@ -64,14 +66,19 @@ deuda_financiera,F,,,,,no_aplica,Para un banco la deuda es su materia prima (dep
 deuda_financiera,I,,,,1I1431+1I1470,propuesto,Otros pasivos financieros corriente + no corriente.
 deuda_financiera,V,,,,1V0309+1V0401,propuesto,Otros pasivos financieros corriente + no corriente.
 creditos_brutos,F,C,,,,no_aplica,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+creditos_brutos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
 creditos_brutos,F,I,2006,,1F0115+1F0116+1F0117+1F0118+1F0119,directo,Definición estándar SBS. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
 creditos_atrasados,F,C,,,,no_aplica,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+creditos_atrasados,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
 creditos_atrasados,F,I,2006,,1F0118+1F0119,directo,Definición estándar SBS de cartera atrasada. Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
+provisiones_creditos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
 provisiones_creditos,F,I,2006,,1F0121,directo,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
-depositos,B,,,,1B0311,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Total obligaciones con el público."
+depositos,B,,,2000,1B0306,directo,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Total depósitos y obligaciones con el público.
+depositos,B,,2001,,1B0311,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Total obligaciones con el público."
 depositos,F,,,,1F2101,directo,
 ingresos,A,,,,2A01ST,directo,Coincide con índice SMV.
-ingresos,B,,,,2B0201+2B0603,propuesto,"Plantilla antigua de bancos (letra B, usada en 2005). Igual criterio que F: ingresos financieros + ingresos por servicios financieros."
+ingresos,B,,,2000,2B0201+2B0801,propuesto,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Ingresos financieros + comisiones por servicios.
+ingresos,B,,2001,,2B0201+2B0603,propuesto,"Plantilla antigua de bancos (letra B, usada en 2005). Igual criterio que F: ingresos financieros + ingresos por servicios financieros."
 ingresos,C,,,,2C0101,propuesto,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF. Ventas netas, igual criterio que D hasta 2009."
 ingresos,D,,,2009,2D0101,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2009 2D01ST era Total de Ingresos Brutos = ventas netas (2D0101) + otros ingresos operacionales (2D0102); se toma solo ventas netas, lo más cercano a ingresos de actividades ordinarias."
 ingresos,D,,2010,,2D01ST,directo,Coincide con TotalIngreso del índice SMV (177/177 con monto).
@@ -80,8 +87,9 @@ ingresos,F,C,,,2F01ST+2F2406,propuesto,"DECISIÓN PENDIENTE. El consolidado de b
 ingresos,F,I,,,2F0101+2F2402,propuesto,"DECISIÓN PENDIENTE. La SMV usa solo ingresos por intereses (2F0101). Propuesta: intereses + ingresos por servicios financieros (comisiones), que es como la SBS y los analistas miden los ingresos de un banco."
 ingresos,I,,,2011,2I2010+2I2030+2I2020+2I2050,propuesto,"Plantilla previa a NIIF (ver DECISIONES.md, punto 7). Ingreso bruto por comisiones (2I2010, incluye mercado de valores y de productos) + intereses + ganancia neta en venta de valores propios (venta 2I2020 + costo 2I2050)."
 ingresos,I,,2012,,2I2011+2I2030+2I2033+2I2020+2I2050,propuesto,"DECISIÓN PENDIENTE. La SMV usa Total Ingresos Operacionales (2I2031), que incluye el valor BRUTO de las inversiones vendidas: en 2024 Credicorp Capital SAB reportó 1,577 millones de venta de inversiones contra 46 millones de comisiones. Propuesta: comisiones + intereses + otros + ganancia NETA por venta de inversiones (venta 2I2020 + costo de enajenación 2I2050, que viene negativo)."
-ingresos,S,,,,2S0304,propuesto,"Plantilla antigua de seguros (letra S, usada en 2005). Igual criterio que E: primas ganadas netas."
-ingresos,V,,,,2V0102,directo,Coincide con índice SMV (ingresos ordinarios + otros ingresos).
+ingresos,S,,,2000,2S0301,propuesto,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Primas de competencia netas (mismo criterio que primas ganadas netas).
+ingresos,S,,2001,,2S0304,propuesto,"Plantilla antigua de seguros (letra S, usada en 2005). Igual criterio que E: primas ganadas netas."
+ingresos,V,,,,2V01ST+2V0101,directo,"Ingresos ordinarios + otros ingresos = Total de Ingresos Brutos (2V0102), que es lo que usa el índice SMV. Verificado: la suma coincide con 2V0102 en 52 de 52 presentaciones; se usan las partes porque en los trimestres 2013-2016 no viene la línea total."
 utilidad_bruta,A,,,,,no_aplica,
 utilidad_bruta,C,,,,2C02ST,directo,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF."
 utilidad_bruta,D,,,,2D02ST,directo,
@@ -90,7 +98,8 @@ utilidad_bruta,F,,,,,no_aplica,
 utilidad_bruta,I,,,,2I2051,directo,
 utilidad_bruta,V,,,,2V02ST,directo,
 utilidad_operativa,A,,,,2A03ST,propuesto,Utilidad operativa de la AFP; excluye el resultado del encaje legal (2A0304) que va debajo. Alternativa: incluirlo.
-utilidad_operativa,B,,,,2B0705,propuesto,"Plantilla antigua de bancos (letra B, usada en 2005). Resultado de operación."
+utilidad_operativa,B,,,2000,,no_aplica,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). No tiene esta línea.
+utilidad_operativa,B,,2001,,2B0705,propuesto,"Plantilla antigua de bancos (letra B, usada en 2005). Resultado de operación."
 utilidad_operativa,C,,,,2C03ST,directo,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF."
 utilidad_operativa,D,,,,2D03ST,directo,
 utilidad_operativa,E,,,,,pendiente,El formato de seguros no tiene una línea equivalente limpia: el resultado de inversiones es parte del negocio. Opciones: resultado técnico (2E1101) o resultado antes de impuestos.
@@ -119,15 +128,16 @@ utilidad_antes_impuestos,B,,,,2B1001+2B1002,propuesto,"Plantilla antigua de banc
 utilidad_antes_impuestos,C,,,,2C04ST+2C0501,propuesto,"Plantilla antigua de CAVALI (letra C, 2005-2012), igual a la del plan general previo a NIIF. Igual criterio que D hasta 2009."
 utilidad_antes_impuestos,D,,,2009,2D04ST+2D0501,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2009 2D04ST era antes de participaciones e impuesto; se suma la participación de trabajadores (2D0501, negativa) para dejarla comparable con NIIF, donde va dentro de gastos de personal."
 utilidad_antes_impuestos,D,,2010,,2D04ST,directo,
+utilidad_antes_impuestos,E,,,,2E1503+2E1601,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2E1503 + participaciones de los trabajadores (2E1601)."
 utilidad_antes_impuestos,E,C,,,2E1509,directo,En el consolidado de seguros el código cambia (2E1508 en individual).
 utilidad_antes_impuestos,E,I,,,2E1508,directo,
-utilidad_antes_impuestos,E,,,,2E1503+2E1601,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2E1503 + participaciones de los trabajadores (2E1601)."
+utilidad_antes_impuestos,F,,,,2F1301+2F1402,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2F1301 (antes de participaciones e impuesto) + distribución legal de la renta neta (2F1402, participación de trabajadores)."
 utilidad_antes_impuestos,F,C,,,2F2809,directo,El consolidado de bancos usa otra plantilla (formato de conglomerado financiero).
 utilidad_antes_impuestos,F,I,,,2F1302,directo,
-utilidad_antes_impuestos,F,,,,2F1301+2F1402,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2F1301 (antes de participaciones e impuesto) + distribución legal de la renta neta (2F1402, participación de trabajadores)."
 utilidad_antes_impuestos,I,,,2011,2I2121+2I2130,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2011 2I2121 era antes de participaciones e impuesto; se suma Participaciones (2I2130)."
 utilidad_antes_impuestos,I,,2012,,2I2121,directo,
-utilidad_antes_impuestos,S,,,,2S1203+2S1301,propuesto,"Plantilla antigua de seguros (letra S, usada en 2005). Antes de participación e impuesto + participaciones (ver DECISIONES.md, punto 7)."
+utilidad_antes_impuestos,S,,,2000,2S1201+2S1301,propuesto,"Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Resultado de operación + participaciones (ver DECISIONES.md, punto 7)."
+utilidad_antes_impuestos,S,,2001,,2S1203+2S1301,propuesto,"Plantilla antigua de seguros (letra S, usada en 2005). Antes de participación e impuesto + participaciones (ver DECISIONES.md, punto 7)."
 utilidad_antes_impuestos,V,,,,2V04ST,directo,
 impuesto_renta,A,,,,2A0502,directo,
 impuesto_renta,B,,,,2B1003,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
@@ -151,23 +161,24 @@ ingresos_intereses,B,,,,2B0201,directo,"Plantilla antigua de bancos (letra B, us
 ingresos_intereses,F,,,,2F0101,directo,
 gastos_intereses,B,,,,2B0401,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
 gastos_intereses,F,,,,2F0301,directo,
-margen_financiero_bruto,B,,,,2B0502,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
+margen_financiero_bruto,B,,,2000,2B0501,directo,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Intereses neto.
+margen_financiero_bruto,B,,2001,,2B0502,directo,"Plantilla antigua de bancos (letra B, usada en 2005)."
 margen_financiero_bruto,F,C,,,2F2301,propuesto,"El consolidado de bancos usa otra plantilla (formato de conglomerado financiero). MARGEN BRUTO: en conglomerados (ej. Credicorp) incluye primas y siniestros de seguros, no solo intereses."
 margen_financiero_bruto,F,I,,,2F2301,directo,
-provisiones_credito_gasto,B,,,,2B0504,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Neta de recuperos."
+provisiones_credito_gasto,B,,,2000,2B0601,directo,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Provisión para riesgos de incobrabilidad.
+provisiones_credito_gasto,B,,2001,,2B0504,directo,"Plantilla antigua de bancos (letra B, usada en 2005). Neta de recuperos."
 provisiones_credito_gasto,F,C,,,2F2304,directo,"El consolidado de bancos usa otra plantilla (formato de conglomerado financiero). Provisión para créditos (total, no solo directos)."
 provisiones_credito_gasto,F,I,,2009,2F2304+2F2305,directo,Hasta 2009 la provisión para incobrabilidad de créditos venía separada en la del ejercicio (2F2304) y la de ejercicios anteriores (2F2305). Ojo: 2F2304 significa otra cosa en la plantilla consolidada actual.
 provisiones_credito_gasto,F,I,2010,,2F2306,directo,
 primas_ganadas_netas,E,,,,2E0602,directo,
-primas_ganadas_netas,S,,,,2S0304,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
+primas_ganadas_netas,S,,,2000,2S0301,directo,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Primas de competencia netas.
+primas_ganadas_netas,S,,2001,,2S0304,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
 siniestros_netos,E,,,,2E0706,directo,
-siniestros_netos,S,,,,2S0403,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
-partidas_entre_pasivo_y_patrimonio,D,,,2005,1D0501+1D0502,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+siniestros_netos,S,,,2000,2S0501,directo,Plantilla del año 2000 (distinta de la de 2001-2005 con la misma letra). Siniestros de competencia.
+siniestros_netos,S,,2001,,2S0403,directo,"Plantilla antigua de seguros (letra S, usada en 2005)."
 partidas_entre_pasivo_y_patrimonio,B,,,,1B0901+1B0902,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
-partidas_entre_pasivo_y_patrimonio,S,,,,1S0801+1S0802,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
-partidas_entre_pasivo_y_patrimonio,F,,,2010,1F3201,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,D,,,2005,1D0501+1D0502,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
 partidas_entre_pasivo_y_patrimonio,E,,,2010,1E0701,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
+partidas_entre_pasivo_y_patrimonio,F,,,2010,1F3201,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
 partidas_entre_pasivo_y_patrimonio,I,,,2004,1I1500+1I1510,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
-creditos_brutos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
-creditos_atrasados,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
-provisiones_creditos,F,I,,2005,,no_aplica,"Hasta 2005 la plantilla de bancos no desglosa la cartera por situación (vigente, vencida, judicial)."
+partidas_entre_pasivo_y_patrimonio,S,,,,1S0801+1S0802,directo,"Plantilla antigua: estas líneas (interés minoritario, contingencias, ganancias diferidas) iban FUERA del pasivo total y del patrimonio total. Sirve para que cuadre activo = pasivo + patrimonio + este concepto. Ver DECISIONES.md, punto 8."
