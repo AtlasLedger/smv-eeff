@@ -46,7 +46,7 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - RPJ de las SAB con espacios de relleno. RUC = 0 para holdings extranjeros.
 - Trimestres: Monto1 = trimestre, Monto3 = acumulado del año, Monto2/Monto4 = mismos
   períodos del año anterior. Anual: solo Monto1/Monto2. Balance: Monto2 = cierre anterior.
-- Montos en miles (por confirmar en el paso 4).
+- Montos en miles: confirmado en la validación (Alicorp, BCP, Credicorp, Buenaventura).
 - `obtener_EFData` es una grilla paginada que siempre devuelve 0 registros: se descarta.
 - CambiosPatrimonio: 79 MB y ~5.5 min por llamada; 93 % de celdas en cero. Las SAB
   repiten los códigos de fila en dos bloques (año anterior y actual).

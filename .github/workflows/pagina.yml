@@ -1,0 +1,45 @@
+# Publica la página (site/) con los CSV de data/ en GitHub Pages.
+# Se dispara al cambiar la página y al terminar la actualización mensual de datos
+# (un push hecho por el bot con GITHUB_TOKEN no dispara otros workflows, por eso workflow_run).
+name: pagina
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**"]
+  workflow_run:
+    workflows: [actualizar]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Armar el sitio
+        run: |
+          mkdir -p _sitio/data
+          cp site/index.html _sitio/
+          cp -r data/csv _sitio/data/
+          cp docs/diccionario.md mapeo/*.csv validacion/reporte.md _sitio/ 2>/dev/null || true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _sitio
+      - id: deploy
+        uses: actions/deploy-pages@v4

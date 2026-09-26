@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estados financieros SMV</title>
+<meta name="description" content="Base abierta, limpia y comparable de los estados financieros presentados a la SMV del Perú.">
+<style>
+  :root {
+    --bg: #fbfbf9; --fg: #1d1d1b; --muted: #6b6b66; --line: #e3e2dd; --accent: #1f5f8b;
+    --warn-bg: #fff4e0; --warn-fg: #7a4b00; --card: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --fg: #ebeae6; --muted: #a09f99; --line: #33332f; --accent: #7fb6de;
+            --warn-bg: #3a2c12; --warn-fg: #f3c77a; --card: #1d1d1b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 0 0 8px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.15rem; margin: 40px 0 12px; }
+  p { margin: 0 0 12px; }
+  a { color: var(--accent); }
+  .lead { color: var(--muted); max-width: 70ch; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 24px 0; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .stat b { display: block; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 0.85rem; }
+  .controles { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  input, select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
+                  background: var(--card); color: var(--fg); }
+  input { flex: 1 1 260px; }
+  .tabla { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+  th { position: sticky; top: 0; background: var(--card); font-weight: 600; }
+  th:first-child, td:first-child { text-align: left; }
+  td { font-variant-numeric: tabular-nums; }
+  .nota { font-size: 0.85rem; color: var(--muted); }
+  .aviso { background: var(--warn-bg); color: var(--warn-fg); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+  ul.descargas { padding-left: 18px; }
+  ul.descargas li { margin-bottom: 4px; }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Estados financieros SMV</h1>
+  <p class="lead">Base abierta y comparable de los estados financieros que las empresas supervisadas
+  por la Superintendencia del Mercado de Valores del Perú presentan cada trimestre. Los datos
+  vienen del portal de datos abiertos de la SMV; aquí se limpian, se ordenan y se llevan a
+  conceptos comparables entre bancos, aseguradoras, AFP y empresas en general.</p>
+
+  <div class="stats" id="stats">
+    <div class="stat"><b id="s-empresas">…</b><span>empresas</span></div>
+    <div class="stat"><b id="s-anios">…</b><span>ejercicios</span></div>
+    <div class="stat"><b id="s-filas">…</b><span>estados anuales en el resumen</span></div>
+  </div>
+
+  <h2>Buscar una empresa</h2>
+  <div class="controles">
+    <input id="q" type="search" placeholder="Nombre o RUC, por ejemplo: alicorp" autocomplete="off">
+    <select id="tipo">
+      <option value="C">Consolidado</option>
+      <option value="I">Individual</option>
+    </select>
+  </div>
+  <div class="tabla"><table id="t"><thead></thead><tbody></tbody></table></div>
+  <p class="nota" id="nota">Montos en miles de la moneda de reporte. Los valores con
+  <span class="aviso">criterio</span> dependen de una decisión de mapeo aún no validada
+  (ver la carpeta <code>mapeo/</code> del repositorio).</p>
+
+  <h2>Descargas</h2>
+  <ul class="descargas">
+    <li><a href="data/csv/resumen_anual.csv">resumen_anual.csv</a>: una fila por empresa y año, con conceptos y ratios (la forma más fácil de empezar, abre en Excel).</li>
+    <li><a href="data/csv/resumen_trimestral.csv">resumen_trimestral.csv</a>: lo mismo por trimestre.</li>
+    <li><a href="data/csv/empresas.csv">empresas.csv</a>, <a href="data/csv/cuentas.csv">cuentas.csv</a>: dimensiones.</li>
+    <li>Detalle por cuenta: <code>data/hechos/</code> (Parquet) y <code>data/csv/hechos/</code> (CSV comprimido por año).</li>
+  </ul>
+  <p class="nota">El diccionario de datos, la validación contra estados publicados y el código
+  están en el repositorio.</p>
+
+  <footer>
+    Fuente: Superintendencia del Mercado de Valores (SMV), datos abiertos bajo licencia ODbL 1.0.
+    Esta base derivada se publica bajo ODbL 1.0. Proyecto independiente, no afiliado a la SMV.
+  </footer>
+</main>
+
+<script>
+const COLUMNAS = [
+  ["ejercicio", "Año", "t"], ["moneda", "Moneda", "t"],
+  ["activo_total", "Activo", "n"], ["patrimonio_total", "Patrimonio", "n"],
+  ["ingresos", "Ingresos", "n"], ["utilidad_neta", "Utilidad neta", "n"],
+  ["ratio_margen_neto", "Margen neto", "p"], ["ratio_roe", "ROE", "p"],
+  ["ratio_pasivo_patrimonio", "Pasivo/Patrimonio", "x"],
+];
+
+function parseCSV(texto) {
+  const filas = []; let fila = [], campo = "", comillas = false;
+  for (let i = 0; i < texto.length; i++) {
+    const c = texto[i];
+    if (comillas) {
+      if (c === '"' && texto[i + 1] === '"') { campo += '"'; i++; }
+      else if (c === '"') comillas = false;
+      else campo += c;
+    } else if (c === '"') comillas = true;
+    else if (c === ",") { fila.push(campo); campo = ""; }
+    else if (c === "\n") { fila.push(campo); filas.push(fila); fila = []; campo = ""; }
+    else if (c !== "\r") campo += c;
+  }
+  if (campo || fila.length) { fila.push(campo); filas.push(fila); }
+  const cab = filas.shift().map(h => h.replace(/^﻿/, ""));
+  return filas.filter(f => f.length === cab.length).map(f => Object.fromEntries(cab.map((h, i) => [h, f[i]])));
+}
+
+const fmtN = v => v === "" ? "" : Number(v).toLocaleString("es-PE", { maximumFractionDigits: 0 });
+const fmtP = v => v === "" ? "" : (Number(v) * 100).toLocaleString("es-PE", { maximumFractionDigits: 1 }) + " %";
+const fmtX = v => v === "" ? "" : Number(v).toLocaleString("es-PE", { maximumFractionDigits: 2 });
+const normal = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+let datos = [];
+
+function pintar() {
+  const q = normal(document.getElementById("q").value.trim());
+  const tipo = document.getElementById("tipo").value;
+  const thead = document.querySelector("#t thead"), tbody = document.querySelector("#t tbody");
+  if (q.length < 2) {
+    thead.innerHTML = ""; tbody.innerHTML = "<tr><td>Escribe al menos dos letras.</td></tr>"; return;
+  }
+  const filas = datos.filter(d => d.tipo === tipo && (normal(d.nombre).includes(q) || d.ruc.includes(q)))
+                     .sort((a, b) => a.nombre.localeCompare(b.nombre) || b.ejercicio - a.ejercicio)
+                     .slice(0, 200);
+  thead.innerHTML = "<tr><th>Empresa</th>" + COLUMNAS.map(c => `<th>${c[1]}</th>`).join("") + "</tr>";
+  if (!filas.length) { tbody.innerHTML = "<tr><td>Sin resultados para ese tipo de estado.</td></tr>"; return; }
+  tbody.innerHTML = filas.map(d => {
+    const celdas = COLUMNAS.map(([k, , t]) => {
+      const v = d[k] ?? "";
+      return `<td>${t === "n" ? fmtN(v) : t === "p" ? fmtP(v) : t === "x" ? fmtX(v) : v}</td>`;
+    }).join("");
+    const aviso = d.conceptos_no_validados ? ` <span class="aviso" title="${d.conceptos_no_validados}">criterio</span>` : "";
+    return `<tr><td>${d.nombre}${aviso}</td>${celdas}</tr>`;
+  }).join("");
+}
+
+fetch("data/csv/resumen_anual.csv")
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+  .then(t => {
+    datos = parseCSV(t);
+    document.getElementById("s-empresas").textContent = new Set(datos.map(d => d.rpj)).size.toLocaleString("es-PE");
+    const anios = datos.map(d => +d.ejercicio);
+    document.getElementById("s-anios").textContent = `${Math.min(...anios)}–${Math.max(...anios)}`;
+    document.getElementById("s-filas").textContent = datos.length.toLocaleString("es-PE");
+    pintar();
+  })
+  .catch(() => {
+    document.querySelector("#t tbody").innerHTML = "<tr><td>No se pudo cargar el resumen.</td></tr>";
+  });
+document.getElementById("q").addEventListener("input", pintar);
+document.getElementById("tipo").addEventListener("change", pintar);
+</script>
+</body>
+</html>
