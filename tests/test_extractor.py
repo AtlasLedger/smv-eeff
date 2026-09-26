@@ -79,3 +79,16 @@ def test_parametros_invalidos():
 def test_xml_sin_nodo_result_no_parsea():
     with pytest.raises(ErrorSMV):
         extraer_registros(b"<html>error</html>", "obtener_GanciaPerdida")
+
+
+def test_vacio_reciente_se_vuelve_a_pedir(entorno, monkeypatch):
+    from datetime import datetime
+    cliente, cache = entorno
+    monkeypatch.setattr(sim, "FILAS", [])
+    anio = datetime.now().year
+    descargar(cliente, cache, "resultados", anio, "4", "I")
+    descargar(cliente, cache, "resultados", anio, "4", "I")
+    assert sim.Estado.llamadas == 2          # período reciente vacío: se reintenta
+    descargar(cliente, cache, "resultados", 2001, "4", "I")
+    descargar(cliente, cache, "resultados", 2001, "4", "I")
+    assert sim.Estado.llamadas == 3          # vacío antiguo: queda en caché

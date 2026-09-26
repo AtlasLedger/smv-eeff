@@ -86,7 +86,11 @@ def descargar(cliente: ClienteSMV, cache: CacheDisco, operacion: str, ejercicio:
     clave = (operacion, ejercicio, periodo, tipo)
 
     if not refrescar and cache.existe(*clave):
-        return "cache", cache.leer_meta(*clave)["filas"]
+        meta = cache.leer_meta(*clave)
+        # Un período reciente vacío suele ser un período que aún no se presentó (o que
+        # se presentó tarde): se vuelve a pedir. Los vacíos antiguos sí son definitivos.
+        if not (meta["vacio"] and ejercicio >= datetime.now().year - 1):
+            return "cache", meta["filas"]
 
     resp = cliente.consultar(*clave)
     registros = extraer_registros(resp.contenido, operacion)  # si falla, no se cachea
