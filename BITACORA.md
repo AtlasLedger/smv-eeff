@@ -19,6 +19,7 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 
 ## Decisiones que necesitan a el propietario del proyecto
 
+**Documento para decidir, con opciones, recomendación e impacto medido: `mapeo/DECISIONES.md`.**
 Todas están en `mapeo/mapeo_cuentas.csv` con `confianza = propuesto` o `pendiente`.
 Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado como
 `propuesto` en `data/estandar.parquet` y `data/ratios.parquet`.
