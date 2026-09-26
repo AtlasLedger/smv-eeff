@@ -1,0 +1,101 @@
+concepto,plan,cuentas,confianza,nota
+activo_total,D,1D020T,directo,Coincide con ActivoTotal del índice SMV (194/194 empresas 2024-A-I).
+activo_total,F,1F2001,directo,Coincide con índice SMV (41/41).
+activo_total,E,1E02ST,directo,"Coincide con índice SMV (17/17). Ojo: el código dice ST pero la descripción es TOTAL ACTIVO."
+activo_total,A,1A020T,directo,Coincide con índice SMV (4/4).
+activo_total,I,1I1131,directo,Coincide con índice SMV (19/19).
+activo_total,V,1V020T,directo,Coincide con índice SMV (1/1).
+pasivo_total,D,1D040T,directo,Coincide con índice SMV (193/193).
+pasivo_total,F,1F3101,directo,Coincide con índice SMV.
+pasivo_total,E,1E0501,directo,Coincide con índice SMV.
+pasivo_total,A,1A040T,directo,Coincide con índice SMV.
+pasivo_total,I,1I1491,directo,Coincide con índice SMV.
+pasivo_total,V,1V040T,directo,Coincide con índice SMV.
+patrimonio_total,D,1D07ST,directo,Coincide con índice SMV.
+patrimonio_total,F,1F3306,directo,Coincide con índice SMV.
+patrimonio_total,E,1E0901,directo,Coincide con índice SMV.
+patrimonio_total,A,1A07ST,directo,Coincide con índice SMV.
+patrimonio_total,I,1I1551,directo,Coincide con índice SMV.
+patrimonio_total,V,1V07ST,directo,Coincide con índice SMV.
+activo_corriente,D,1D01ST,directo,
+activo_corriente,E,1E01ST,directo,
+activo_corriente,A,1A01ST,directo,
+activo_corriente,I,1I1071,directo,
+activo_corriente,V,1V01ST,directo,
+activo_corriente,F,,no_aplica,El balance bancario no clasifica corriente/no corriente.
+pasivo_corriente,D,1D03ST,directo,
+pasivo_corriente,E,1E0309,directo,
+pasivo_corriente,A,1A03ST,directo,
+pasivo_corriente,I,1I1461,directo,
+pasivo_corriente,V,1V03ST,directo,
+pasivo_corriente,F,,no_aplica,El balance bancario no clasifica corriente/no corriente.
+efectivo,D,1D0109,directo,
+efectivo,E,1E0101,directo,
+efectivo,A,1A0109,directo,
+efectivo,I,1I1010,directo,
+efectivo,V,1V0109,directo,
+efectivo,F,1F0101,propuesto,"DISPONIBLE incluye el encaje depositado en el BCRP, que no es de libre disposición. Alternativa: excluir 1F0106."
+deuda_financiera,D,1D0309+1D0401,propuesto,Otros Pasivos Financieros corriente + no corriente. Incluye arrendamientos (NIIF 16) y derivados; no hay forma de separarlos con esta data.
+deuda_financiera,E,1E0310+1E0401,propuesto,Obligaciones financieras corriente + no corriente.
+deuda_financiera,A,1A0306+1A0309+1A0401,propuesto,Sobregiros + parte corriente de deuda LP + deudas a largo plazo.
+deuda_financiera,I,1I1431+1I1470,propuesto,Otros pasivos financieros corriente + no corriente.
+deuda_financiera,V,1V0309+1V0401,propuesto,Otros pasivos financieros corriente + no corriente.
+deuda_financiera,F,,no_aplica,Para un banco la deuda es su materia prima (depósitos y adeudos); un ratio de deuda no es comparable con el de una empresa.
+creditos_brutos,F,1F0115+1F0116+1F0117+1F0118+1F0119,directo,Definición estándar SBS.
+creditos_atrasados,F,1F0118+1F0119,directo,Definición estándar SBS de cartera atrasada.
+provisiones_creditos,F,1F0121,directo,
+depositos,F,1F2101,directo,
+ingresos,D,2D01ST,directo,Coincide con TotalIngreso del índice SMV (177/177 con monto).
+ingresos,A,2A01ST,directo,Coincide con índice SMV.
+ingresos,V,2V0102,directo,Coincide con índice SMV (ingresos ordinarios + otros ingresos).
+ingresos,F,2F0101+2F2402,propuesto,"DECISIÓN PENDIENTE. La SMV usa solo ingresos por intereses (2F0101). Propuesta: intereses + ingresos por servicios financieros (comisiones), que es como la SBS y los analistas miden los ingresos de un banco."
+ingresos,E,2E0602,propuesto,"DECISIÓN PENDIENTE. La SMV usa primas netas antes de cesiones (2E0201). Propuesta: primas ganadas netas (2E0602), que es el ingreso que la aseguradora retiene."
+ingresos,I,2I2011+2I2030+2I2033+2I2020+2I2050,propuesto,"DECISIÓN PENDIENTE. La SMV usa Total Ingresos Operacionales (2I2031), que incluye el valor BRUTO de las inversiones vendidas: en 2024 Credicorp Capital SAB reportó 1,577 millones de venta de inversiones contra 46 millones de comisiones. Propuesta: comisiones + intereses + otros + ganancia NETA por venta de inversiones (venta 2I2020 + costo de enajenación 2I2050, que viene negativo)."
+utilidad_bruta,D,2D02ST,directo,
+utilidad_bruta,I,2I2051,directo,
+utilidad_bruta,V,2V02ST,directo,
+utilidad_bruta,F,,no_aplica,
+utilidad_bruta,E,,no_aplica,
+utilidad_bruta,A,,no_aplica,
+utilidad_operativa,D,2D03ST,directo,
+utilidad_operativa,I,2I2071,directo,
+utilidad_operativa,V,2V03ST,directo,
+utilidad_operativa,A,2A03ST,propuesto,Utilidad operativa de la AFP; excluye el resultado del encaje legal (2A0304) que va debajo. Alternativa: incluirlo.
+utilidad_operativa,F,2F2801,propuesto,RESULTADO DE OPERACIÓN (después de provisiones y antes de otros ingresos/gastos).
+utilidad_operativa,E,,pendiente,"El formato de seguros no tiene una línea equivalente limpia: el resultado de inversiones es parte del negocio. Opciones: resultado técnico (2E1101) o resultado antes de impuestos."
+ingresos_financieros,D,2D0401,directo,
+ingresos_financieros,I,2I2080,directo,
+ingresos_financieros,V,2V0401,directo,
+ingresos_financieros,A,2A0401,directo,
+ingresos_financieros,F,,no_aplica,
+ingresos_financieros,E,,no_aplica,Ingresos de inversiones son parte del negocio asegurador.
+gastos_financieros,D,2D0402,directo,
+gastos_financieros,I,2I2090,directo,
+gastos_financieros,V,2V0402,directo,
+gastos_financieros,A,2A0402,directo,
+gastos_financieros,F,,no_aplica,
+gastos_financieros,E,2E1202,propuesto,Gastos de inversiones y financieros (mezcla ambos).
+utilidad_antes_impuestos,D,2D04ST,directo,
+utilidad_antes_impuestos,F,2F1302,directo,
+utilidad_antes_impuestos,E,2E1508,directo,
+utilidad_antes_impuestos,A,2A08ST,directo,
+utilidad_antes_impuestos,I,2I2121,directo,
+utilidad_antes_impuestos,V,2V04ST,directo,
+impuesto_renta,D,2D0502,directo,
+impuesto_renta,F,2F1403,directo,
+impuesto_renta,E,2E1602,directo,
+impuesto_renta,A,2A0502,directo,
+impuesto_renta,I,2I2140,directo,
+impuesto_renta,V,2V0502,directo,
+utilidad_neta,D,2D07ST,directo,Coincide con UtilidadNeta del índice SMV.
+utilidad_neta,F,2F1901,directo,Coincide con índice SMV.
+utilidad_neta,E,2E2101,directo,Coincide con índice SMV.
+utilidad_neta,A,2A07ST,directo,Coincide con índice SMV.
+utilidad_neta,I,2I2161,directo,Coincide con índice SMV.
+utilidad_neta,V,2V07ST,directo,Coincide con índice SMV.
+ingresos_intereses,F,2F0101,directo,
+gastos_intereses,F,2F0301,directo,
+margen_financiero_bruto,F,2F2301,directo,
+provisiones_credito_gasto,F,2F2306,directo,
+primas_ganadas_netas,E,2E0602,directo,
+siniestros_netos,E,2E0706,directo,

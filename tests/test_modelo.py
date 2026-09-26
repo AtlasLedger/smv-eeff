@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import servidor_simulado as sim
 from smv import CacheDisco, ClienteSMV, descargar
 from smv.limpieza import limpiar, limpiar_ruc, limpiar_texto, textos_sospechosos
-from smv.modelo import construir
+from smv.estandar import conceptos, leer_mapeo, ratios
+from smv.modelo import _patrimonio, construir
 
 
 def test_repara_valores_conocidos():
@@ -42,7 +43,8 @@ def test_detector_de_encoding():
 
 
 def test_limpiar_deriva_plan_estado_y_moneda():
-    df = pd.DataFrame([{**sim.FILAS[0], "RPJ": "B80128     ", "Moneda": "D lares", "RUC": "0"}])
+    df = pd.DataFrame([{**sim.FILAS[0], "RPJ": "B80128     ", "Moneda": "D lares", "RUC": "0",
+                        "_operacion": "obtener_GanciaPerdida"}])
     out = limpiar(df)
     assert out.loc[0, "RPJ"] == "B80128"
     assert out.loc[0, "RUC"] is None
@@ -75,3 +77,41 @@ def test_construir_modelo(cache_lleno, tmp_path):
     assert e["rpj"].is_unique
     p = pd.read_parquet(tmp_path / "data" / "presentaciones.parquet")
     assert set(p["moneda"]) == {"PEN", "USD"}
+
+
+def test_patrimonio_sab_conserva_los_dos_bloques():
+    # Las SAB repiten los códigos para el año anterior y el actual: no son duplicados.
+    base = {"RPJ": "S1", "_periodo_consultado": "A", "_tipo_consultado": "I", "plan": "I",
+            "OrdenColumna": "1", "DescripcionColumna": "Capital"}
+    df = pd.DataFrame([
+        {**base, "Cuenta": "3I30I0", "Monto1": 100.0},  # saldo inicial año anterior
+        {**base, "Cuenta": "3I30IA", "Monto1": 120.0},  # saldo final año anterior
+        {**base, "Cuenta": "3I30I0", "Monto1": 120.0},  # saldo inicial año actual
+        {**base, "Cuenta": "3I30IA", "Monto1": 120.0},  # saldo final año actual (igual)
+    ])
+    calidad = {"patrimonio_celdas_bloque_repetido": 0}
+    p, _ = _patrimonio(df, calidad)
+    assert len(p) == 4
+    assert list(p["bloque"]) == [0, 0, 1, 1]
+    assert calidad["patrimonio_celdas_bloque_repetido"] == 2
+
+
+def test_mapeo_y_ratios():
+    hechos = pd.DataFrame([
+        # rpj, cuenta, monto, comparativo
+        ("A", "1D07ST", 100.0, 80.0), ("A", "2D07ST", 18.0, 10.0), ("A", "2D01ST", 200.0, 150.0),
+        ("A", "1D040T", 50.0, 40.0),
+        ("B", "2F0101", 90.0, 0.0), ("B", "2F2402", 10.0, 0.0), ("B", "2F1901", 20.0, 0.0),
+    ], columns=["rpj", "cuenta", "monto", "monto_comparativo"])
+    hechos = hechos.assign(ejercicio=2024, periodo="A", tipo="I", monto_acumulado=float("nan"))
+    mapeo = leer_mapeo(Path(__file__).resolve().parents[1] / "mapeo" / "mapeo_cuentas.csv")
+    est = conceptos(hechos, mapeo)
+    v = est.set_index(["rpj", "concepto"])
+    # Banco: ingresos = intereses + servicios (propuesto, no validado)
+    assert v.loc[("B", "ingresos"), "valor"] == 100
+    assert v.loc[("B", "ingresos"), "confianza"] == "propuesto"
+    r = ratios(est).set_index(["rpj", "ratio"])
+    assert r.loc[("A", "roe"), "valor"] == pytest.approx(18 / 90)  # sobre patrimonio promedio
+    assert r.loc[("A", "margen_neto"), "confianza"] == "directo"
+    # El margen del banco depende de 'ingresos' propuesto -> hereda la confianza más baja
+    assert r.loc[("B", "margen_neto"), "confianza"] == "propuesto"

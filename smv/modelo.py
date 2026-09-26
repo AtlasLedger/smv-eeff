@@ -10,6 +10,11 @@ Tablas que produce (todas en Parquet):
 - empresas_nombres.parquet          Historial de razones sociales (las empresas cambian de nombre).
 - cuentas.parquet                   Dimensión de cuentas: código, estado, plan, descripción vigente.
 - cuentas_descripciones.parquet     Historial de descripciones por código.
+- patrimonio/ejercicio=AAAA/*.parquet  Estado de cambios en el patrimonio (matriz fila x
+                                    columna). Solo celdas distintas de cero: el 93 % de la
+                                    matriz es cero y guardarlo no aporta información.
+- patrimonio_columnas.parquet       Nombre de cada columna de patrimonio por plan.
+- calidad.json                      Problemas encontrados y corregidos al construir.
 
 Decisiones de diseño:
 - Se separa lo que se repite en cada fila (nombre, RUC, CIIU, moneda...) en dimensiones.
@@ -25,6 +30,7 @@ Decisiones de diseño:
 """
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -75,6 +81,25 @@ def _hechos(df: pd.DataFrame) -> pd.DataFrame:
     return h
 
 
+def _patrimonio(df: pd.DataFrame, calidad: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
+    # Las SAB (plan I) repiten los MISMOS códigos de fila en dos bloques: primero el año
+    # anterior y luego el año actual (el saldo final del primero es el saldo inicial del
+    # segundo). Parecen duplicados, pero no lo son: deduplicar borraría el año actual.
+    # Se numera cada aparición en el orden del payload (bloque 0, 1...). En los demás
+    # planes los códigos ya distinguen el año (4D01xx anterior, 4D02xx actual) y el
+    # bloque es siempre 0.
+    df = df.copy()
+    df["bloque"] = df.groupby(["RPJ", "Cuenta", "OrdenColumna"]).cumcount().astype("int8")
+    calidad["patrimonio_celdas_bloque_repetido"] += int((df["bloque"] > 0).sum())
+    columnas = df.drop_duplicates(["plan", "OrdenColumna"])[["plan", "OrdenColumna", "DescripcionColumna"]]
+    df = df[df["Monto1"] != 0]
+    p = df[["RPJ", "_periodo_consultado", "_tipo_consultado", "Cuenta", "OrdenColumna", "bloque", "Monto1"]]
+    p = p.rename(columns={"RPJ": "rpj", "_periodo_consultado": "periodo", "_tipo_consultado": "tipo",
+                          "Cuenta": "cuenta", "OrdenColumna": "columna", "Monto1": "monto"})
+    p["columna"] = p["columna"].astype("int16")
+    return p, columnas
+
+
 def _presentaciones(df: pd.DataFrame) -> pd.DataFrame:
     claves = ["RPJ", "Ejercicio", "_periodo_consultado", "_tipo_consultado", "estado"]
     p = (df.groupby(claves, as_index=False)
@@ -95,15 +120,25 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     salida = Path(salida)
     (salida / "hechos").mkdir(parents=True, exist_ok=True)
 
-    presentaciones, atributos, cuentas, indices = [], [], [], []
+    presentaciones, atributos, cuentas, indices, columnas_cp = [], [], [], [], []
     hechos_por_anio: dict[int, list[pd.DataFrame]] = {}
+    patrimonio_por_anio: dict[int, list[pd.DataFrame]] = {}
+    calidad = {"patrimonio_celdas_bloque_repetido": 0, "archivos_vacios": 0, "archivos_procesados": 0}
 
-    for op in OPS_HECHOS + ["indice"]:
+    for op in OPS_HECHOS + ["patrimonio", "indice"]:
         for ejercicio, periodo, tipo in archivos_en_cache(cache, op):
             if cache.leer_meta(op, ejercicio, periodo, tipo)["vacio"]:
+                calidad["archivos_vacios"] += 1
                 continue
             df = limpiar(cargar(cache, op, ejercicio, periodo, tipo))
             if df.empty:
+                calidad["archivos_vacios"] += 1
+                continue
+            calidad["archivos_procesados"] += 1
+            if op == "patrimonio":
+                p, cols = _patrimonio(df, calidad)
+                patrimonio_por_anio.setdefault(ejercicio, []).append(p)
+                columnas_cp.append(cols)
                 continue
             atributos.append(_atributos_empresa(df, ejercicio, periodo))
             if op == "indice":
@@ -138,6 +173,20 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
         destino.mkdir(exist_ok=True)
         h.drop(columns="ejercicio").to_parquet(destino / "part-0.parquet", index=False)
         filas += len(h)
+
+    # --- Patrimonio, un archivo por ejercicio
+    for ejercicio, partes in sorted(patrimonio_por_anio.items()):
+        p = pd.concat(partes, ignore_index=True)
+        for col in ["rpj", "periodo", "tipo", "cuenta"]:
+            p[col] = p[col].astype("category")
+        destino = salida / "patrimonio" / f"ejercicio={ejercicio}"
+        destino.mkdir(parents=True, exist_ok=True)
+        p.to_parquet(destino / "part-0.parquet", index=False)
+    if columnas_cp:
+        (pd.concat(columnas_cp).drop_duplicates(["plan", "OrdenColumna"], keep="last")
+           .rename(columns={"OrdenColumna": "columna", "DescripcionColumna": "descripcion"})
+           .sort_values(["plan", "columna"])
+           .to_parquet(salida / "patrimonio_columnas.parquet", index=False))
 
     # --- Presentaciones (+ totales del índice de la SMV como control cruzado)
     pres = pd.concat(presentaciones, ignore_index=True)
@@ -187,6 +236,7 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     hist.rename(columns={"Cuenta": "cuenta", "DescripcionCuenta": "descripcion"}).to_parquet(
         salida / "cuentas_descripciones.parquet", index=False)
 
+    (salida / "calidad.json").write_text(json.dumps(calidad, indent=2, ensure_ascii=False), "utf-8")
     return {"hechos": filas, "presentaciones": len(pres), "empresas": len(empresas),
             "cuentas": len(dim_cuentas), "ejercicios": len(hechos_por_anio)}
 

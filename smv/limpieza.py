@@ -34,13 +34,15 @@ REPARACIONES_FRAGMENTO = {
 
 MONEDAS = {"Soles": "PEN", "Dólares": "USD"}
 
-# Primer carácter del código de cuenta = estado financiero
-ESTADO_POR_PREFIJO = {
-    "1": "BG",  # balance general / estado de situación financiera
-    "2": "ER",  # estado de resultados
-    "3": "FE",  # flujo de efectivo
-    "4": "FE",  # flujo de efectivo de las SAB (plan I usa el prefijo 4)
-    "5": "ORI",  # estado de resultados integrales (otro resultado integral)
+# Estado financiero según la operación consultada. No se usa el primer carácter del
+# código de cuenta porque no es consistente: las SAB (plan I) usan el prefijo 4 en el
+# flujo de efectivo y el 3 en cambios en el patrimonio, al revés que el resto.
+ESTADO_POR_OPERACION = {
+    "obtener_BalanceGeneral": "BG",       # estado de situación financiera
+    "obtener_GanciaPerdida": "ER",        # estado de resultados
+    "obtener_FlujoEfectivo": "FE",        # flujo de efectivo
+    "obtener_ResultadosIntegrales": "ORI",  # otro resultado integral
+    "obtener_CambiosPatrimonio": "CP",    # cambios en el patrimonio
 }
 
 PLANES = {
@@ -84,8 +86,9 @@ def limpiar(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     for col in [c for c in ["RPJ", "Cuenta"] if c in out]:
         out[col] = out[col].astype(str).str.strip()
-    out["RUC"] = out["RUC"].map(limpiar_ruc)
-    for col in ["NombreEmpresa", "TipoEmpresa", "TipoSector", "CIIU", "Moneda",
+    if "RUC" in out:
+        out["RUC"] = out["RUC"].map(limpiar_ruc)
+    for col in ["DescripcionColumna", "NombreEmpresa", "TipoEmpresa", "TipoSector", "CIIU", "Moneda",
                 "MetodoFlujoEfectivo", "DescripcionCuenta", "TipoInformacion", "Trimestre"]:
         if col in out:
             out[col] = out[col].map(limpiar_texto)
@@ -96,7 +99,7 @@ def limpiar(df: pd.DataFrame) -> pd.DataFrame:
 
     if "Cuenta" in out:
         out["plan"] = out["Cuenta"].str[1]
-        out["estado"] = out["Cuenta"].str[0].map(ESTADO_POR_PREFIJO)
+        out["estado"] = out["_operacion"].map(ESTADO_POR_OPERACION)
     if "Moneda" in out:
         out["moneda_iso"] = out["Moneda"].map(MONEDAS)
     return out

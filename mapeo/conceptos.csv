@@ -1,0 +1,26 @@
+concepto,estado,nombre,definicion
+activo_total,BG,Activo total,Total del activo según el estado de situación financiera.
+pasivo_total,BG,Pasivo total,Total del pasivo.
+patrimonio_total,BG,Patrimonio total,Total del patrimonio (incluye participación no controladora cuando el estado es consolidado).
+activo_corriente,BG,Activo corriente,Total de activos corrientes. No aplica a bancos: su balance no separa corriente y no corriente.
+pasivo_corriente,BG,Pasivo corriente,Total de pasivos corrientes. No aplica a bancos.
+efectivo,BG,Efectivo y equivalentes,Efectivo y equivalentes de efectivo. En bancos se usa DISPONIBLE (incluye encaje en el BCRP).
+deuda_financiera,BG,Deuda financiera,Pasivos financieros que devengan intereses (corriente + no corriente). En el plan general 'Otros Pasivos Financieros' también incluye arrendamientos y derivados pasivos.
+creditos_brutos,BG,Cartera de créditos bruta,Solo bancos y financieras: vigentes + reestructurados + refinanciados + vencidos + cobranza judicial.
+creditos_atrasados,BG,Cartera atrasada,Solo bancos y financieras: vencidos + cobranza judicial (definición SBS de cartera atrasada).
+provisiones_creditos,BG,Provisiones para créditos,Solo bancos y financieras: stock de provisiones (viene con signo negativo).
+depositos,BG,Depósitos del público,Solo bancos y financieras: obligaciones con el público.
+ingresos,ER,Ingresos,Ingresos de la actividad principal. La definición cambia por tipo de entidad (ver mapeo); es el concepto que más criterio requiere.
+utilidad_bruta,ER,Utilidad bruta,Ingresos menos costo de ventas. Solo existe en planes con estructura comercial/industrial.
+utilidad_operativa,ER,Utilidad operativa,Resultado de la operación antes de resultados financieros e impuestos.
+ingresos_financieros,ER,Ingresos financieros,Ingresos financieros no operativos. No aplica a bancos (para ellos es su operación).
+gastos_financieros,ER,Gastos financieros,Gastos financieros no operativos (intereses de deuda). No aplica a bancos.
+utilidad_antes_impuestos,ER,Utilidad antes de impuestos,Resultado antes del impuesto a la renta.
+impuesto_renta,ER,Impuesto a la renta,Gasto (negativo) o ingreso por impuesto a las ganancias.
+utilidad_neta,ER,Utilidad neta,Ganancia (pérdida) neta del ejercicio.
+ingresos_intereses,ER,Ingresos por intereses,Solo bancos y financieras.
+gastos_intereses,ER,Gastos por intereses,Solo bancos y financieras (con signo negativo).
+margen_financiero_bruto,ER,Margen financiero bruto,Solo bancos y financieras: ingresos menos gastos por intereses.
+provisiones_credito_gasto,ER,Gasto de provisiones de créditos directos,Solo bancos y financieras (con signo negativo).
+primas_ganadas_netas,ER,Primas ganadas netas,Solo seguros.
+siniestros_netos,ER,Siniestros incurridos netos,Solo seguros (con signo negativo).
