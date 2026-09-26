@@ -109,3 +109,9 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
    a verificar: que el servidor de la SMV acepte conexiones desde GitHub (EE. UU.).
 3. Zenodo: conectar la cuenta de GitHub y crear un release para obtener el DOI.
 4. Revisar el nombre en `LICENSE` (puse "el propietario del proyecto ").
+5. Para no esperar horas en la primera corrida de Actions: subir el caché local como
+   asset del Release `cache` (`tar -czf cache-raw.tar.gz cache/raw` y
+   `gh release create cache cache-raw.tar.gz`).
+6. Tamaño: con 14 años `data/` pesa ~49 MB (ningún archivo cerca del límite de 100 MB de
+   GitHub). Si los datos se versionan en git, cada actualización mensual agrega ~10 MB al
+   historial. Alternativa si crece mucho: publicar los datos como assets de Releases.
