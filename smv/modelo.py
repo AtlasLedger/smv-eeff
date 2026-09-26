@@ -280,8 +280,13 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     pres = pres.merge(escalas, on=CLAVE_PRESENTACION, how="left")
     pres["escala_original"] = pres["escala_original"].fillna("miles")
     if indices:
-        idx = pd.concat(indices, ignore_index=True).drop_duplicates(["rpj", "ejercicio", "periodo", "tipo"])
-        pres = pres.merge(idx.drop(columns="moneda"), on=["rpj", "ejercicio", "periodo", "tipo"], how="left")
+        pres = pres.merge(idx.drop(columns="moneda"), on=CLAVE_PRESENTACION, how="left")
+    if "smv_activo_total" in pres:
+        # Sin índice no se puede detectar la escala mixta de las SAB antiguas: se avisa.
+        sin_idx = (pres["plan"] == "I") & (pres["ejercicio"] <= 2011) & pres["smv_activo_total"].isna()
+        pres.loc[sin_idx, "escala_original"] = "no verificada"
+        calidad["sab_antiguas_sin_indice_escala_no_verificada"] = int(
+            pres.loc[sin_idx].drop_duplicates(CLAVE_PRESENTACION).shape[0])
     pres.to_parquet(salida / "presentaciones.parquet", index=False)
 
     # --- Empresas: último valor conocido + historial de nombres
