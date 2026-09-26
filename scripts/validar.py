@@ -35,11 +35,20 @@ def main() -> int:
                 & (est["periodo"] == r.periodo) & (est["tipo"] == r.tipo) & (est["concepto"] == r.concepto)]
         base = m[r.campo].iloc[0] if len(m) else None
         dif = None if base is None or pd.isna(base) else base - r.valor_referencia
-        estado = "sin dato" if dif is None else ("ok" if abs(dif) <= 1 else "DISCREPANCIA")
+        esperada = getattr(r, "diferencia_esperada", None)
+        if dif is None:
+            estado = "sin dato"
+        elif abs(dif) <= 1:
+            estado = "ok"
+        elif pd.notna(esperada) and abs(dif - float(esperada)) <= 1:
+            estado = "diferencia explicada"
+        else:
+            estado = "DISCREPANCIA"
         filas.append({"empresa": r.empresa_busqueda, "periodo": f"{r.ejercicio}-{r.periodo}-{r.tipo}",
                       "concepto": r.concepto, "campo": r.campo, "publicado": r.valor_referencia,
                       "base": base, "diferencia": dif, "resultado": estado,
-                      "confianza": m["confianza"].iloc[0] if len(m) else None, "fuente": r.fuente})
+                      "confianza": m["confianza"].iloc[0] if len(m) else None, "fuente": r.fuente,
+                      "nota": getattr(r, "nota", None)})
     out = pd.DataFrame(filas)
 
     resumen = out["resultado"].value_counts().to_dict()
@@ -55,6 +64,8 @@ def main() -> int:
             texto.append(f"| {f.periodo} | {f.concepto} | {f.campo} | {fmt(f.publicado)} | {fmt(f.base)} "
                          f"| {fmt(f.diferencia)} | {f.resultado} | {f.confianza or ''} |")
         texto.append("")
+        for f in g[g["resultado"] == "diferencia explicada"].itertuples():
+            texto += [f"Diferencia explicada en `{f.concepto}`: {f.nota}", ""]
     Path(a.reporte).write_text("\n".join(texto), "utf-8")
     print("\n".join(texto[:6]))
     return 1 if resumen.get("DISCREPANCIA") else 0

@@ -1,23 +1,34 @@
-empresa_busqueda,ejercicio,periodo,tipo,concepto,campo,valor_referencia,fuente
-ALICORP S.A.A.,2024,A,C,ingresos,valor,10598328,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,utilidad_bruta,valor,2864867,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,utilidad_operativa,valor,1076315,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,ingresos_financieros,valor,76433,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,gastos_financieros,valor,-341173,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,utilidad_antes_impuestos,valor,802262,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,impuesto_renta,valor,-256252,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,utilidad_neta,valor,350460,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,ingresos,valor_comparativo,11039113,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,utilidad_neta,valor_comparativo,195935,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,efectivo,valor,1983599,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,activo_corriente,valor,5183004,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,activo_total,valor,12231540,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,pasivo_corriente,valor,5216350,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,pasivo_total,valor,9979152,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,patrimonio_total,valor,2252388,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,deuda_financiera,valor,5137268,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,A,C,activo_total,valor_comparativo,12917367,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,4,C,ingresos,valor,3052270,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,4,C,ingresos,valor_acumulado,10598328,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,4,C,utilidad_neta,valor,-108405,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
-ALICORP S.A.A.,2024,4,C,utilidad_neta,valor_acumulado,350460,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf
+empresa_busqueda,ejercicio,periodo,tipo,concepto,campo,valor_referencia,fuente,diferencia_esperada,nota
+ALICORP S.A.A.,2024,A,C,ingresos,valor,10598328,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,utilidad_bruta,valor,2864867,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,utilidad_operativa,valor,1076315,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,ingresos_financieros,valor,76433,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,gastos_financieros,valor,-341173,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,utilidad_antes_impuestos,valor,802262,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,impuesto_renta,valor,-256252,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,utilidad_neta,valor,350460,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,ingresos,valor_comparativo,11039113,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,utilidad_neta,valor_comparativo,195935,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,efectivo,valor,1983599,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,activo_corriente,valor,5183004,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,activo_total,valor,12231540,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,pasivo_corriente,valor,5216350,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,pasivo_total,valor,9979152,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,patrimonio_total,valor,2252388,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,deuda_financiera,valor,5137268,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,A,C,activo_total,valor_comparativo,12917367,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,4,C,ingresos,valor,3052270,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,4,C,ingresos,valor_acumulado,10598328,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,4,C,utilidad_neta,valor,-108405,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+ALICORP S.A.A.,2024,4,C,utilidad_neta,valor_acumulado,350460,https://www.alicorp.com.pe/media/conference_calls/alicorp_earnings_report_4q24_es_vf.pdf,,
+BANCO DE CREDITO DEL PERU,2024,A,I,activo_total,valor,195656310,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,activo_total,valor_comparativo,179230213,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,pasivo_total,valor,170689252,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,patrimonio_total,valor,24967058,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,efectivo,valor,43923142,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,ingresos_intereses,valor,14450779,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,utilidad_antes_impuestos,valor,6945406,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,impuesto_renta,valor,-1728714,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,utilidad_neta,valor,5216692,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,utilidad_neta,valor_comparativo,4664508,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,,
+BANCO DE CREDITO DEL PERU,2024,A,I,gastos_intereses,valor,-3518074,https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-0000-CC9A-8064-11EE21229F36%7D,229057,"El estado auditado incluye la prima al fondo de seguro de depósitos (229,057) en gastos financieros; el formato SBS que recibe la SMV la registra en gastos por servicios financieros (2F0407)."
