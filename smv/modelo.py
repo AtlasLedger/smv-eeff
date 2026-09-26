@@ -50,7 +50,8 @@ CLAVE_PRESENTACION = ["rpj", "ejercicio", "periodo", "tipo"]
 
 # Cuenta de activo total por plan (las mismas que mapeo/mapeo_cuentas.csv marca como
 # 'directo'). Se usan para detectar presentaciones reportadas en otra escala.
-CUENTAS_ACTIVO_TOTAL = {"1D020T", "1F2001", "1E02ST", "1A020T", "1I1131", "1V020T"}
+CUENTAS_ACTIVO_TOTAL = {"1D020T", "1F2001", "1E02ST", "1A020T", "1I1131", "1V020T",
+                        "1B020T", "1S0301", "1C020T"}  # letras antiguas (2005)
 
 COLUMNAS_HECHOS = {
     "RPJ": "rpj",
