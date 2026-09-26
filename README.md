@@ -91,8 +91,9 @@ roe = (ratios.query("ratio == 'roe' and periodo == 'A' and tipo == 'C'")
              .merge(empresas[["rpj", "nombre"]], on="rpj"))
 ```
 
-El detalle de cada tabla y campo está en [docs/diccionario.md](docs/diccionario.md) y
-las reglas de mapeo en [mapeo/](mapeo/).
+El detalle de cada tabla y campo está en [docs/diccionario.md](docs/diccionario.md), hay
+ejemplos en pandas y SQL (DuckDB) en [docs/ejemplos.md](docs/ejemplos.md) y las reglas de
+mapeo están en [mapeo/](mapeo/).
 
 ## Cosas que conviene saber de la fuente
 
