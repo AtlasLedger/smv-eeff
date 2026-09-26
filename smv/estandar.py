@@ -145,19 +145,25 @@ def cobertura(est: pd.DataFrame, presentaciones: pd.DataFrame, ruta_mapeo: str |
     m = pd.read_csv(ruta_mapeo, dtype=str).fillna("")
     m = m[m["confianza"].isin(RANGO_CONFIANZA) & (m["cuentas"] != "")]
     estados = {"1": "BG", "2": "ER"}
-    pres = presentaciones.drop_duplicates(CLAVES + ["estado"])
-    e = est.assign(plan=est["cuentas"].str[1])
+    pres = presentaciones.drop_duplicates(CLAVES + ["estado"]).copy()
+    pres["ejercicio"] = pres["ejercicio"].astype(int)
+    e = est.assign(plan=est["cuentas"].str[1], ejercicio=est["ejercicio"].astype(int))
     filas = []
     for r in m.itertuples():
         estado = estados.get(r.cuentas[0])
         base = pres[(pres["plan"] == r.plan) & (pres["estado"] == estado)]
         if r.tipo:
             base = base[base["tipo"] == r.tipo]
+        anios = base["ejercicio"].astype(int)
+        base = base[anios.between(int(r.desde) if r.desde else 0, int(r.hasta) if r.hasta else 9999)]
         con = e[(e["concepto"] == r.concepto) & (e["plan"] == r.plan)]
-        con = con[con["valor"].notna()]
+        # Cuenta como presente si trae el período aislado o el acumulado (en trimestres de
+        # SAB y del flujo solo existe el acumulado).
+        con = con[con["valor"].notna() | con["valor_acumulado"].notna()]
         n = len(base)
         hay = len(base.merge(con[CLAVES], on=CLAVES)) if n else 0
         filas.append({"concepto": r.concepto, "plan": r.plan, "tipo": r.tipo or "I+C",
+                      "desde": r.desde, "hasta": r.hasta,
                       "confianza": r.confianza, "presentaciones": n, "con_valor": hay,
                       "cobertura": hay / n if n else float("nan")})
     return pd.DataFrame(filas)

@@ -51,6 +51,9 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
 
     dif, comparadas = control_cruzado(est, pres)
     calidad = json.loads((salida / "calidad.json").read_text("utf-8"))
+    # Planes presentes en los datos que el mapeo no cubre (ej. letras antiguas B, S, C)
+    mapeados = set(pd.read_csv(ruta_mapeo, dtype=str)["plan"].dropna())
+    calidad["planes_sin_mapeo"] = sorted(set(pres["plan"].dropna()) - mapeados)
     calidad["mapeo_cuentas_con_descripcion_cambiante"] = int(deriva["cuenta"].nunique())
     calidad["balances_que_no_cuadran"] = len(descuadre)
     calidad["control_cruzado_indice_smv_comparaciones"] = comparadas
