@@ -312,3 +312,13 @@ def test_ratio_hereda_la_confianza_mas_baja():
                         {**base, "concepto": "ingresos", "valor": 100.0, "confianza": "propuesto"}])
     r = ratios(est).set_index("ratio")
     assert r.loc["margen_neto", "confianza"] == "propuesto"
+
+
+def test_archivos_en_cache_ignora_metadatos_de_macos(tmp_path):
+    from smv.modelo import archivos_en_cache
+    d = tmp_path / "obtener_GanciaPerdida" / "2024"
+    d.mkdir(parents=True)
+    for nombre in ["A_I.xml.gz", "._A_I.xml.gz", "2_C.xml.gz", "A_I.xml.gz.tmp"]:
+        (d / nombre).write_bytes(b"")
+    (tmp_path / "obtener_GanciaPerdida" / "._2024").mkdir()
+    assert archivos_en_cache(CacheDisco(tmp_path), "resultados") == [(2024, "2", "C"), (2024, "A", "I")]

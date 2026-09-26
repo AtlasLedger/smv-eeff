@@ -47,6 +47,7 @@ log = logging.getLogger(__name__)
 OPS_HECHOS = ["balance", "resultados", "flujo", "integrales"]
 ORDEN_PERIODO = {"1": 1, "2": 2, "3": 3, "4": 4, "A": 5}
 CLAVE_PRESENTACION = ["rpj", "ejercicio", "periodo", "tipo"]
+PATRON_CACHE = re.compile(r"([A1-4])_([IC])\.xml\.gz")
 
 # Cuenta de activo total por plan (las mismas que mapeo/mapeo_cuentas.csv marca como
 # 'directo'). Se usan para detectar presentaciones reportadas en otra escala.
@@ -72,8 +73,13 @@ def archivos_en_cache(cache: CacheDisco, op: str) -> list[tuple[int, str, str]]:
     base = cache.raiz / OPERACIONES[op]
     salida = []
     for f in sorted(base.glob("*/*.xml.gz")):
-        periodo, tipo = f.name.removesuffix(".xml.gz").split("_")
-        salida.append((int(f.parent.name), periodo, tipo))
+        # Solo archivos con el patrón exacto del caché (ej. 2024/A_I.xml.gz). Se ignora
+        # cualquier otro, como los "._A_I.xml.gz" que el tar de macOS agrega con
+        # metadatos de Apple y que aparecen como archivos reales al descomprimir en Linux.
+        m = PATRON_CACHE.fullmatch(f.name)
+        if not m or not f.parent.name.isdigit():
+            continue
+        salida.append((int(f.parent.name), m.group(1), m.group(2)))
     return salida
 
 

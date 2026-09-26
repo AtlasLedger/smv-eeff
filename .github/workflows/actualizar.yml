@@ -46,6 +46,8 @@ jobs:
           if gh release view cache >/dev/null 2>&1; then
             gh release download cache --pattern "cache-raw.tar.gz" --dir /tmp
             tar -xzf /tmp/cache-raw.tar.gz
+            # Un caché comprimido en macOS trae archivos ocultos "._*" de metadatos de Apple
+            find cache -name '._*' -delete
           else
             echo "No hay caché previo: se descarga todo (varias horas)."
           fi
