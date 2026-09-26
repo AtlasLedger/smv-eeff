@@ -57,6 +57,9 @@ jobs:
           # Años recientes: se fuerzan de nuevo porque la SMV recibe presentaciones tardías
           python scripts/extraer.py --op balance,resultados,flujo,integrales,indice \
             --anios "$PREV-$ANIO" --refrescar --timeout 600 --intentos 4
+          # Patrimonio: solo anual (cada llamada pesa ~80 MB y tarda ~5 min)
+          python scripts/extraer.py --op patrimonio --anios "$PREV-$ANIO" --periodos A \
+            --refrescar --timeout 900 --intentos 3 --pausa 5 || true
           # Histórico: solo lo que falte en el caché
           python scripts/extraer.py --op balance,resultados,flujo,integrales,indice \
             --anios "2000-$ANIO" --timeout 600 --intentos 4 || true
@@ -65,13 +68,14 @@ jobs:
         run: |
           python scripts/construir.py
           python scripts/validar.py
+          python scripts/perfil_historico.py
 
       - name: Publicar datos
         run: |
           python scripts/exportar.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f data validacion/reporte.md
+          git add -f data validacion/reporte.md reportes/perfil_historico.md
           if git diff --cached --quiet; then
             echo "Sin cambios en los datos."
           else
