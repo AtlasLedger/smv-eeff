@@ -175,3 +175,17 @@ def test_cuadre_balance():
         {**base, "rpj": "B", "concepto": "patrimonio_total", "valor": 30.0},
     ])
     assert list(cuadre_balance(est)["rpj"]) == ["B"]
+
+
+def test_flujo_trimestral_va_a_acumulado():
+    from smv.modelo import _hechos
+    df = pd.DataFrame([
+        {"RPJ": "A", "Ejercicio": 2025, "_periodo_consultado": "2", "_tipo_consultado": "I",
+         "estado": "FE", "Cuenta": "3D0405", "Monto1": -57966.0, "Monto2": -216643.0},
+        {"RPJ": "A", "Ejercicio": 2025, "_periodo_consultado": "2", "_tipo_consultado": "I",
+         "estado": "ER", "Cuenta": "2D07ST", "Monto1": 170200.0, "Monto2": 190267.0,
+         "Monto3": 349210.0, "Monto4": 271706.0},
+    ])
+    h = _hechos(df).set_index("estado")
+    assert pd.isna(h.loc["FE", "monto"]) and h.loc["FE", "monto_acumulado"] == -57966.0
+    assert h.loc["ER", "monto"] == 170200.0 and h.loc["ER", "monto_acumulado"] == 349210.0

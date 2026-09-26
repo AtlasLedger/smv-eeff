@@ -83,6 +83,16 @@ def _hechos(df: pd.DataFrame) -> pd.DataFrame:
             h[col] = float("nan")
         elif (h[col] == 0).all():
             h[col] = float("nan")
+    # Flujo de efectivo trimestral: la SMV entrega el ACUMULADO del año en Monto1/Monto2
+    # (verificado contra la variación del efectivo en el balance), a diferencia de
+    # resultados y ORI, donde Monto1 es el trimestre aislado. Para que las columnas
+    # signifiquen lo mismo en todos los estados, se mueve a las columnas de acumulado y
+    # el trimestre aislado queda nulo (no se reporta; no se deriva restando).
+    fe_trim = (h["estado"] == "FE") & (h["periodo"] != "A")
+    if fe_trim.any():
+        h.loc[fe_trim, "monto_acumulado"] = h.loc[fe_trim, "monto"]
+        h.loc[fe_trim, "monto_acumulado_comparativo"] = h.loc[fe_trim, "monto_comparativo"]
+        h.loc[fe_trim, ["monto", "monto_comparativo"]] = float("nan")
     h["ejercicio"] = h["ejercicio"].astype("int16")
     return h
 

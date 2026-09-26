@@ -55,8 +55,11 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   Afecta campos de catálogo (Moneda, MetodoFlujoEfectivo) y descripciones del plan V.
   Se repara con diccionario explícito (`smv/limpieza.py`).
 - RPJ de las SAB con espacios de relleno. RUC = 0 para holdings extranjeros.
-- Trimestres: Monto1 = trimestre, Monto3 = acumulado del año, Monto2/Monto4 = mismos
-  períodos del año anterior. Anual: solo Monto1/Monto2. Balance: Monto2 = cierre anterior.
+- Trimestres: en resultados y ORI, Monto1 = trimestre, Monto3 = acumulado del año,
+  Monto2/Monto4 = mismos períodos del año anterior. En el FLUJO DE EFECTIVO, Monto1 ya es
+  el acumulado del año (verificado con la variación del efectivo en el balance de
+  Alicorp); la base lo guarda en monto_acumulado. Anual: solo Monto1/Monto2. Balance:
+  Monto2 = cierre del ejercicio anterior.
 - Montos en miles: confirmado en la validación (Alicorp, BCP, Credicorp, Buenaventura).
 - `obtener_EFData` es una grilla paginada que siempre devuelve 0 registros: se descarta.
 - CambiosPatrimonio: 79 MB y ~5.5 min por llamada; 93 % de celdas en cero. Las SAB
