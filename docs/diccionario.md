@@ -100,7 +100,13 @@ Las definiciones están en `mapeo/conceptos.csv` y las reglas en `mapeo/mapeo_cu
 | `cobertura_provisiones` | provisiones / cartera atrasada (bancos) |
 | `siniestralidad` | siniestros netos / primas ganadas netas (seguros) |
 
-Cada ratio hereda la `confianza` más baja de sus insumos. Los ratios trimestrales de margen
+Cada ratio hereda la `confianza` más baja de sus insumos.
+
+La **siniestralidad** solo es interpretable en seguros generales. En aseguradoras de vida y
+rentas vitalicias (Interseguro, Protecta, Vivir y similares) los siniestros incluyen pagos
+de pensiones financiados con reservas e inversiones, y el ajuste de reservas puede volver
+negativas las primas ganadas: la siniestralidad supera 100 % o sale negativa sin que sea
+un error de datos. Los ratios trimestrales de margen
 usan el trimestre aislado, no el acumulado.
 
 ## calidad.json

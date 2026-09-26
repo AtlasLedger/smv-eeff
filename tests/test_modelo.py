@@ -245,3 +245,18 @@ def test_escala_interna_sin_indice():
         {**base, "RPJ": "X", "Cuenta": "1D020T", "DescripcionCuenta": "TOTAL DE ACTIVOS", "Monto1": 100.0},
     ])
     assert _escala_interna(actual).empty
+
+
+def test_partida_intermedia_se_quita_si_ya_estaba_en_el_patrimonio():
+    from smv.estandar import _quitar_intermedias_ya_incluidas, cuadre_balance
+    base = {"ejercicio": 2010, "periodo": "A", "tipo": "C"}
+    filas = []
+    for rpj, pat in [("FUERA", 80.0), ("DENTRO", 90.0)]:
+        filas += [{**base, "rpj": rpj, "concepto": "activo_total", "valor": 200.0},
+                  {**base, "rpj": rpj, "concepto": "pasivo_total", "valor": 110.0},
+                  {**base, "rpj": rpj, "concepto": "patrimonio_total", "valor": pat},
+                  {**base, "rpj": rpj, "concepto": "partidas_entre_pasivo_y_patrimonio", "valor": 10.0}]
+    est = _quitar_intermedias_ya_incluidas(pd.DataFrame(filas))
+    inter = est[est["concepto"] == "partidas_entre_pasivo_y_patrimonio"]
+    assert list(inter["rpj"]) == ["FUERA"]   # en DENTRO ya cuadraba sin la partida
+    assert cuadre_balance(est).empty
