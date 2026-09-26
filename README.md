@@ -18,6 +18,8 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
   nivel de confianza (`directo` o `validado`). Las decisiones de criterio
   contable están en un CSV que cualquiera puede revisar.
 
+Consulta en línea: https://atlasledger.github.io/smv-eeff/
+
 ## Qué contiene
 
 - Estados financieros de **682 empresas** (balance, resultados, flujo de efectivo y otro
@@ -37,7 +39,7 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
 | Limpieza y modelo dimensional | listo |
 | Mapeo entre planes de cuentas | listo; decisiones de criterio documentadas |
 | Validación contra estados publicados | 5 empresas, 177 cifras (2017 a 2024) |
-| Publicación y actualización mensual | preparada, falta publicar |
+| Publicación y actualización mensual | publicada; se actualiza sola cada mes |
 
 ## Qué tan confiable es
 

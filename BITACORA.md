@@ -138,20 +138,13 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
 - Validación (Alicorp, BCP, Credicorp y Buenaventura; estas dos contra la API XBRL de la SEC).
 - README, diccionario, licencias (MIT código + ODbL datos), exportación CSV, workflows.
 
-## Antes de publicar (necesita al propietario del proyecto)
+## Publicación (2026-09-26)
 
-0. (Opcional) Leer `mapeo/DECISIONES.md` y cambiar cualquier decisión con la que no esté de
-   acuerdo: se edita `mapeo/mapeo_cuentas.csv` y se reconstruye.
-
-1. Crear el repo público en GitHub y hacer push. Quitar `data/` de `.gitignore` cuando
-   el histórico esté completo (hoy está excluido para no llenar el historial de git).
-2. Primera corrida manual del workflow `actualizar` (Actions > actualizar > Run). Riesgo
-   a verificar: que el servidor de la SMV acepte conexiones desde GitHub (EE. UU.).
-3. Zenodo: conectar la cuenta de GitHub y crear un release para obtener el DOI.
-4. Revisar el nombre/entidad en `LICENSE` y en `CITATION.cff`.
-5. Para no esperar horas en la primera corrida de Actions: subir el caché local como
-   asset del Release `cache` (`tar -czf cache-raw.tar.gz cache/raw` y
-   `gh release create cache cache-raw.tar.gz`).
-6. Tamaño: con 14 años `data/` pesa ~49 MB (ningún archivo cerca del límite de 100 MB de
-   GitHub). Si los datos se versionan en git, cada actualización mensual agrega ~10 MB al
-   historial. Alternativa si crece mucho: publicar los datos como assets de Releases.
+- Repositorio público: https://github.com/AtlasLedger/smv-eeff (autoría: AtlasLedger;
+  el historial se reescribió para no incluir datos personales).
+- Página: https://atlasledger.github.io/smv-eeff/ (workflow `pagina`).
+- Caché crudo: Release `cache` (lo usa el workflow `actualizar`).
+- Zenodo: cuenta conectada. Para que emita el DOI falta activar el interruptor del
+  repositorio en https://zenodo.org/account/settings/github/ y luego publicar el release
+  borrador `v1.0.0` en GitHub (Releases > v1.0.0 > Publish). Zenodo solo archiva los
+  releases publicados DESPUÉS de activar el interruptor.

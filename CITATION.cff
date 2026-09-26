@@ -3,7 +3,7 @@ message: "Si usas esta base, cítala así. Los datos originales son de la SMV (O
 title: "smv-eeff: estados financieros normalizados de empresas supervisadas por la SMV (Perú)"
 type: dataset
 authors:
-  - name: "smv-eeff"
+  - name: "AtlasLedger"
 license: ODbL-1.0
 keywords:
   - Perú
@@ -17,3 +17,5 @@ references:
     authors:
       - name: "Superintendencia del Mercado de Valores (SMV)"
     license: ODbL-1.0
+repository-code: "https://github.com/AtlasLedger/smv-eeff"
+url: "https://atlasledger.github.io/smv-eeff/"

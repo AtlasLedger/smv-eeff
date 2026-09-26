@@ -1,0 +1,27 @@
+{
+  "title": "smv-eeff: estados financieros normalizados de empresas supervisadas por la SMV (Perú), 2000-2026",
+  "upload_type": "dataset",
+  "creators": [
+    {
+      "name": "AtlasLedger"
+    }
+  ],
+  "description": "Base abierta, limpia y comparable de los estados financieros que las empresas supervisadas por la Superintendencia del Mercado de Valores del Perú (SMV) presentan cada trimestre: 682 empresas, 2000-2026, unos 9.1 millones de montos por cuenta. Incluye limpieza de la fuente, un modelo dimensional en Parquet y CSV, conceptos comparables entre planes de cuentas (empresas, bancos, seguros, AFP, sociedades agentes de bolsa) y ratios estándar. Validada contra el índice que publica la propia SMV y contra estados financieros publicados por las empresas. Datos originales: SMV, portal de datos abiertos, licencia ODbL 1.0. Proyecto independiente, no afiliado a la SMV.",
+  "license": "odbl-1.0",
+  "keywords": [
+    "Perú",
+    "estados financieros",
+    "SMV",
+    "datos abiertos",
+    "NIIF",
+    "finanzas"
+  ],
+  "language": "spa",
+  "related_identifiers": [
+    {
+      "identifier": "https://atlasledger.github.io/smv-eeff/",
+      "relation": "isDocumentedBy",
+      "resource_type": "other"
+    }
+  ]
+}
