@@ -1,0 +1,88 @@
+# Actualización automática de la base.
+#
+# Por qué mensual y no trimestral: los plazos de la SMV varían (trimestres a fin del mes
+# siguiente, anual auditado hasta abril) y hay empresas que presentan tarde o corrigen.
+# Una corrida mensual los recoge sin intervención.
+#
+# El caché crudo (XML comprimidos, cientos de MB) no va en git: se guarda como archivo
+# de un Release llamado "cache". Cada corrida lo baja, vuelve a pedir a la SMV solo el
+# año en curso y el anterior (lo único que puede cambiar), reconstruye la base, valida y
+# publica.
+name: actualizar
+
+on:
+  schedule:
+    - cron: "17 11 5 * *"   # día 5 de cada mes, 06:17 hora de Lima
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Pruebas
+        run: pytest -q
+
+      - name: Bajar caché crudo del Release
+        run: |
+          if gh release view cache >/dev/null 2>&1; then
+            gh release download cache --pattern "cache-raw.tar.gz" --dir /tmp
+            tar -xzf /tmp/cache-raw.tar.gz
+          else
+            echo "No hay caché previo: se descarga todo (varias horas)."
+          fi
+
+      - name: Descargar de la SMV
+        run: |
+          ANIO=$(date +%Y)
+          PREV=$((ANIO - 1))
+          # Años recientes: se fuerzan de nuevo porque la SMV recibe presentaciones tardías
+          python scripts/extraer.py --op balance,resultados,flujo,integrales,indice \
+            --anios "$PREV-$ANIO" --refrescar --timeout 600 --intentos 4
+          # Histórico: solo lo que falte en el caché
+          python scripts/extraer.py --op balance,resultados,flujo,integrales,indice \
+            --anios "2000-$ANIO" --timeout 600 --intentos 4 || true
+
+      - name: Construir y validar
+        run: |
+          python scripts/construir.py
+          python scripts/validar.py
+
+      - name: Publicar datos
+        run: |
+          python scripts/exportar.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data validacion/reporte.md
+          if git diff --cached --quiet; then
+            echo "Sin cambios en los datos."
+          else
+            git commit -m "Datos actualizados $(date +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Subir caché crudo al Release
+        run: |
+          tar -czf /tmp/cache-raw.tar.gz cache/raw
+          gh release view cache >/dev/null 2>&1 || \
+            gh release create cache --title "Caché crudo de la SMV" \
+              --notes "Respuestas originales del servicio de la SMV, usadas por la actualización automática."
+          gh release upload cache /tmp/cache-raw.tar.gz --clobber
