@@ -36,7 +36,7 @@ def leer_mapeo(ruta: str | Path) -> pd.DataFrame:
     m = pd.read_csv(ruta, dtype=str).fillna("")
     m = m[m["confianza"].isin(RANGO_CONFIANZA) & (m["cuentas"] != "")]
     filas = [
-        {"concepto": r.concepto, "plan": r.plan, "tipo_mapeo": r.tipo, "cuenta": c.strip(),
+        {"regla": r.Index, "concepto": r.concepto, "plan": r.plan, "tipo_mapeo": r.tipo, "cuenta": c.strip(),
          "desde": int(r.desde) if r.desde else 0, "hasta": int(r.hasta) if r.hasta else 9999,
          "confianza": r.confianza}
         for r in m.itertuples() for c in r.cuentas.split("+")
@@ -53,6 +53,13 @@ def conceptos(hechos: pd.DataFrame, mapeo: pd.DataFrame) -> pd.DataFrame:
     x = h.merge(mapeo, on=["plan", "cuenta"], how="inner")
     x = x[((x["tipo_mapeo"] == "") | (x["tipo_mapeo"] == x["tipo"]))
           & x["ejercicio"].astype(int).between(x["desde"], x["hasta"])]
+    # Una presentación debe calzar con UNA sola regla por concepto. Si calza con dos (ej.
+    # el código antiguo y el nuevo conviven en un año de transición), sumarlas duplicaría
+    # el monto: mejor fallar y ajustar desde/hasta en el mapeo.
+    reglas = x.groupby(CLAVES + ["concepto"], observed=True)["regla"].nunique()
+    if (reglas > 1).any():
+        casos = reglas[reglas > 1].reset_index().head(10).to_dict("records")
+        raise ValueError(f"Presentaciones que calzan con más de una regla de mapeo: {casos}")
     agg = (x.groupby(CLAVES + ["concepto", "confianza"], as_index=False, observed=True)
              .agg(valor=("monto", lambda s: s.sum(min_count=1)),
                   valor_comparativo=("monto_comparativo", lambda s: s.sum(min_count=1)),

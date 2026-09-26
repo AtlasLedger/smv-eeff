@@ -110,6 +110,24 @@ antiguos.
 | b. | Reconstruir: restar la participación de trabajadores donde viene separada. |
 | c. | Dejar vacíos esos conceptos en los años previos al cambio de plantilla. |
 
-**Recomendación:** b donde la participación viene en una línea propia y a en el resto. Hay
-que esperar al histórico completo para fijar el año exacto de cambio por plan. La lista de
-cuentas afectadas está en `data/mapeo_revisar_descripciones.csv`.
+**Qué hay implementado (como `propuesto`):** la opción b. Años de cambio encontrados:
+
+| plan | plantilla antigua hasta | reconstrucción propuesta de utilidad antes de impuestos |
+|---|---|---|
+| D empresas | 2009 | 2D04ST + participación de trabajadores (2D0501) |
+| I SAB | 2011 | 2I2121 + participaciones (2I2130) |
+| F bancos | 2012 o después (por confirmar con el histórico) | 2F1301 + distribución legal de la renta neta (2F1402) |
+| E seguros | 2012 o después | 2E1503 + participaciones (2E1601) |
+| A AFP | 2012 o después | 2A04ST + participación (2A0501) |
+
+Además, hasta 2009 los **ingresos** del plan general (2D01ST) eran "Total de Ingresos
+Brutos" = ventas netas + otros ingresos operacionales. La propuesta toma solo ventas netas
+(2D0101) para acercarlo a "ingresos de actividades ordinarias".
+
+**Verificación:** utilidad antes de impuestos + impuesto = utilidad neta se cumple en 97.6 %
+de los estados anuales del plan general hasta 2009 (con la reconstrucción), igual que en los
+años NIIF (94 a 95 %; el resto son operaciones discontinuadas). En seguros y SAB antiguos
+no se cumple porque había **partidas extraordinarias** debajo del impuesto; eso es correcto
+y la utilidad neta se toma tal como fue reportada.
+
+**Recomendación:** validar la opción b.

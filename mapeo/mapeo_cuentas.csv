@@ -50,11 +50,13 @@ creditos_atrasados,F,I,,,1F0118+1F0119,directo,Definición estándar SBS de cart
 provisiones_creditos,F,I,,,1F0121,directo,Solo individual: el formato consolidado de bancos separa la cartera en corriente y no corriente y solo desglosa la parte corriente.
 depositos,F,,,,1F2101,directo,
 ingresos,A,,,,2A01ST,directo,Coincide con índice SMV.
-ingresos,D,,,,2D01ST,directo,Coincide con TotalIngreso del índice SMV (177/177 con monto).
+ingresos,D,,,2009,2D0101,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2009 2D01ST era Total de Ingresos Brutos = ventas netas (2D0101) + otros ingresos operacionales (2D0102); se toma solo ventas netas, lo más cercano a ingresos de actividades ordinarias."
+ingresos,D,,2010,,2D01ST,directo,Coincide con TotalIngreso del índice SMV (177/177 con monto).
 ingresos,E,,,,2E0602,propuesto,"DECISIÓN PENDIENTE. La SMV usa primas netas antes de cesiones (2E0201). Propuesta: primas ganadas netas (2E0602), que es el ingreso que la aseguradora retiene."
 ingresos,F,C,,,2F01ST+2F2406,propuesto,"DECISIÓN PENDIENTE. El consolidado de bancos usa otra plantilla (formato de conglomerado financiero). Ingresos de actividades ordinarias (intereses + primas + otros) + comisiones NETAS: en el consolidado no hay comisiones brutas, así que no es idéntico al individual."
 ingresos,F,I,,,2F0101+2F2402,propuesto,"DECISIÓN PENDIENTE. La SMV usa solo ingresos por intereses (2F0101). Propuesta: intereses + ingresos por servicios financieros (comisiones), que es como la SBS y los analistas miden los ingresos de un banco."
-ingresos,I,,,,2I2011+2I2030+2I2033+2I2020+2I2050,propuesto,"DECISIÓN PENDIENTE. La SMV usa Total Ingresos Operacionales (2I2031), que incluye el valor BRUTO de las inversiones vendidas: en 2024 Credicorp Capital SAB reportó 1,577 millones de venta de inversiones contra 46 millones de comisiones. Propuesta: comisiones + intereses + otros + ganancia NETA por venta de inversiones (venta 2I2020 + costo de enajenación 2I2050, que viene negativo)."
+ingresos,I,,,2011,2I2010+2I2030+2I2020+2I2050,propuesto,"Plantilla previa a NIIF (ver DECISIONES.md, punto 7). Ingreso bruto por comisiones (2I2010, incluye mercado de valores y de productos) + intereses + ganancia neta en venta de valores propios (venta 2I2020 + costo 2I2050)."
+ingresos,I,,2012,,2I2011+2I2030+2I2033+2I2020+2I2050,propuesto,"DECISIÓN PENDIENTE. La SMV usa Total Ingresos Operacionales (2I2031), que incluye el valor BRUTO de las inversiones vendidas: en 2024 Credicorp Capital SAB reportó 1,577 millones de venta de inversiones contra 46 millones de comisiones. Propuesta: comisiones + intereses + otros + ganancia NETA por venta de inversiones (venta 2I2020 + costo de enajenación 2I2050, que viene negativo)."
 ingresos,V,,,,2V0102,directo,Coincide con índice SMV (ingresos ordinarios + otros ingresos).
 utilidad_bruta,A,,,,,no_aplica,
 utilidad_bruta,D,,,,2D02ST,directo,
@@ -82,12 +84,17 @@ gastos_financieros,F,,,,,no_aplica,
 gastos_financieros,I,,,,2I2090,directo,
 gastos_financieros,V,,,,2V0402,directo,
 utilidad_antes_impuestos,A,,,,2A08ST,directo,
-utilidad_antes_impuestos,D,,,,2D04ST,directo,
+utilidad_antes_impuestos,A,,,,2A04ST+2A0501,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2A04ST + participación de los trabajadores (2A0501)."
+utilidad_antes_impuestos,D,,,2009,2D04ST+2D0501,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2009 2D04ST era antes de participaciones e impuesto; se suma la participación de trabajadores (2D0501, negativa) para dejarla comparable con NIIF, donde va dentro de gastos de personal."
+utilidad_antes_impuestos,D,,2010,,2D04ST,directo,
 utilidad_antes_impuestos,E,C,,,2E1509,directo,En el consolidado de seguros el código cambia (2E1508 en individual).
 utilidad_antes_impuestos,E,I,,,2E1508,directo,
+utilidad_antes_impuestos,E,I,,,2E1503+2E1601,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2E1503 + participaciones de los trabajadores (2E1601)."
 utilidad_antes_impuestos,F,C,,,2F2809,directo,El consolidado de bancos usa otra plantilla (formato de conglomerado financiero).
 utilidad_antes_impuestos,F,I,,,2F1302,directo,
-utilidad_antes_impuestos,I,,,,2I2121,directo,
+utilidad_antes_impuestos,F,I,,,2F1301+2F1402,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Código antiguo 2F1301 (antes de participaciones e impuesto) + distribución legal de la renta neta (2F1402, participación de trabajadores)."
+utilidad_antes_impuestos,I,,,2011,2I2121+2I2130,propuesto,"Plantilla previa a NIIF. Ver mapeo/DECISIONES.md, punto 7. Hasta 2011 2I2121 era antes de participaciones e impuesto; se suma Participaciones (2I2130)."
+utilidad_antes_impuestos,I,,2012,,2I2121,directo,
 utilidad_antes_impuestos,V,,,,2V04ST,directo,
 impuesto_renta,A,,,,2A0502,directo,
 impuesto_renta,D,,,,2D0502,directo,
