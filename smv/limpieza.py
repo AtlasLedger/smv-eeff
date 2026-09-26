@@ -97,6 +97,10 @@ def limpiar(df: pd.DataFrame) -> pd.DataFrame:
     for col in numericas:
         out[col] = pd.to_numeric(out[col], errors="raise").astype("float64")
 
+    if "Ejercicio" in out:
+        # Llega como texto en unos endpoints y como número en otros: se unifica a entero
+        # para que los cruces entre tablas no fallen en silencio.
+        out["Ejercicio"] = pd.to_numeric(out["Ejercicio"], errors="raise").astype("int16")
     if "Cuenta" in out:
         out["plan"] = out["Cuenta"].str[1]
         out["estado"] = out["_operacion"].map(ESTADO_POR_OPERACION)

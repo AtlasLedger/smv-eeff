@@ -115,3 +115,21 @@ def test_mapeo_y_ratios():
     assert r.loc[("A", "margen_neto"), "confianza"] == "directo"
     # El margen del banco depende de 'ingresos' propuesto -> hereda la confianza más baja
     assert r.loc[("B", "margen_neto"), "confianza"] == "propuesto"
+
+
+def test_control_cruzado_compara_de_verdad():
+    from smv.estandar import control_cruzado
+    est = pd.DataFrame([{"rpj": "A", "ejercicio": 2024, "periodo": "A", "tipo": "I",
+                         "concepto": "activo_total", "valor": 100.0}])
+    pres = pd.DataFrame([{"rpj": "A", "ejercicio": 2024, "periodo": "A", "tipo": "I",
+                          "smv_activo_total": 105.0}])
+    dif, n = control_cruzado(est, pres)
+    assert n == 1 and len(dif) == 1
+    # Claves con tipos distintos (texto vs número) no deben pasar como "0 discrepancias"
+    with pytest.raises(ValueError):
+        control_cruzado(est, pres.assign(ejercicio="2024"))
+
+
+def test_ejercicio_se_normaliza_a_entero():
+    df = pd.DataFrame([{**sim.FILAS[0], "Ejercicio": "2024", "_operacion": "obtener_GanciaPerdida"}])
+    assert limpiar(df)["Ejercicio"].iloc[0] == 2024

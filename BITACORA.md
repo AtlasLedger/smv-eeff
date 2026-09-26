@@ -1,0 +1,61 @@
+# Bitácora de trabajo autónomo
+
+Registro de lo que se avanzó sin intervención de el propietario del proyecto, de lo que quedó pendiente y de
+las decisiones que necesitan su validación. La sección de arriba siempre está al día.
+
+## Estado actual
+
+- Paso 1 (extractor): listo. Descarga histórica 2000-2026 en curso para balance,
+  resultados, flujo, integrales e índice (`logs/historico_1.out`). Si se cortó, volver a
+  correr el mismo comando: continúa donde quedó.
+- Paso 2 (mapeo): **propuesta** lista en `mapeo/`. Faltan las decisiones de criterio (abajo).
+- Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`.
+- Paso 4 (validación contra memoria anual): pendiente.
+- Paso 5 (publicación): pendiente; requiere cuentas de el propietario del proyecto (GitHub, Zenodo).
+
+## Decisiones que necesitan a el propietario del proyecto
+
+Todas están en `mapeo/mapeo_cuentas.csv` con `confianza = propuesto` o `pendiente`.
+Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado como
+`propuesto` en `data/estandar.parquet` y `data/ratios.parquet`.
+
+1. **Ingresos de bancos.** La SMV usa solo ingresos por intereses (2F0101). Propuesta:
+   intereses + ingresos por servicios financieros (2F0101 + 2F2402).
+2. **Ingresos de seguros.** La SMV usa primas netas antes de cesiones (2E0201). Propuesta:
+   primas ganadas netas (2E0602).
+3. **Ingresos de SAB.** La SMV usa Total Ingresos Operacionales (2I2031), que incluye el
+   valor bruto de inversiones vendidas (Credicorp Capital SAB 2024: 1,577 millones de
+   venta de inversiones contra 46 millones de comisiones). Propuesta: comisiones +
+   intereses + otros + ganancia NETA por venta de inversiones.
+4. **Efectivo de bancos.** DISPONIBLE incluye el encaje en el BCRP. ¿Se deja o se excluye?
+5. **Deuda financiera.** En el plan general "Otros Pasivos Financieros" mezcla deuda,
+   arrendamientos NIIF 16 y derivados. No se puede separar con esta data. ¿Se acepta con
+   la advertencia?
+6. **Utilidad operativa** de AFP (¿incluye el encaje legal?), bancos (2F2801) y seguros
+   (no hay línea equivalente).
+
+## Hallazgos (para el README y la documentación)
+
+- El plan `2I` no documentado = sociedades agentes de bolsa (19 empresas).
+- El encoding roto está en origen: la SMV manda un espacio o `¿` donde iba la letra.
+  Afecta campos de catálogo (Moneda, MetodoFlujoEfectivo) y descripciones del plan V.
+  Se repara con diccionario explícito (`smv/limpieza.py`).
+- RPJ de las SAB con espacios de relleno. RUC = 0 para holdings extranjeros.
+- Trimestres: Monto1 = trimestre, Monto3 = acumulado del año, Monto2/Monto4 = mismos
+  períodos del año anterior. Anual: solo Monto1/Monto2. Balance: Monto2 = cierre anterior.
+- Montos en miles (por confirmar en el paso 4).
+- `obtener_EFData` es una grilla paginada que siempre devuelve 0 registros: se descarta.
+- CambiosPatrimonio: 79 MB y ~5.5 min por llamada; 93 % de celdas en cero. Las SAB
+  repiten los códigos de fila en dos bloques (año anterior y actual).
+- Las SAB usan el prefijo 4 en el flujo y el 3 en patrimonio (al revés que el resto).
+- Control cruzado: los totales de activo, pasivo, patrimonio y utilidad neta coinciden
+  al 100 % con el índice que publica la SMV (0 discrepancias).
+
+## Registro
+
+### 2026-09-26, madrugada
+- Entorno, pruebas, primera descarga real, fix del perfilador (pandas 3 + RE2).
+- Perfiles de balance, resultados y flujo 2024; catálogo de cuentas en `catalogos/`.
+- Limpieza (`smv/limpieza.py`), modelo dimensional (`smv/modelo.py`), capa estandarizada
+  (`smv/estandar.py`), propuesta de mapeo (`mapeo/`), 17 pruebas pasando.
+- Descarga histórica lanzada (recientes primero).

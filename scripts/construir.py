@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from smv import CacheDisco
-from smv.estandar import conceptos, control_cruzado, leer_mapeo, ratios
+from smv.estandar import cobertura, conceptos, control_cruzado, leer_mapeo, ratios
 from smv.modelo import construir
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -37,13 +37,19 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     rat = ratios(est)
     rat.to_parquet(salida / "ratios.parquet", index=False)
 
-    dif = control_cruzado(est, pres)
+    cob = cobertura(est, pres, ruta_mapeo)
+    cob.to_csv(salida / "cobertura_mapeo.csv", index=False)
+    bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)]
+
+    dif, comparadas = control_cruzado(est, pres)
     calidad = json.loads((salida / "calidad.json").read_text("utf-8"))
+    calidad["control_cruzado_indice_smv_comparaciones"] = comparadas
     calidad["control_cruzado_indice_smv_discrepancias"] = len(dif)
+    calidad["mapeo_conceptos_con_cobertura_menor_90pct"] = bajas[["concepto", "plan", "tipo", "cobertura"]].to_dict("records")
     (salida / "calidad.json").write_text(json.dumps(calidad, indent=2, ensure_ascii=False), "utf-8")
     if len(dif):
         dif.to_csv(salida / "control_cruzado_discrepancias.csv", index=False)
-    return {"conceptos": len(est), "ratios": len(rat), "discrepancias_indice": len(dif)}
+    return {"conceptos": len(est), "ratios": len(rat), "comparaciones_indice": comparadas, "discrepancias_indice": len(dif)}
 
 
 def main() -> int:

@@ -1,7 +1,8 @@
 """Capa estandarizada: conceptos comparables entre planes de cuentas y ratios.
 
-Lee el mapeo de mapeo/mapeo_cuentas.csv (concepto, plan, cuentas, confianza) y lo aplica
-sobre la tabla de hechos.
+Lee el mapeo de mapeo/mapeo_cuentas.csv (concepto, plan, tipo, cuentas, confianza) y lo
+aplica sobre la tabla de hechos. `tipo` vacío = aplica a individual y consolidado; `I` o
+`C` cuando la plantilla cambia (el consolidado de bancos usa otra plantilla completa).
 
 Decisiones de diseño:
 - El mapeo vive en un CSV y no en el código: es criterio contable, no programación.
@@ -33,7 +34,8 @@ def leer_mapeo(ruta: str | Path) -> pd.DataFrame:
     m = pd.read_csv(ruta, dtype=str).fillna("")
     m = m[m["confianza"].isin(RANGO_CONFIANZA) & (m["cuentas"] != "")]
     filas = [
-        {"concepto": r.concepto, "plan": r.plan, "cuenta": c.strip(), "confianza": r.confianza}
+        {"concepto": r.concepto, "plan": r.plan, "tipo_mapeo": r.tipo, "cuenta": c.strip(),
+         "confianza": r.confianza}
         for r in m.itertuples() for c in r.cuentas.split("+")
     ]
     return pd.DataFrame(filas)
@@ -46,6 +48,7 @@ def conceptos(hechos: pd.DataFrame, mapeo: pd.DataFrame) -> pd.DataFrame:
         h[c] = h[c].astype(str)
     h["plan"] = h["cuenta"].str[1]
     x = h.merge(mapeo, on=["plan", "cuenta"], how="inner")
+    x = x[(x["tipo_mapeo"] == "") | (x["tipo_mapeo"] == x["tipo"])]
     agg = (x.groupby(CLAVES + ["concepto", "confianza"], as_index=False, observed=True)
              .agg(valor=("monto", lambda s: s.sum(min_count=1)),
                   valor_comparativo=("monto_comparativo", lambda s: s.sum(min_count=1)),
@@ -97,17 +100,53 @@ def ratios(est: pd.DataFrame) -> pd.DataFrame:
     return pd.concat(salida, ignore_index=True)
 
 
-def control_cruzado(est: pd.DataFrame, presentaciones: pd.DataFrame) -> pd.DataFrame:
-    """Compara conceptos 'directo' con los totales del índice de la SMV. Devuelve discrepancias."""
+def control_cruzado(est: pd.DataFrame, presentaciones: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    """Compara conceptos 'directo' con los totales del índice de la SMV.
+
+    Devuelve (discrepancias, cantidad de comparaciones hechas). Si no se pudo comparar
+    nada teniendo datos en ambos lados, lanza un error: un control que no compara nada
+    no puede reportarse como "0 discrepancias".
+    """
     pares = {"activo_total": "smv_activo_total", "pasivo_total": "smv_pasivo_total",
              "patrimonio_total": "smv_patrimonio_total", "utilidad_neta": "smv_utilidad_neta"}
     p = presentaciones.drop_duplicates(CLAVES)
-    salida = []
+    salida, comparadas = [], 0
     for concepto, col_smv in pares.items():
         if col_smv not in p:
             continue
         e = est[est["concepto"] == concepto][CLAVES + ["valor"]]
-        m = e.merge(p[CLAVES + [col_smv]], on=CLAVES).dropna(subset=[col_smv])
+        m = e.merge(p[CLAVES + [col_smv]], on=CLAVES).dropna(subset=[col_smv, "valor"])
+        comparadas += len(m)
         m = m[(m["valor"] - m[col_smv]).abs() > 1]
         salida.append(m.rename(columns={col_smv: "valor_smv"}).assign(concepto=concepto))
-    return pd.concat(salida, ignore_index=True) if salida else pd.DataFrame()
+    if comparadas == 0 and len(est) and p.filter(like="smv_").notna().any().any():
+        raise ValueError("control_cruzado no pudo comparar ninguna fila: revisar tipos de las claves")
+    dif = pd.concat(salida, ignore_index=True) if salida else pd.DataFrame()
+    return dif, comparadas
+
+
+def cobertura(est: pd.DataFrame, presentaciones: pd.DataFrame, ruta_mapeo: str | Path) -> pd.DataFrame:
+    """Por concepto x plan x tipo: en qué % de las presentaciones aparece el concepto.
+
+    Una cobertura baja en un concepto 'directo' suele significar que la plantilla de la
+    SMV cambió (otro código para la misma línea) y hay que ajustar el mapeo.
+    """
+    m = pd.read_csv(ruta_mapeo, dtype=str).fillna("")
+    m = m[m["confianza"].isin(RANGO_CONFIANZA) & (m["cuentas"] != "")]
+    estados = {"1": "BG", "2": "ER"}
+    pres = presentaciones.drop_duplicates(CLAVES + ["estado"])
+    e = est.assign(plan=est["cuentas"].str[1])
+    filas = []
+    for r in m.itertuples():
+        estado = estados.get(r.cuentas[0])
+        base = pres[(pres["plan"] == r.plan) & (pres["estado"] == estado)]
+        if r.tipo:
+            base = base[base["tipo"] == r.tipo]
+        con = e[(e["concepto"] == r.concepto) & (e["plan"] == r.plan)]
+        con = con[con["valor"].notna()]
+        n = len(base)
+        hay = len(base.merge(con[CLAVES], on=CLAVES)) if n else 0
+        filas.append({"concepto": r.concepto, "plan": r.plan, "tipo": r.tipo or "I+C",
+                      "confianza": r.confianza, "presentaciones": n, "con_valor": hay,
+                      "cobertura": hay / n if n else float("nan")})
+    return pd.DataFrame(filas)
