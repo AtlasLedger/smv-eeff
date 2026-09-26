@@ -2,7 +2,7 @@
 
 Montos en miles de la moneda de reporte. Tolerancia: 1 (redondeo).
 
-Resultado: {'ok': 32, 'diferencia explicada': 1}
+Resultado: {'ok': 53, 'diferencia explicada': 2}
 
 ## ALICORP S.A.A.
 
@@ -52,3 +52,41 @@ Fuente: https://www.smv.gob.pe/ConsultasP8/documento.aspx?vidDoc=%7B70874495-000
 | 2024-A-I | gastos_intereses | valor | -3,518,074 | -3,289,017 | 229,057 | diferencia explicada | directo |
 
 Diferencia explicada en `gastos_intereses`: El estado auditado incluye la prima al fondo de seguro de depósitos (229,057) en gastos financieros; el formato SBS que recibe la SMV la registra en gastos por servicios financieros (2F0407).
+
+## COMPAÑIA DE MINAS BUENAVENTURA S.A.A.
+
+Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001013131.json (Form 20-F 2024, XBRL)
+
+| período | concepto | campo | publicado | base | diferencia | resultado | confianza |
+|---|---|---|---:|---:|---:|---|---|
+| 2024-A-C | ingresos | valor | 1,154,605 | 1,154,605 | 0 | ok | directo |
+| 2024-A-C | utilidad_neta | valor | 416,263 | 416,263 | 0 | ok | directo |
+| 2024-A-C | utilidad_antes_impuestos | valor | 573,449 | 573,449 | 0 | ok | directo |
+| 2024-A-C | activo_total | valor | 5,047,903 | 5,047,903 | 0 | ok | directo |
+| 2024-A-C | pasivo_total | valor | 1,488,202 | 1,488,202 | 0 | ok | directo |
+| 2024-A-C | patrimonio_total | valor | 3,559,701 | 3,559,701 | 0 | ok | directo |
+| 2024-A-C | activo_corriente | valor | 838,362 | 838,362 | 0 | ok | directo |
+| 2024-A-C | pasivo_corriente | valor | 479,738 | 479,738 | 0 | ok | directo |
+| 2024-A-C | efectivo | valor | 478,435 | 478,435 | 0 | ok | directo |
+| 2024-A-C | utilidad_bruta | valor | 359,287 | 359,287 | 0 | ok | directo |
+| 2024-A-C | impuesto_renta | valor | -156,164 | -156,164 | 0 | ok | directo |
+| 2024-A-C | gastos_financieros | valor | -65,397 | -65,397 | 0 | ok | directo |
+| 2024-A-C | ingresos_financieros | valor | 12,528 | 12,528 | 0 | ok | directo |
+
+## CREDICORP LTD.
+
+Fuente: https://data.sec.gov/api/xbrl/companyfacts/CIK0001001290.json (Form 20-F 2024, XBRL)
+
+| período | concepto | campo | publicado | base | diferencia | resultado | confianza |
+|---|---|---|---:|---:|---:|---|---|
+| 2024-A-C | activo_total | valor | 256,088,940 | 256,088,940 | 0 | ok | directo |
+| 2024-A-C | pasivo_total | valor | 221,111,706 | 221,111,706 | 0 | ok | directo |
+| 2024-A-C | patrimonio_total | valor | 34,977,234 | 34,977,234 | 0 | ok | directo |
+| 2024-A-C | utilidad_neta | valor | 5,623,252 | 5,623,252 | 0 | ok | directo |
+| 2024-A-C | utilidad_antes_impuestos | valor | 7,824,527 | 7,824,527 | 0 | ok | directo |
+| 2024-A-C | impuesto_renta | valor | -2,201,275 | -2,201,275 | 0 | ok | directo |
+| 2024-A-C | ingresos_intereses | valor | 19,869,256 | 19,869,256 | 0 | ok | directo |
+| 2024-A-C | gastos_intereses | valor | -5,754,125 | -5,754,125 | 0 | ok | directo |
+| 2024-A-C | efectivo | valor | 47,570,103 | 47,655,196 | 85,093 | diferencia explicada | propuesto |
+
+Diferencia explicada en `efectivo`: El efectivo NIIF excluye el efectivo restringido (85,093); el rubro Disponible del formato SBS lo incluye. Refuerza que efectivo de bancos quede como propuesto.

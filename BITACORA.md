@@ -10,7 +10,10 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
   correr el mismo comando: continúa donde quedó.
 - Paso 2 (mapeo): **propuesta** lista en `mapeo/`. Faltan las decisiones de criterio (abajo).
 - Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`.
-- Paso 4 (validación contra memoria anual): pendiente.
+- Paso 4 (validación): 53 cifras OK + 2 diferencias explicadas, en 4 empresas y 4
+  plantillas (Alicorp consolidado PEN, BCP individual banco, Credicorp consolidado
+  conglomerado, Buenaventura consolidado USD). `validacion/reporte.md`. Faltan: una
+  aseguradora (plan E), una SAB (plan I) y una AFP (plan A); y años antiguos.
 - Paso 5 (publicación): pendiente; requiere cuentas de el propietario del proyecto (GitHub, Zenodo).
 
 ## Decisiones que necesitan a el propietario del proyecto
@@ -49,7 +52,14 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   repiten los códigos de fila en dos bloques (año anterior y actual).
 - Las SAB usan el prefijo 4 en el flujo y el 3 en patrimonio (al revés que el resto).
 - Control cruzado: los totales de activo, pasivo, patrimonio y utilidad neta coinciden
-  al 100 % con el índice que publica la SMV (0 discrepancias).
+  al 100 % con el índice que publica la SMV (9,897 comparaciones, 0 discrepancias).
+  OJO: una primera versión reportaba "0 discrepancias" sin comparar nada (el ejercicio
+  llegaba como texto en una tabla y como número en otra). Corregido y con prueba.
+- Bancos: el consolidado usa OTRA plantilla (formato de conglomerado financiero, con
+  líneas de seguros y corriente/no corriente). El mapeo distingue individual y consolidado.
+  En el consolidado no se puede calcular morosidad (solo desglosa la cartera corriente).
+- Diferencias de presentación SBS vs estado auditado NIIF (no son errores de la base):
+  prima al fondo de seguro de depósitos (BCP) y efectivo restringido (Credicorp).
 
 ## Registro
 
@@ -59,3 +69,14 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - Limpieza (`smv/limpieza.py`), modelo dimensional (`smv/modelo.py`), capa estandarizada
   (`smv/estandar.py`), propuesta de mapeo (`mapeo/`), 17 pruebas pasando.
 - Descarga histórica lanzada (recientes primero).
+- Validación (Alicorp, BCP, Credicorp y Buenaventura; estas dos contra la API XBRL de la SEC).
+- README, diccionario, licencias (MIT código + ODbL datos), exportación CSV, workflows.
+
+## Antes de publicar (necesita a el propietario del proyecto)
+
+1. Crear el repo público en GitHub y hacer push. Quitar `data/` de `.gitignore` cuando
+   el histórico esté completo (hoy está excluido para no llenar el historial de git).
+2. Primera corrida manual del workflow `actualizar` (Actions > actualizar > Run). Riesgo
+   a verificar: que el servidor de la SMV acepte conexiones desde GitHub (EE. UU.).
+3. Zenodo: conectar la cuenta de GitHub y crear un release para obtener el DOI.
+4. Revisar el nombre en `LICENSE` (puse "el propietario del proyecto ").
