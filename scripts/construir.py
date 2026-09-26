@@ -75,6 +75,27 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     (salida / "calidad.json").write_text(json.dumps(calidad, indent=2, ensure_ascii=False), "utf-8")
     if len(dif):
         dif.to_csv(salida / "control_cruzado_discrepancias.csv", index=False)
+    # Metadatos del conjunto: fecha, versión del código y resultados de los controles.
+    import subprocess
+    from datetime import datetime, timezone
+    try:
+        commit = subprocess.run(["git", "-C", str(RAIZ), "rev-parse", "--short", "HEAD"],
+                                capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        commit = None
+    anios = sorted(int(a) for a in pres["ejercicio"].astype(int).unique())
+    meta = {
+        "titulo": "Estados financieros de empresas supervisadas por la SMV (Perú), normalizados",
+        "fuente": "Superintendencia del Mercado de Valores (SMV), portal de datos abiertos (ODbL 1.0)",
+        "licencia": "ODbL-1.0",
+        "construido_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "commit_codigo": commit,
+        "ejercicios": [anios[0], anios[-1]] if anios else None,
+        "empresas_con_balance": calidad.get("empresas_con_balance"),
+        "filas_hechos": int(len(hechos)),
+        "controles": {k: calidad[k] for k in calidad if k.startswith(("control_cruzado", "balances_", "identidad_"))},
+    }
+    (salida / "metadatos.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False), "utf-8")
     return {"conceptos": len(est), "ratios": len(rat), "comparaciones_indice": comparadas, "discrepancias_indice": len(dif)}
 
 

@@ -127,6 +127,11 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   se corrige, queda como brecha conocida).
 - Formato: las claves se guardan como texto y no como "category" (con category, leer
   todos los años juntos desbordaba el índice de 8 bits del diccionario).
+- Tabla `cambios_en_comparativos` (reexpresiones y reclasificaciones): 2000-2003 casi
+  todas cambian (ajuste por inflación hasta 2004), 2010 un 48 % (NIIF), recientes 4-7 %.
+- `docs/ejemplos.md` con consultas probadas (pandas y DuckDB); `data/metadatos.json` con
+  fecha, commit y controles; `CITATION.cff` para GitHub y Zenodo.
+- Workflow mensual: agrega patrimonio anual de los años recientes y el perfil histórico.
 - Presentación doble: BNB Valores SAB (SG0005) presentó 2021-T1/T2 en el plan de SAB y en
   el general a la vez. La guarda contra reglas superpuestas lo detectó (si no, el activo
   salía duplicado). Se usa el plan que corresponde al tipo de empresa. Quedan 2
@@ -152,7 +157,7 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 2. Primera corrida manual del workflow `actualizar` (Actions > actualizar > Run). Riesgo
    a verificar: que el servidor de la SMV acepte conexiones desde GitHub (EE. UU.).
 3. Zenodo: conectar la cuenta de GitHub y crear un release para obtener el DOI.
-4. Revisar el nombre en `LICENSE` (puse "el propietario del proyecto ").
+4. Revisar el nombre en `LICENSE` y en `CITATION.cff` (puse "el propietario del proyecto ").
 5. Para no esperar horas en la primera corrida de Actions: subir el caché local como
    asset del Release `cache` (`tar -czf cache-raw.tar.gz cache/raw` y
    `gh release create cache cache-raw.tar.gz`).

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Si usas esta base, cítala así. Los datos originales son de la SMV (ODbL 1.0)."
+title: "smv-eeff: estados financieros normalizados de empresas supervisadas por la SMV (Perú)"
+type: dataset
+authors:
+  - family-names: 
+    given-names: el propietario del proyecto
+license: ODbL-1.0
+keywords:
+  - Perú
+  - estados financieros
+  - SMV
+  - datos abiertos
+  - NIIF
+references:
+  - type: database
+    title: "Portal de datos abiertos, estados financieros"
+    authors:
+      - name: "Superintendencia del Mercado de Valores (SMV)"
+    license: ODbL-1.0

@@ -24,6 +24,8 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
   resultado integral) de **2000 a 2026**, anuales y trimestrales, individuales y
   consolidados: unos 9.1 millones de montos por cuenta.
 - Una capa de conceptos comparables y 12 ratios estándar.
+- Una tabla de cambios en comparativos: cifras que una empresa modificó al volver a
+  presentarlas al año siguiente (reexpresiones y reclasificaciones).
 - El estado de cambios en el patrimonio (anual). Su saldo final coincide con el patrimonio
   del balance en 96 % a 100 % de los casos según el plan de cuentas.
 
