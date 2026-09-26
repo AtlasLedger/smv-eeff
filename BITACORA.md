@@ -116,7 +116,9 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - Control de ingresos contra el índice SMV (solo conceptos 'directo'): 0 discrepancias.
 - Cobertura mínima del mapeo en todo el histórico: 97.2 %.
 - Brechas conocidas que quedan: bancos sin desglose de cartera antes de 2006; patrimonio
-  de SAB 2000-2005 que no concilia con el balance.
+  de SAB 2000-2005: la fila "Saldo final" viene vacía en la fuente (solo saldo inicial y
+  movimientos; el saldo inicial coincide con el patrimonio del año anterior en 95 %). No se
+  reconstruye sumando movimientos para no inventar una cifra que la SMV no publicó.
 - PATRIMONIO: en la plantilla de SAB el código de celda cambia por columna y, en años
   antiguos, la columna Total repite 3I30I0 en todas las filas. Se agregó `fila` (código
   de la primera columna de la fila) y se conserva el código original en `cuenta`.

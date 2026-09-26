@@ -71,6 +71,7 @@ Estado de cambios en el patrimonio. Es una matriz: filas (movimientos) por colum
 | `fila` | Fila de la matriz (saldo inicial, utilidad, dividendos, saldo final...): código de la primera columna de la fila. Úsalo para identificar la fila. |
 | `cuenta` | Código original de la celda. En la plantilla de las SAB cambia según la columna y, en años antiguos, la columna "Total Patrimonio" repite el mismo código en todas las filas; por eso se agregó `fila`. |
 | `columna` | Número de columna. Su nombre está en `patrimonio_columnas.parquet` según el plan. |
+| (nota) | En las SAB 2000-2005 la fila de saldo final viene vacía en la fuente. |
 | `bloque` | Aparición de la fila en el reporte. Las SAB repiten los mismos códigos para el año anterior (`0`) y el actual (`1`). En los demás planes es siempre `0`. |
 | `monto` | Monto. |
 

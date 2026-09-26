@@ -120,8 +120,8 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
 - **Interés minoritario fuera del patrimonio** en las plantillas antiguas (hasta 2005 en
   el plan general y hasta 2010 en bancos y seguros): iba entre el pasivo y el patrimonio.
 - **Brechas conocidas:** los bancos no desglosan la cartera por situación antes de 2006;
-  el estado de cambios en el patrimonio de las sociedades agentes
-  de bolsa 2000-2005 no concilia con su balance en la mayoría de casos.
+  en el estado de cambios en el patrimonio de las sociedades agentes de
+  bolsa 2000-2005 la fila de saldo final viene vacía en la fuente.
 - **Detalles menores:** identificadores con espacios de relleno, RUC = 0 en holdings
   extranjeros, una empresa que presentó el mismo estado en dos plantillas y el servicio
   `obtener_EFData`, que siempre devuelve 0 registros.
