@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="obtener_BalanceGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_BalanceGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_BalanceGeneralResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_GanciaPerdida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_GanciaPerdidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_GanciaPerdidaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_ResultadosIntegrales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_ResultadosIntegralesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_ResultadosIntegralesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_FlujoEfectivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_FlujoEfectivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_FlujoEfectivoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_CambiosPatrimonio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_CambiosPatrimonioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_CambiosPatrimonioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_InfoFinanciera">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Periodo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_InfoFinancieraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_InfoFinancieraResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_EFData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="page" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rows" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sidx" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sord" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="_search" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="obtener_EFDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="obtener_EFDataResult" type="tns:JqGridData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="JqGridData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="page" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="records" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="rows" type="tns:ArrayOfClsEntEF" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClsEntEF">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="clsEntEF" nillable="true" type="tns:clsEntEF" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="clsEntEF">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RPJ" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoSector" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RUC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CIIU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ejercicio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoInformacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Trimestre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Moneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetodoFlujoEfectivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cuenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionCuenta" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto3" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto4" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrdenColumna" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionColumna" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivoTotal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PatrimonioTotal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalIngreso" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="UtilidadNeta" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasivoTotal" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="obtener_BalanceGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_BalanceGeneral" />
+  </wsdl:message>
+  <wsdl:message name="obtener_BalanceGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_BalanceGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_GanciaPerdidaSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_GanciaPerdida" />
+  </wsdl:message>
+  <wsdl:message name="obtener_GanciaPerdidaSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_GanciaPerdidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_ResultadosIntegralesSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_ResultadosIntegrales" />
+  </wsdl:message>
+  <wsdl:message name="obtener_ResultadosIntegralesSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_ResultadosIntegralesResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_FlujoEfectivoSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_FlujoEfectivo" />
+  </wsdl:message>
+  <wsdl:message name="obtener_FlujoEfectivoSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_FlujoEfectivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_CambiosPatrimonioSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_CambiosPatrimonio" />
+  </wsdl:message>
+  <wsdl:message name="obtener_CambiosPatrimonioSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_CambiosPatrimonioResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_InfoFinancieraSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_InfoFinanciera" />
+  </wsdl:message>
+  <wsdl:message name="obtener_InfoFinancieraSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_InfoFinancieraResponse" />
+  </wsdl:message>
+  <wsdl:message name="obtener_EFDataSoapIn">
+    <wsdl:part name="parameters" element="tns:obtener_EFData" />
+  </wsdl:message>
+  <wsdl:message name="obtener_EFDataSoapOut">
+    <wsdl:part name="parameters" element="tns:obtener_EFDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceInfoFinancieraSoap">
+    <wsdl:operation name="obtener_BalanceGeneral">
+      <wsdl:input message="tns:obtener_BalanceGeneralSoapIn" />
+      <wsdl:output message="tns:obtener_BalanceGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_GanciaPerdida">
+      <wsdl:input message="tns:obtener_GanciaPerdidaSoapIn" />
+      <wsdl:output message="tns:obtener_GanciaPerdidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_ResultadosIntegrales">
+      <wsdl:input message="tns:obtener_ResultadosIntegralesSoapIn" />
+      <wsdl:output message="tns:obtener_ResultadosIntegralesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_FlujoEfectivo">
+      <wsdl:input message="tns:obtener_FlujoEfectivoSoapIn" />
+      <wsdl:output message="tns:obtener_FlujoEfectivoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_CambiosPatrimonio">
+      <wsdl:input message="tns:obtener_CambiosPatrimonioSoapIn" />
+      <wsdl:output message="tns:obtener_CambiosPatrimonioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_InfoFinanciera">
+      <wsdl:input message="tns:obtener_InfoFinancieraSoapIn" />
+      <wsdl:output message="tns:obtener_InfoFinancieraSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="obtener_EFData">
+      <wsdl:input message="tns:obtener_EFDataSoapIn" />
+      <wsdl:output message="tns:obtener_EFDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceInfoFinancieraSoap" type="tns:WebServiceInfoFinancieraSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="obtener_BalanceGeneral">
+      <soap:operation soapAction="http://tempuri.org/obtener_BalanceGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_GanciaPerdida">
+      <soap:operation soapAction="http://tempuri.org/obtener_GanciaPerdida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_ResultadosIntegrales">
+      <soap:operation soapAction="http://tempuri.org/obtener_ResultadosIntegrales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_FlujoEfectivo">
+      <soap:operation soapAction="http://tempuri.org/obtener_FlujoEfectivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_CambiosPatrimonio">
+      <soap:operation soapAction="http://tempuri.org/obtener_CambiosPatrimonio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_InfoFinanciera">
+      <soap:operation soapAction="http://tempuri.org/obtener_InfoFinanciera" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_EFData">
+      <soap:operation soapAction="http://tempuri.org/obtener_EFData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceInfoFinancieraSoap12" type="tns:WebServiceInfoFinancieraSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="obtener_BalanceGeneral">
+      <soap12:operation soapAction="http://tempuri.org/obtener_BalanceGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_GanciaPerdida">
+      <soap12:operation soapAction="http://tempuri.org/obtener_GanciaPerdida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_ResultadosIntegrales">
+      <soap12:operation soapAction="http://tempuri.org/obtener_ResultadosIntegrales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_FlujoEfectivo">
+      <soap12:operation soapAction="http://tempuri.org/obtener_FlujoEfectivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_CambiosPatrimonio">
+      <soap12:operation soapAction="http://tempuri.org/obtener_CambiosPatrimonio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_InfoFinanciera">
+      <soap12:operation soapAction="http://tempuri.org/obtener_InfoFinanciera" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtener_EFData">
+      <soap12:operation soapAction="http://tempuri.org/obtener_EFData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceInfoFinanciera">
+    <wsdl:port name="WebServiceInfoFinancieraSoap" binding="tns:WebServiceInfoFinancieraSoap">
+      <soap:address location="https://mvnet.smv.gob.pe/ws_od_eeff/WebServiceInfoFinanciera.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceInfoFinancieraSoap12" binding="tns:WebServiceInfoFinancieraSoap12">
+      <soap12:address location="https://mvnet.smv.gob.pe/ws_od_eeff/WebServiceInfoFinanciera.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,257 @@
+plan,Cuenta,DescripcionCuenta,orden,empresas,empresas_con_monto
+2D,2D01ST,Ingresos de Actividades Ordinarias,0,194,177
+2D,2D0201,Costo de Ventas,1,194,133
+2D,2D02ST,Ganancia (Pérdida) Bruta,2,194,178
+2D,2D0302,Gastos de Ventas y Distribución,3,194,105
+2D,2D0301,Gastos de Administración,4,194,191
+2D,2D0403,Otros Ingresos Operativos,5,194,151
+2D,2D0404,Otros Gastos Operativos,6,194,107
+2D,2D0412,Otras Ganancias (Pérdidas),7,194,44
+2D,2D03ST,Ganancia (Pérdida) Operativa,8,194,194
+2D,2D0407,Ganancia (Pérdida) de la Baja en Activos Financieros medidos al Costo Amortizado,9,194,3
+2D,2D0401,Ingresos Financieros,10,194,166
+2D,2D0415,Ingresos por Intereses calculados usando el Metodo de Interes Efectivo,11,194,2
+2D,2D0402,Gastos Financieros,12,194,167
+2D,2D0416,Ganancia (Pérdida) por Deterioro de Valor (Pérdidas Crediticias Esperadas o Reversiones),13,194,12
+2D,2D0414,"Otros Ingresos (Gastos) de las Subsidiarias, Asociadas y Negocios Conjuntos",14,194,55
+2D,2D0410,Diferencias de Cambio Neto,15,194,179
+2D,2D0411,Ganancias (Pérdidas) por Reclasificación de Activos Financieros a Valor Razonable con cambios en Resultados antes medidos al Costo Amortizado ,16,194,7
+2D,2D0417,Ganancia (Pérdida)  Acumulada en Otro Resultado Integral por Activos Financieros medidos a Valor Razonable reclasificados como cambios en Resultados,17,194,10
+2D,2D0418,Ganancias (Pérdidas) por Cobertura de un Grupo de Partidas con posiciones de Riesgo Compensadoras,18,194,2
+2D,2D0413,Diferencia entre el Importe en Libros de los Activos Distribuidos y el Importe en Libros del Dividendo a pagar,19,194,0
+2D,2D04ST,Ganancia (Pérdida) antes de Impuestos,20,194,194
+2D,2D0502,Ingreso (Gasto) por Impuesto,21,194,180
+2D,2D0503,Ganancia (Pérdida) Neta de Operaciones Continuadas,22,194,194
+2D,2D0504,"Ganancia (Pérdida) procedente de Operaciones Discontinuadas, neta de Impuesto",23,194,6
+2D,2D07ST,Ganancia (Pérdida) Neta del Ejercicio,24,194,194
+2D,2D0905,Básica por Acción Ordinaria en Operaciones Continuadas,25,194,115
+2D,2D0909,Básica por Acción Ordinaria en Operaciones Discontinuadas,26,194,2
+2D,2D0911,Total de Ganancias (Pérdida) Básica por Acción Ordinaria,27,194,115
+2D,2D0906,Básica por Acción de Inversión en Operaciones Continuadas,28,194,32
+2D,2D0910,Básica por Acción de Inversión en Operaciones Discontinuadas,29,194,2
+2D,2D0912,Total de Ganancias (Pérdida) Básica por Acción Inversión,30,194,32
+2D,2D0907,Diluida por Acción Ordinaria en Operaciones Continuadas,31,194,60
+2D,2D0913,Diluida por Acción Ordinaria en Operaciones Discontinuadas,32,194,2
+2D,2D0915,Total de Ganancias (Pérdida) Diluida por Acción Ordinaria,33,194,60
+2D,2D0908,Diluida por Acción de Inversión en Operaciones Continuadas,34,194,22
+2D,2D0914,Diluida por Acción de Inversión en Operaciones Discontinuadas,35,194,2
+2D,2D0916,Total de Ganancias (Pérdida) Diluida por Acción Inversión,36,194,22
+2I,2I2000,INGRESOS OPERACIONALES,37,19,0
+2I,2I2011,Ingresos Brutos por Comisiones y servicios en el mercado de valores,38,19,19
+2I,2I2020,Venta de Inversiones Financieras,39,19,16
+2I,2I2033,Otros ingresos operacionales,40,19,14
+2I,2I2030,Intereses y dividendos,41,19,15
+2I,2I2031,Total Ingresos Operacionales,42,19,19
+2I,2I2032,COSTOS OPERACIONALES,43,19,0
+2I,2I2055,Otros costos operacionales,44,19,2
+2I,2I2041,Costo de venta y servicios en el Mercado de Valores,45,19,17
+2I,2I2050,Costo de enajenación de inversiones financieros,46,19,16
+2I,2I2034,Total Costos Operacionales,47,19,19
+2I,2I2051,Utilidad Bruta,48,19,19
+2I,2I2052,GASTOS OPERACIONALES,49,19,0
+2I,2I2070,Gastos de ventas,50,19,15
+2I,2I2060,Gastos de administración,51,19,19
+2I,2I2061,Ganancia (Pérdida) por baja de Activos Financieros medidos a Costo Amortizado,52,19,0
+2I,2I2100,Otros ingresos,53,19,18
+2I,2I2110,Otros gastos,54,19,9
+2I,2I2180,Otras ganancias (pérdidas),55,19,5
+2I,2I2071,Ganancia (Pérdida) Operativa,56,19,19
+2I,2I2072,OTROS INGRESOS / EGRESOS,57,19,0
+2I,2I2080,Ingresos financieros,58,19,19
+2I,2I2090,Gastos financieros,59,19,17
+2I,2I2093,Diferencias de Cambio neto,60,19,19
+2I,2I2094,"Otros Ingresos (gastos) de las subsidiarias, negocios conjuntos y asociadas (**)",61,19,0
+2I,2I2091,Participación en los Resultados Netos de Asociadas y Negocios Conjuntos Contabilizados por el Método de la Participación (*),62,19,0
+2I,2I2092,Ganancia (pérdida) por instrumentos financieros medidos a valor razonable,63,19,11
+2I,2I2121,Resultado antes del Impuesto a las Ganancias,64,19,19
+2I,2I2140,Gasto por Impuesto a las Ganancias,65,19,18
+2I,2I2141,Ganancia (Pérdida) Neta de Operaciones Continuadas,66,19,19
+2I,2I2170,Ganancia (Pérdida) Neta del Impuesto a las Ganancias Procedente de Operaciones Discontinuadas,67,19,1
+2I,2I2161,Utilidad (Perdida)  Neta del Ejercicio,68,19,19
+2I,2I2200,Otro Resultado Integral:,69,19,0
+2I,2I2217,Activos no corrientes o grupos de activos mantenidas para la Venta,70,19,2
+2I,2I2218,Cambios en el valor razonable de pasivos financieros atribuibles a cambios en el riesgo de crédito del pasivo,71,19,0
+2I,2I2219,Coberturas de inversión neta de negocios en el extranjero,72,19,0
+2I,2I2201,Diferencia de Cambio  por Conversión de Operaciones en el Extranjero,73,19,0
+2I,2I2202,Ganancias (Pérdidas) de Inversiones en Instrumentos de Patrimonio medidos a valor razonable,74,19,3
+2I,2I2203,Coberturas del flujo de efectivo,75,19,0
+2I,2I2204,Superavit de Revaluación,76,19,0
+2I,2I2205,Participación de otro resultado integral de asociadas y negocios conjuntos contabilizados por el método de participación (*),77,19,0
+2I,2I2228,Otro Resultado Integral antes de Impuestos,78,19,5
+2I,2I2229,Impuesto a las Ganancias relacionado con Componentes de Otro Resultado Integral,79,19,0
+2I,2I2220,Coberturas de inversión neta de negocios en el extranjero,80,19,1
+2I,2I2221,Cambios en el valor razonable de pasivos financieros atribuibles a cambios en el riesgo de crédito del pasivo,81,19,0
+2I,2I2222,Coberturas de inversión neta de negocios en el extranjero,82,19,0
+2I,2I2223,Diferencia de Cambio  por Conversión de Operaciones en el Extranjero,83,19,0
+2I,2I2224,Ganancias (Pérdidas) de Inversiones en Instrumentos de Patrimonio medidos a valor razonable,84,19,1
+2I,2I2225,Coberturas del Flujo de Efectivo,85,19,0
+2I,2I2226,Superavit de Revaluación,86,19,0
+2I,2I2227,Participación de otro resultado integral de asociadas y negocios conjuntos contabilizados por el método de participación (*),87,19,0
+2I,2I2206,Impuesto a las ganancias relativo a componentes de otro resultado integral,88,19,2
+2I,2I2207,Otros resultado Integral,89,19,6
+2I,2I2208,"RESULTADO INTEGRAL TOTAL DEL PERIODO, neto del Impuesto a las ganancias",90,19,19
+2A,2A0101, Comisiones Recibidas (neto),91,4,4
+2A,2A01ST,Total de Ingresos Brutos,92,4,4
+2A,2A0301,Gastos de Administración,93,4,4
+2A,2A0316,Compras de suministros,94,4,4
+2A,2A0317,Cargas de personal,95,4,4
+2A,2A0318,Participaciones y Dietas al Directorio,96,4,4
+2A,2A0319,Servicios prestados por Terceros,97,4,4
+2A,2A0320,Tributos y aportaciones,98,4,4
+2A,2A0321,Cargas Diversas de Gestión,99,4,4
+2A,2A0322,Provisiones del Ejercicio,100,4,4
+2A,2A0302,Gastos de Ventas,101,4,4
+2A,2A0309,Compras de Suministros ,102,4,4
+2A,2A0310,Cargas de Personal,103,4,4
+2A,2A0311,Servicios Prestados por Terceros,104,4,4
+2A,2A0312,"Publicidad, publicaciones y relaciones públicas",105,4,4
+2A,2A0313,Tributos y aportaciones,106,4,3
+2A,2A0314,Cargas Diversas de gestión,107,4,4
+2A,2A0315,Provisiones del Ejercicio,108,4,3
+2A,2A03ST,Utilidad (pérdida) operativa,109,4,4
+2A,2A0304,Utilidad (pérdida) del encaje legal,110,4,4
+2A,2A0305,Utilidad (pérdida) del fondo compensatorio,111,4,0
+2A,2A0306,Utilidad (pérdida) del fondo de longevidad,112,4,0
+2A,2A0307,Utilidad (pérdida) en venta de activos,113,4,2
+2A,2A0401,Ingresos Financieros,114,4,4
+2A,2A0402,Gastos Financieros,115,4,4
+2A,2A0308,Otros Ingresos (Egresos),116,4,4
+2A,2A08ST,Resultado antes de Impuesto a la Renta,117,4,4
+2A,2A0502,Impuesto a la Renta Corriente y Diferido,118,4,4
+2A,2A07ST,Utilidad (Pérdida) Neta del Ejercicio,119,4,4
+2A,2A0901,Utilidad (Pérdida) Básica por Acción Común,120,4,4
+2A,2A0903,Utilidad (Pérdida) Diluida por Acción Común,121,4,4
+2F,2F0208,Disponible,122,41,41
+2F,2F0209,Fondos interbancarios,123,41,21
+2F,2F0226,Inversiones a valor razonable con cambios en resultados,124,41,10
+2F,2F0227,Inversiones disponibles para la venta,125,41,31
+2F,2F0228,Inversiones a vencimiento,126,41,15
+2F,2F0212,Cartera de créditos directos ,127,41,38
+2F,2F0225,Resultado por operaciones de cobertura,128,41,0
+2F,2F0213,Cuentas por cobrar,129,41,5
+2F,2F0218,Otros Ingresos Financieros ,130,41,10
+2F,2F0101,TOTAL INGRESOS POR INTERESES,131,41,41
+2F,2F0409,Obligaciones con el público,132,41,32
+2F,2F0410,Fondos interbancarios,133,41,18
+2F,2F0412,Depósitos de empresas del sistema financiero y organismos financieros internacionales,134,41,22
+2F,2F0404,Adeudos y obligaciones financieras ,135,41,41
+2F,2F0429,Adeudos y obligaciones con el Banco Central de Reserva del Perú,136,41,3
+2F,2F0430,Adeudos y obligaciones del sistema financiero del país,137,41,32
+2F,2F0414,Adeudos y Obligaciones con Instituciones Financieras del Exter. y Organ. Financ. Internac. ,138,41,25
+2F,2F0415,Otros Adeudos y Obligaciones del  País y del Exterior  ,139,41,8
+2F,2F0418,Comisiones y otros cargos por adeudos y obligaciones financieras,140,41,26
+2F,2F0417,"Valores, Títulos y Obligaciones en Circulación",141,41,27
+2F,2F0416,Intereses de cuentas por pagar,142,41,19
+2F,2F0427,Resultado por operaciones de cobertura,143,41,6
+2F,2F0421,Otros Gastos Financieros,144,41,10
+2F,2F0301,TOTAL GASTOS POR INTERESES,145,41,41
+2F,2F2301,MARGEN FINANCIERO BRUTO,146,41,41
+2F,2F2306,(-) Provisiones para créditos directos,147,41,38
+2F,2F2401,MARGEN FINANCIERO NETO,148,41,41
+2F,2F2402,INGRESOS POR SERVICIOS FINANCIEROS ,149,41,38
+2F,2F2403,Ingresos por créditos indirectos,150,41,20
+2F,2F2404,Ingresos por Fideicomisos y Comisiones de Confianza,151,41,12
+2F,2F2409,Ingresos por emisión de dinero electrónico,152,41,2
+2F,2F2405,Ingresos Diversos ,153,41,38
+2F,2F2501,GASTOS POR SERVICIOS FINANCIEROS,154,41,39
+2F,2F2502,Gastos por créditos indirectos,155,41,7
+2F,2F2503,Gastos por Fideicomisos y Comisiones de Confianza,156,41,10
+2F,2F0407,Prima al fondo de seguro de deposito,157,41,29
+2F,2F2504,Gastos Diversos,158,41,37
+2F,2F2505,MARGEN FINANCIERO NETO DE INGRESOS Y GASTOS POR SERVICIOS FINANCIEROS,159,41,41
+2F,2F2506,RESULTADO POR OPERACIONES FINANCIERAS (ROF),160,41,41
+2F,2F2507,Inversiones a valor razonable con cambios en resultados,161,41,12
+2F,2F2508,Inversiones en commodities,162,41,1
+2F,2F2509,Inversiones disponibles para la venta,163,41,15
+2F,2F2510,Derivados de negociación,164,41,16
+2F,2F2511,Resultado por operaciones de cobertura,165,41,6
+2F,2F2512,Ganancias (pérdidas) en participaciones,166,41,18
+2F,2F2513,Utilidad- pérdida en diferencia de cambio,167,41,40
+2F,2F2514,Otros,168,41,30
+2F,2F2601,MARGEN OPERACIONAL,169,41,41
+2F,2F2603,Gastos de Personal y Directorio,170,41,39
+2F,2F2604,Gastos por Servicios Recibidos de Terceros,171,41,41
+2F,2F2605,Impuestos y Contribuciones,172,41,40
+2F,2F0906,DEPRECIACIONES Y AMORTIZACIONES,173,41,38
+2F,2F2701,MARGEN OPERACIONAL NETO ,174,41,41
+2F,2F2705,Provisiones para créditos indirectos,175,41,19
+2F,2F2703,Provisiones para Incobrabilidad de Cuentas por Cobrar,176,41,32
+2F,2F2704,"Provisión para bienes realizable, recibidos en pago, recuperados y adjudicados y otros",177,41,20
+2F,2F2716,Provisión para activos no corrientes mantenidos para la venta,178,41,0
+2F,2F2714,"Deterioro de inmuebles, mobiliario y equipo",179,41,6
+2F,2F2715,Deterioro de activos intangibles,180,41,6
+2F,2F2713,Deterioro de inversiones,181,41,5
+2F,2F2709,Provisiones para litigios y demandas,182,41,31
+2F,2F2710,Otras  provisiones,183,41,17
+2F,2F2801,RESULTADO DE OPERACIÓN,184,41,41
+2F,2F2802,OTROS INGRESOS Y GASTOS,185,41,40
+2F,2F1302,RESULTADO DEL EJERCICIO ANTES DE IMPUESTO A LA RENTA,186,41,41
+2F,2F1403,IMPUESTO A LA RENTA,187,41,41
+2F,2F1901,RESULTADO NETO DEL EJERCICIO,188,41,41
+2F,2F2201,Utilidad (pérdida) básica por acción,189,41,36
+2F,2F2202,Utilidad (pérdida) diluida por acción,190,41,30
+2E,2E0101,Primas de Seguros (Neto),191,17,17
+2E,2E0102,Reaseguro Aceptado (Neto),192,17,3
+2E,2E0103,Ajuste de Reservas Técnicas de Primas de Seg. y Reaseg. Aceptado,193,17,17
+2E,2E0201,TOTAL PRIMAS NETAS DEL EJERCICIO,194,17,17
+2E,2E0301,Primas Cedidas Netas ,195,17,17
+2E,2E0401,Ajuste de Reservas Técnicas de Primas Cedidas,196,17,13
+2E,2E0501,TOTAL PRIMAS CEDIDAS NETAS DEL EJERCICIO,197,17,17
+2E,2E0602,PRIMAS GANADAS NETAS ,198,17,17
+2E,2E0701,Siniestros de primas de seguros (netos),199,17,17
+2E,2E0702,Siniestros de reaseguros aceptados (netos),200,17,4
+2E,2E0703,Siniestros de primas cedidas (netos),201,17,17
+2E,2E0704,Recuperos y Salvamentos,202,17,9
+2E,2E0706,SINIESTROS INCURRIDOS (NETOS),203,17,17
+2E,2E0705,Ajuste de Reservas para Riesgos Catastróficos,204,17,12
+2E,2E0901,RESULTADO TECNICO BRUTO,205,17,17
+2E,2E1001,Comisiones sobre Primas de Seguros (netas),206,17,17
+2E,2E1002,Comisiones sobre Reaseguro Aceptado (netas),207,17,2
+2E,2E1003,Comisiones de Primas Cedidas (netas),208,17,0
+2E,2E1007,COMISIONES (NETAS),209,17,17
+2E,2E1004,Ingresos Técnicos Diversos,210,17,14
+2E,2E1005,Gastos Técnicos Diversos,211,17,16
+2E,2E1008,"Ingresos (Egresos) Diversos, neto",212,17,1
+2E,2E1101,RESULTADO TÉCNICO,213,17,17
+2E,2E1201,Ingresos de Inversiones y Otros Ingresos Financieros,214,17,17
+2E,2E1202,Gastos de inversiones y financieros.,215,17,15
+2E,2E1204,Provisiones para activos no corrientes mantenidos para la venta,216,17,1
+2E,2E1205,Diferencia de Cambio (neto),217,17,17
+2E,2E1301,RESULTADO DE INVERSIONES,218,17,17
+2E,2E1401,Gastos de Administración (Neto de Ingresos por Servicios y Otros),219,17,17
+2E,2E1508,RESULTADO DE OPERACIÓN ANTES DE IMPUESTO,220,17,17
+2E,2E1602,Impuesto a las Ganancias,221,17,13
+2E,2E2101,UTILIDAD (PÉRDIDA) NETA DEL EJERCICIO,222,17,17
+2E,2E2401,Utilidad (pérdida) básica por acción,223,17,17
+2E,2E2402,Utilidad (pérdida) diluida por acción,224,17,17
+2V,2V01ST,Ingresos de actividades ordinarias,225,1,1
+2V,2V0101,Otros Ingresos,226,1,1
+2V,2V0102,Total de Ingresos Brutos,227,1,1
+2V,2V0201,Costo de Ventas ,228,1,0
+2V,2V0202,Otros Costos Operacionales,229,1,1
+2V,2V0203,Total Costos Operacionales,230,1,1
+2V,2V02ST,Ganancia (Pérdida) Bruta,231,1,1
+2V,2V0302,Gastos de Ventas y Distribución,232,1,0
+2V,2V0301,Gastos de Administración,233,1,0
+2V,2V0407,Ganancia (Pérdida) de la baja en Activos Financieros medidos al Costo Amortizado,234,1,0
+2V,2V0403,Otros Ingresos Operativos,235,1,0
+2V,2V0404,Otros Gastos,236,1,0
+2V,2V0412,Otras ganancias (pérdidas),237,1,0
+2V,2V03ST,Ganancia (Pérdida) por actividades de operación,238,1,1
+2V,2V0401,Ingresos Financieros,239,1,1
+2V,2V0402,Gastos Financieros,240,1,1
+2V,2V0410,Diferencias de Cambio neto,241,1,1
+2V,2V0411,Ganancias (p¿rdidas) que surgen de diferencias entre importes en libros anteriores y el valor razonable de activos financieros reclasificados como medidos al valor razonable,242,1,0
+2V,2V0413,Diferencia entre el importe en libros de dividendos pagaderos e importe en libros de activos distribuidos distintos al efectivo,243,1,0
+2V,2V0414,"Otros ingresos (gastos) procedentes de subsidiarias, entidades controladas de forma conjunta y asociadas",244,1,1
+2V,2V04ST,Resultado antes de Impuesto a las Ganancias,245,1,1
+2V,2V0505,Gastos por beneficios a los empleados,246,1,0
+2V,2V0502,Gasto por Impuesto a las Ganancias,247,1,1
+2V,2V0503,Ganancia (Pérdida) Neta de Operaciones  Continuadas,248,1,1
+2V,2V0504,"Ganancia (pérdida)  procedente de operaciones discontinuadas, neta del impuesto a las ganancias ",249,1,0
+2V,2V07ST,Ganancia (Pérdida) Neta del Ejercicio,250,1,1
+2V,2V0801,Utilidad (p¿rdida) b¿sica por acción común,251,1,1
+2V,2V0802,Utilidad (p¿rdida) b¿sica por acción de inversión,252,1,0
+2V,2V0803,Utilidad (p¿rdida) diluida por acción común,253,1,1
+2V,2V0804,Utilidad (p¿rdida) diluida por acción de inversión,254,1,0
+2V,2V0415,Ganancias (p¿rdidas) de cobertura por cobertura de un grupo de partidas con posiciones de riesgo compensadoras,255,1,0

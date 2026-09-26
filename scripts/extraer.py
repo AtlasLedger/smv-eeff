@@ -59,6 +59,9 @@ def main() -> int:
     p.add_argument("--refrescar", action="store_true", help="ignora el caché y vuelve a descargar")
     p.add_argument("--pausa", type=float, default=1.5,
                    help="segundos entre llamadas a la red (cortesía con el servidor)")
+    p.add_argument("--timeout", type=float, default=180,
+                   help="segundos máximos de lectura por respuesta (CambiosPatrimonio es lento)")
+    p.add_argument("--intentos", type=int, default=5, help="intentos por combinación")
     p.add_argument("--cache", default="cache/raw")
     p.add_argument("--host", default=HOST_POR_DEFECTO, help="solo para pruebas con servidor simulado")
     a = p.parse_args()
@@ -66,16 +69,19 @@ def main() -> int:
     configurar_logging(Path("logs"))
     log = logging.getLogger("extraer")
 
-    ops = list(OPERACIONES) if a.op == "todas" else [x.strip() for x in a.op.split(",")]
+    # efdata se excluye de "todas": es un endpoint de grilla paginada que siempre
+    # devuelve 0 registros (probado con Ejercicio/Periodo/Tipo y con page/rows).
+    ops = [o for o in OPERACIONES if o != "efdata"] if a.op == "todas" else [x.strip() for x in a.op.split(",")]
+    # Años de más reciente a más antiguo: si la corrida se corta, lo ya bajado es lo más útil.
     combinaciones = [
         (op, anio, per.strip().upper(), tipo.strip().upper())
-        for op in ops
-        for anio in rango_anios(a.anios)
+        for anio in sorted(rango_anios(a.anios), reverse=True)
         for per in a.periodos.split(",")
         for tipo in a.tipos.split(",")
+        for op in ops
     ]
 
-    cliente = ClienteSMV(host=a.host)
+    cliente = ClienteSMV(host=a.host, timeout_lectura=a.timeout, max_intentos=a.intentos)
     cache = CacheDisco(a.cache)
     resumen = {"red": 0, "cache": 0, "vacios": 0, "filas": 0}
     fallidos: list[tuple] = []

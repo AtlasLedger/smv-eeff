@@ -1,0 +1,483 @@
+plan,Cuenta,DescripcionCuenta,orden,empresas,empresas_con_monto
+1D,1D0109,Efectivo y Equivalentes al Efectivo,0,194,193
+1D,1D0114,Otros Activos Financieros,1,194,43
+1D,1D0121,Cuentas por Cobrar Comerciales y Otras Cuentas por Cobrar,2,194,192
+1D,1D0103,Cuentas por Cobrar Comerciales,3,194,153
+1D,1D0104,Cuentas por Cobrar a Entidades Relacionadas,4,194,125
+1D,1D0105,Otras Cuentas por Cobrar,5,194,185
+1D,1D0107,Anticipos,6,194,69
+1D,1D0106,Inventarios,7,194,96
+1D,1D0112,Activos Biológicos,8,194,13
+1D,1D0117,Activos por Impuestos a las Ganancias,9,194,28
+1D,1D0113,Otros Activos no Financieros,10,194,98
+1D,1D0122,Activos Corrientes Distintos al Efectivo Pignorados como Garantía Colateral,11,194,2
+1D,1D0118,Total Activos Corrientes Distintos de los Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o para Distribuir a los Propietarios,12,194,194
+1D,1D0115,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o como Mantenidos para Distribuir a los Propietarios,13,194,7
+1D,1D01ST,Total Activos Corrientes,14,194,194
+1D,1D0217,Otros Activos Financieros,15,194,57
+1D,1D0221,"Inversiones en Subsidiarias, Negocios Conjuntos y Asociadas",16,194,92
+1D,1D0219,Cuentas por Cobrar Comerciales y Otras Cuentas por Cobrar,17,194,104
+1D,1D0201,Cuentas por Cobrar Comerciales,18,194,20
+1D,1D0202,Cuentas por Cobrar a Entidades Relacionadas,19,194,44
+1D,1D0203,Otras Cuentas por Cobrar,20,194,75
+1D,1D0220,Anticipos,21,194,2
+1D,1D0222,Inventarios,22,194,2
+1D,1D0216,Activos Biológicos,23,194,5
+1D,1D0211,Propiedades de Inversión,24,194,47
+1D,1D0205,"Propiedades, Planta y Equipo",25,194,171
+1D,1D0206,Activos Intangibles Distintos de la Plusvalía,26,194,136
+1D,1D0207,Activos por Impuestos Diferidos,27,194,82
+1D,1D0223,"Activos por Impuestos Corrientes, no Corrientes",28,194,8
+1D,1D0212,Plusvalía,29,194,9
+1D,1D0208,Otros Activos no Financieros,30,194,72
+1D,1D0224,Activos no Corrientes Distintos al Efectivo Pignorados como Garantía Colateral,31,194,0
+1D,1D02ST,Total Activos No Corrientes,32,194,191
+1D,1D020T,TOTAL DE ACTIVOS,33,194,194
+1D,1D0309,Otros Pasivos Financieros,34,194,119
+1D,1D0316,Cuentas por Pagar Comerciales y Otras Cuentas por Pagar,35,194,193
+1D,1D0302,Cuentas por Pagar Comerciales,36,194,183
+1D,1D0303,Cuentas por Pagar a Entidades Relacionadas,37,194,125
+1D,1D0304,Otras Cuentas por Pagar,38,194,184
+1D,1D0317,Ingresos Diferidos,39,194,34
+1D,1D0313,Provisión por Beneficios a los Empleados,40,194,66
+1D,1D0310,Otras Provisiones,41,194,57
+1D,1D0311,Pasivos por Impuestos a las Ganancias,42,194,37
+1D,1D0314,Otros Pasivos no Financieros,43,194,42
+1D,1D0315,Total de Pasivos Corrientes Distintos de Pasivos Incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,44,194,193
+1D,1D0312,Pasivos incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,45,194,0
+1D,1D03ST,Total Pasivos Corrientes,46,194,193
+1D,1D0401,Otros Pasivos Financieros,47,194,102
+1D,1D0411,Cuentas por Pagar Comerciales y Otras Cuentas por Pagar,48,194,90
+1D,1D0407,Cuentas por Pagar Comerciales,49,194,7
+1D,1D0402,Cuentas por Pagar a Entidades Relacionadas,50,194,38
+1D,1D0408,Otras Cuentas por Pagar,51,194,63
+1D,1D0403,Ingresos Diferidos,52,194,19
+1D,1D0409,Provisión por Beneficios a los Empleados,53,194,18
+1D,1D0406,Otras Provisiones,54,194,51
+1D,1D0404,Pasivos por Impuestos Diferidos,55,194,89
+1D,1D0412,"Pasivos por Impuestos Corrientes, no Corriente",56,194,9
+1D,1D0410,Otros Pasivos no Financieros,57,194,32
+1D,1D04ST,Total Pasivos No Corrientes,58,194,160
+1D,1D040T,Total Pasivos,59,194,193
+1D,1D0701,Capital Emitido,60,194,194
+1D,1D0702,Primas de Emisión,61,194,44
+1D,1D0703,Acciones de Inversión,62,194,38
+1D,1D0711,Acciones Propias en Cartera,63,194,14
+1D,1D0712,Otras Reservas de Capital,64,194,158
+1D,1D0707,Resultados Acumulados,65,194,193
+1D,1D0708,Otras Reservas de Patrimonio,66,194,77
+1D,1D07ST,Total Patrimonio,67,194,194
+1D,1D070T,TOTAL PASIVO Y PATRIMONIO,68,194,194
+1I,1I0000,ACTIVO,69,19,0
+1I,1I0001,ACTIVOS CORRIENTES,70,19,0
+1I,1I1010,Efectivo y Equivalentes de Efectivo,71,19,19
+1I,1I1096,Otros Activos Financieros,72,19,13
+1I,1I1030,"Cuentas por Cobrar Comerciales, neto",73,19,18
+1I,1I1050,Cuentas por cobrar a Entidades Relacionadas,74,19,8
+1I,1I1040,"Otras Cuentas por Cobrar, neto",75,19,19
+1I,1I1070,Gastos Pagados por Anticipado,76,19,18
+1I,1I1133,Otros Activos no Financieros,77,19,3
+1I,1I1097,Activos por Impuestos a las Ganancias,78,19,6
+1I,1I1135,Total de Activos Corrientes Distintos de los Activos o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o para Distribuir a los Propietarios,79,19,19
+1I,1I1103,Activos no corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,80,19,2
+1I,1I1104,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para Distribuir a los Propietarios,81,19,0
+1I,1I1136,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o como Mantenidos para Distribuir a los Propietarios,82,19,2
+1I,1I1071,Total Activos Corrientes,83,19,19
+1I,1I0002,ACTIVOS NO CORRIENTES,84,19,0
+1I,1I1100,Otros Activos Financieros,85,19,7
+1I,1I1098,"Inversiones en subsidiarias, negocios conjuntos y asociadas (**)",86,19,1
+1I,1I1080,"Cuentas por Cobrar, Comerciales",87,19,0
+1I,1I1090,Otras Cuentas por Cobrar,88,19,7
+1I,1I1095,Cuentas por cobrar a entidades relacionadas,89,19,0
+1I,1I1106,Inversiones Contabilizadas utilizando el método de la Participación (*),90,19,0
+1I,1I1124,Activos Intangibles distintos de la Plusvalía,91,19,13
+1I,1I1129,Plusvalía,92,19,0
+1I,1I1105,"Propiedades, Planta y Equipo",93,19,18
+1I,1I1107,Propiedad de Inversión,94,19,5
+1I,1I1126,Activos por Impuestos Diferidos,95,19,15
+1I,1I1130,Otros Activos no Financieros,96,19,9
+1I,1I1134,TOTAL ACTIVOS NO CORRIENTES,97,19,19
+1I,1I1131,Total Activos,98,19,19
+1I,1I0003,Cuentas de Control y Responsabilidad por Intermediación de Terceros,99,19,0
+1I,1I0009,Fondos,100,19,0
+1I,1I0100,Fondos de clientes en cuentas de intermediación,101,19,19
+1I,1I0120,Cuentas corrientes de clientes con saldos deudores,102,19,8
+1I,1I0130,Cuentas por cobrar por liquidación de operaciones,103,19,11
+1I,1I0140,Otras cuentas por cobrar de terceros,104,19,6
+1I,1I0190,Operaciones de compra con liquidación a plazo,105,19,11
+1I,1I0193,Control de Operaciones de venta con liquidación a plazo,106,19,9
+1I,1I0400,Margen de Garantía de Operaciones de compra a plazo con Garantía de Efectivo,107,19,2
+1I,1I0010,Valores,108,19,0
+1I,1I0300,Valores o Instrumentos Financieros de clientes,109,19,19
+1I,1I0302,Total,110,19,19
+1I,1I0005,Cuentas de Control y Responsabilidad Por Cuenta Propia,111,19,0
+1I,1I0504,Cuentas Corrientes con saldo deudor por operaciones de cuenta propia,112,19,8
+1I,1I0506,Control de Operaciones de venta con liquidación a plazo,113,19,2
+1I,1I0600,Operaciones de compra con liquidación a plazo,114,19,4
+1I,1I0605,Responsabilidad por garantías y avales otorgados,115,19,14
+1I,1I0500,Activos concedidos en custodia o garantía,116,19,1
+1I,1I0507,Total,117,19,16
+1I,1I1400,PASIVOS Y PATRIMONIO,118,19,0
+1I,1I1401,PASIVOS CORRIENTES,119,19,0
+1I,1I1431,Otros Pasivos Financieros,120,19,6
+1I,1I1420,Cuentas por pagar Comerciales,121,19,19
+1I,1I1430,Otras Cuentas por Pagar,122,19,19
+1I,1I1440,Cuentas por pagar a Entidades relacionadas,123,19,4
+1I,1I1438,Ingresos Diferidos,124,19,1
+1I,1I1435,Otras Provisiones,125,19,4
+1I,1I1436,Pasivos por Impuestos a las Ganancias,126,19,4
+1I,1I1433,Otros Pasivos no Financieros,127,19,3
+1I,1I1439,Provisión por Beneficios a los Empleados,128,19,10
+1I,1I1434,Total de Pasivos Corrientes distintos de Pasivos incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,129,19,19
+1I,1I1437,Pasivos incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,130,19,0
+1I,1I1461,TOTAL PASIVOS CORRIENTES,131,19,19
+1I,1I1462,PASIVOS NO CORRIENTES,132,19,0
+1I,1I1470,Otros Pasivos Financieros,133,19,7
+1I,1I1484,Cuentas por Pagar Comerciales,134,19,0
+1I,1I1483,Otras Cuentas por Pagar,135,19,0
+1I,1I1480,Cuentas por pagar a Entidades relacionadas,136,19,2
+1I,1I1494,Ingresos Diferidos,137,19,1
+1I,1I1496,Pasivos por impuestos diferidos,138,19,5
+1I,1I1482,Otras Provisiones,139,19,0
+1I,1I1490,Provisión por Beneficios a los Empleados,140,19,1
+1I,1I1481,Otros Pasivos no Financieros,141,19,1
+1I,1I1497,TOTAL PASIVOS NO CORRIENTES,142,19,13
+1I,1I1491,TOTAL PASIVOS,143,19,19
+1I,1I1511,Patrimonio,144,19,0
+1I,1I1520,Capital Emitido,145,19,19
+1I,1I1530,Primas de Emisión,146,19,4
+1I,1I1554,Acciones Propias en Cartera,147,19,0
+1I,1I1544,Otras reservas de Capital,148,19,15
+1I,1I1550,Ganancias (Perdidas) Acumuladas,149,19,19
+1I,1I1549,Otras Reservas en el Patrimonio,150,19,10
+1I,1I1551,Total Patrimonio,151,19,19
+1I,1I1552,TOTAL PASIVOS Y PATRIMONIO,152,19,19
+1I,1I0006,Cuentas de Control y Responsabilidad por Intermediación Terceros,153,19,0
+1I,1I0011,Fondos,154,19,0
+1I,1I0121,Cuentas corrientes de clientes con saldos acreedores,155,19,19
+1I,1I0131,Cuentas por pagar Liquidación de operaciones,156,19,13
+1I,1I0141,Otras cuentas por pagar clientes o terceros,157,19,10
+1I,1I0192,Control de Operaciones de compra con liquidación a plazo,158,19,9
+1I,1I0191,Operaciones de venta con liquidación a plazo,159,19,11
+1I,1I0401,Control por Márgenes de Garantía de Operaciones de compra a Plazos Garantía de Efectivo,160,19,2
+1I,1I0012,VALORES,161,19,0
+1I,1I0301,Responsabilidad por Valores o Instrumentos Financieros de clientes,162,19,19
+1I,1I0303,TOTAL,163,19,19
+1I,1I0008,Cuentas de Control y Responsabilidad Por Cuenta Propia,164,19,0
+1I,1I0503,Cuentas Corrientes con saldo acreedor por operaciones de cuenta propia,165,19,7
+1I,1I0505,Operaciones de venta con liquidación a plazo,166,19,2
+1I,1I0601,Control de Operaciones de compra con liquidación a plazo,167,19,3
+1I,1I0606,Control de Responsabilidad por garantías y avales otorgados,168,19,14
+1I,1I0501,Control por Activos concedidos en custodia o garantía,169,19,1
+1I,1I0508,TOTAL,170,19,15
+1A,1A0109,Efectivo y Equivalentes de efectivo,171,4,4
+1A,1A0114,Valores Negociables de Propiedad de las AFP,172,4,2
+1A,1A0103,Cuentas por Cobrar Comerciales (neto),173,4,4
+1A,1A0104,Cuentas por Cobrar a vinculadas  ,174,4,1
+1A,1A0105,Otras Cuentas por Cobrar (neto),175,4,4
+1A,1A0107,Gastos Contratados por Anticipado,176,4,4
+1A,1A0122,Impuesto Corriente,177,4,3
+1A,1A0113,Otros Activos,178,4,3
+1A,1A01ST,Total Activo Corriente,179,4,4
+1A,1A0219,Encaje legal,180,4,4
+1A,1A0217,Inversiones de Propiedad de la AFP,181,4,1
+1A,1A0202,Cuentas por Cobrar a vinculadas (neto),182,4,0
+1A,1A0203,Otras Cuentas por Cobrar (neto),183,4,3
+1A,1A0205,"Inmuebles,  Maquinaria y Equipo (neto)",184,4,4
+1A,1A0206,Activos  Intangibles (neto),185,4,4
+1A,1A0221,Activo por Impuesto a la Renta Diferido,186,4,0
+1A,1A0208,Otros Activos,187,4,1
+1A,1A02ST,Total Activo No Corriente,188,4,4
+1A,1A020T,TOTAL ACTIVO,189,4,4
+1A,1A0801,Registro de carta fianza,190,4,4
+1A,1A0802,Instrumentos Derivados,191,4,0
+1A,1A0803,Bonos de reconocimiento entregados en custodia,192,4,4
+1A,1A0804,Custodia de valores,193,4,4
+1A,1A0805,Control de cheques recibidos de compañía de seguros,194,4,1
+1A,1A0306,Sobregiros Bancarios ,195,4,0
+1A,1A0309,Parte corriente de las deudas a largo plazo,196,4,0
+1A,1A0302,Cuentas por Pagar Comerciales ,197,4,4
+1A,1A0303,Cuentas por Pagar a vinculadas,198,4,2
+1A,1A0312,Dividendos por pagar,199,4,1
+1A,1A0318,Impuestos a la renta Corrientes,200,4,3
+1A,1A0304,Otras Cuentas por Pagar,201,4,4
+1A,1A0313,Beneficios sociales a los trabajadores,202,4,3
+1A,1A0314,Provisión por negligencia,203,4,1
+1A,1A0319,Participaciones por pagar,204,4,3
+1A,1A0310,Provisiones,205,4,3
+1A,1A03ST,Total Pasivo Corriente,206,4,4
+1A,1A0401,Deudas a largo plazo,207,4,0
+1A,1A0402,Cuentas por Pagar a Vinculadas,208,4,0
+1A,1A0409,Pasivo por Impuesto a la Renta Diferido,209,4,4
+1A,1A0408,Otros Pasivos,210,4,1
+1A,1A0406,Otras Provisiones ,211,4,4
+1A,1A04ST,Total Pasivo No Corriente,212,4,4
+1A,1A040T,Total Pasivo,213,4,4
+1A,1A0701,Capital,214,4,4
+1A,1A0702,Capital Adicional,215,4,2
+1A,1A0705,Reserva Legal,216,4,4
+1A,1A0706,Otras Reservas,217,4,1
+1A,1A0707,Resultados Acumulados,218,4,2
+1A,1A0711,Resultado Neto del Ejercicio,219,4,4
+1A,1A0713,Ajustes al Patrimonio,220,4,4
+1A,1A07ST,Total Patrimonio Neto,221,4,4
+1A,1A070T,TOTAL PASIVO Y PATRIMONIO NETO,222,4,4
+1A,1A0901,Control de cartas de fianza,223,4,4
+1A,1A0902,Responsabilidad por instrumentos derivados,224,4,0
+1A,1A0903,Responsabilidad por bonos de reconocimiento entregados en custodia,225,4,4
+1A,1A0904,Responsabilidad por la custodia de valores,226,4,4
+1A,1A0905,Responsabilidad de la AFP por cheques recibidos de compañía de seguros,227,4,1
+1F,1F0101,DISPONIBLE,228,41,41
+1F,1F0105,Caja,229,41,28
+1F,1F0106,Banco Central de Reserva del Perú,230,41,34
+1F,1F0107,Bancos y otras empresas del sistema financiero del país,231,41,41
+1F,1F0108,Bancos y otras instituciones financieras del exterior,232,41,25
+1F,1F0104,Canje,233,41,18
+1F,1F0109,Otras disponibilidades,234,41,32
+1F,1F0201,FONDOS INTERBANCARIOS,235,41,9
+1F,1F0301,INVERSIONES A VALOR RAZONABLE CON CAMBIOS EN RESULTADOS,236,41,12
+1F,1F0302,Instrumento de Capital ,237,41,2
+1F,1F0303,Instrumento de Deuda,238,41,11
+1F,1F0307,Inversiones en commodities,239,41,0
+1F,1F0135,Inversiones  Disponibles para la Venta ,240,41,29
+1F,1F0304,Instrumentos representativos de Capital ,241,41,19
+1F,1F0305,Instrumentos  representativos de Deuda,242,41,27
+1F,1F0306,Inversiones a Vencimiento,243,41,16
+1F,1F0111,CARTERA DE CREDITOS   ,244,41,38
+1F,1F0115,Cartera de Créditos Vigentes,245,41,38
+1F,1F0116,Cartera de Créditos Reestructurados,246,41,1
+1F,1F0117,Cartera de Créditos Refinanciados,247,41,33
+1F,1F0118,Cartera de Créditos Vencidos,248,41,35
+1F,1F0119,Cartera de Créditos en Cobranza Judicial,249,41,31
+1F,1F0121,(-) Provisiones para Créditos ,250,41,37
+1F,1F0131,DERIVADOS PARA NEGOCIACIÓN,251,41,12
+1F,1F0132,DERIVADOS DE COBERTURA,252,41,7
+1F,1F0112,CUENTAS POR COBRAR,253,41,38
+1F,1F0124,Cuentas por Cobrar por Venta de Bienes y Servicios y Fideicomiso (neto),254,41,22
+1F,1F0125,Otras Cuentas por Cobrar (neto),255,41,38
+1F,1F1001,"BIENES REALIZABLES RECIBIDOS EN PAGO, ADJUDICADOS ",256,41,19
+1F,1F1002,Bienes Realizables,257,41,6
+1F,1F1003,Bienes  Recibidos en Pago y Adjudicados,258,41,19
+1F,1F1905,PARTICIPACIONES,259,41,19
+1F,1F0133,Subsidiarias,260,41,11
+1F,1F0134,Asociadas y participaciones en negocios conjuntos,261,41,11
+1F,1F1909,Otras,262,41,3
+1F,1F1701,"INMUEBLES, MOBILIARIO Y EQUIPO (NETO)",263,41,38
+1F,1F1907,ACTIVO INTANGIBLE DISTINTO DE LA PLUSVALIA,264,41,37
+1F,1F1912,PLUSVALIA,265,41,6
+1F,1F1916,IMPUESTOS CORRIENTES,266,41,33
+1F,1F1914,IMPUESTO A LA RENTA  DIFERIDO,267,41,37
+1F,1F1917,ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA,268,41,1
+1F,1F1801,OTROS ACTIVOS                                                             ,269,41,40
+1F,1F2001,TOTAL DEL ACTIVO                                                                    ,270,41,41
+1F,1F3401,CONTINGENTES DEUDORAS ,271,41,34
+1F,1F3402,CUENTAS DE ORDEN DEUDORAS,272,41,32
+1F,1F3403,CONTRACUENTA DE CUENTAS DE ORDEN ACREEDORAS,273,41,28
+1F,1F3404,"FIDEICOMISOS, COMISIONES DE CONFIANZA DEUDORAS Y CUENTAS POR CONTRA ACREEDORAS DE FIDEICOMISOS",274,41,12
+1F,1F2101,OBLIGACIONES CON EL PUBLICO,275,41,35
+1F,1F2201,Obligaciones a la Vista,276,41,29
+1F,1F2202,Obligaciones por Cuentas de Ahorro,277,41,27
+1F,1F2203,Obligaciones por Cuentas a Plazo,278,41,31
+1F,1F2209,Otras Obligaciones,279,41,33
+1F,1F2301,FONDOS INTERBANCARIOS,280,41,9
+1F,1F2703,DEPÓSITOS DE EMPRESAS DEL SISTEMA FINANCIERO Y ORGANISMOS FINANCIEROS INTERNACIONALES,281,41,24
+1F,1F2708,Depósitos a la Vista,282,41,13
+1F,1F2709,Depósitos de Ahorro,283,41,14
+1F,1F2710,Depósitos a Plazo,284,41,20
+1F,1F2401,ADEUDOS Y OBLIGACIONES FINANCIERAS ,285,41,39
+1F,1F2402,Adeudos y Obligaciones con el Banco Central de Reserva del Perú,286,41,1
+1F,1F2403,Adeudos y Obligaciones con Empresas e instituciones financieras del  país ,287,41,29
+1F,1F2404,Adeudos y Obligaciones con Empresas del Exterior y Organismos Financieros Internacionales ,288,41,22
+1F,1F2405,Otros Adeudos  y  Obligaciones del país y del exterior,289,41,10
+1F,1F2406,Valores y Títulos,290,41,27
+1F,1F2407,DERIVADOS PARA NEGOCIACIÓN,291,41,12
+1F,1F2408,DERIVADOS DE COBERTURA,292,41,10
+1F,1F2706,CUENTAS POR PAGAR,293,41,40
+1F,1F3006,PROVISIONES,294,41,36
+1F,1F3012,Provisión  para Créditos Contingentes,295,41,21
+1F,1F3025,Provisión para litigio y demandas,296,41,30
+1F,1F3028,Otros,297,41,20
+1F,1F3029,IMPUESTOS CORRIENTES,298,41,5
+1F,1F3026,IMPUESTO A LA RENTA  DIFERIDO,299,41,7
+1F,1F3007,OTROS PASIVOS,300,41,39
+1F,1F3101,TOTAL DEL PASIVO,301,41,41
+1F,1F3301,Capital social ,302,41,41
+1F,1F3302,Capital adicional,303,41,19
+1F,1F3314,Acciones Propias en Cartera,304,41,3
+1F,1F3303,Reservas,305,41,33
+1F,1F3304,Resultados Acumulados,306,41,24
+1F,1F3305,Resultado Neto del Ejercicio,307,41,40
+1F,1F3312,Ajustes al Patrimonio,308,41,29
+1F,1F3306,TOTAL DEL PATRIMONIO,309,41,41
+1F,1F3307,TOTAL DEL  PASIVO Y PATRIMONIO,310,41,41
+1F,1F3501,CONTINGENTES  ACREEDORAS,311,41,28
+1F,1F3502,Responsabilidad por Avales y Cartas Fianza Otorgadas,312,41,18
+1F,1F3503,Responsabilidad por Cartas de  Crédito,313,41,10
+1F,1F3504,Responsabilidad  por Aceptaciones Bancarias ,314,41,7
+1F,1F3505,Responsabilidad por Líneas de Créditos no Utilizadas y Créditos Concedidos no Desembolsados,315,41,22
+1F,1F3506,Responsabilidad por Contratos de Productos Financieros Derivados ,316,41,9
+1F,1F3507,Responsabilidad por Contratos de Underwriting,317,41,0
+1F,1F3512,Responsabilidad diversas,318,41,6
+1F,1F3509,CONTRACUENTAS DE CUENTAS DE ORDEN DEUDORAS,319,41,25
+1F,1F3510,CUENTAS DE ORDEN ACREEDORAS,320,41,28
+1F,1F3511,"FIDEICOMISOS, COMISIONES DE CONFIANZA ACREEDORAS Y CUENTAS DEUDORAS POR CONTRA DE FIDEICOMISOS",321,41,12
+1E,1E0101,Efectivo y Equivalente de Efectivo,322,17,17
+1E,1E0124,Inversiones financieras (neto),323,17,17
+1E,1E0115,A valor Razonable con Cambios en Resultados,324,17,14
+1E,1E0116,Disponibles para la Venta ,325,17,13
+1E,1E0117,A Vencimiento,326,17,11
+1E,1E0118,Menos: Provisiones de Inversiones Financieras y Deterioro de Valor ,327,17,0
+1E,1E0103,Cuentas por Cobrar por Operaciones de Seguros (neto),328,17,17
+1E,1E0119,Menos: Cargas Aplicadas Sobre Pólizas,329,17,6
+1E,1E0104,Cuentas por Cobrar por Operaciones Sujetas a Riesgo Crediticio (neto),330,17,2
+1E,1E0109,Cuentas por Cobrar a Reaseguradores y Coaseguradores (neto),331,17,17
+1E,1E0125,Activo por Reservas Técnicas a Cargo de Reaseguradoras,332,17,17
+1E,1E0107,Cuentas por Cobrar Diversas (neto),333,17,17
+1E,1E0120,Cuentas por Cobrar por Productos Financieros Derivados para Negociación,334,17,0
+1E,1E0121,Cuentas por Cobrar Productos Financieros Derivados con Fines de Cobertura,335,17,2
+1E,1E0122,Cuentas por Cobrar por Macro-coberturas,336,17,0
+1E,1E0108,Gastos Contrados por Adelantado,337,17,17
+1E,1E01ST,TOTAL ACTIVO CORRIENTE,338,17,17
+1E,1E0221,Activos por Reservas Técnicas a cargo de reaseguradores,339,17,13
+1E,1E0222,Inversiones Financieras (neto),340,17,17
+1E,1E0215,Disponibles para la Venta,341,17,16
+1E,1E0216,A Vencimiento,342,17,10
+1E,1E0217,Inversiones en Subsidiarias y Asociadas,343,17,5
+1E,1E0218,Menos: Provisiones de Inversiones Financieras y Deterioro de Valor ,344,17,1
+1E,1E0207,Inversiones en Inmuebles (neto),345,17,10
+1E,1E0203,"Inmuebles, Muebles y Equipo (neto)",346,17,17
+1E,1E0208,Activos Intangibles (Neto),347,17,14
+1E,1E0219,Activo por Impuesto a las ganancias,348,17,8
+1E,1E0223,Activo no Corrientes Mantenidos para la Venta (neto),349,17,2
+1E,1E0209,Otros Activos,350,17,14
+1E,1E02ST,TOTAL ACTIVO,351,17,17
+1E,1E1102,Cuentas Contingentes Acreedoras por Contra,352,17,8
+1E,1E1103,Cuentas de Orden Deudoras,353,17,15
+1E,1E1104,Cuentas de Orden Acreedoras por Contra,354,17,11
+1E,1E0302,"Tributos, Participaciones y Ctas. por Pagar Diversas",355,17,17
+1E,1E0321,Cuentas por Pagar por Productos Financieros Derivados para Negociación,356,17,0
+1E,1E0322,Cuentas por Pagar por Productos Financieros Derivados con Fines de Cobertura,357,17,1
+1E,1E0323,Cuentas por Pagar por Macro-Coberturas,358,17,0
+1E,1E0310,Obligaciones Financieras,359,17,5
+1E,1E0303,"Cuentas por Pagar a Intermediarios, Comercializadores  y Auxiliares",360,17,14
+1E,1E0304,Cuentas por Pagar a Asegurados,361,17,13
+1E,1E0311,Cuentas por Pagar a Reaseguradores y Coaseguradores (neto),362,17,17
+1E,1E0307,Reservas Técnicas por Siniestros,363,17,17
+1E,1E0309,TOTAL PASIVO CORRIENTE,364,17,17
+1E,1E0401,Obligaciones Financieras,365,17,5
+1E,1E0402,Reservas Técnicas por Siniestros,366,17,2
+1E,1E0407,Reservas Técnicas por Primas,367,17,16
+1E,1E0404,Otros Pasivos (neto),368,17,10
+1E,1E0405,Pasivos Diferidos,369,17,15
+1E,1E0413,Pasivo por Impuesto a las Ganancias Diferido,370,17,4
+1E,1E0501,TOTAL PASIVO,371,17,17
+1E,1E0801,Capital Social,372,17,17
+1E,1E0802,Capital Adicional,373,17,3
+1E,1E0810,Reservas,374,17,15
+1E,1E0812,Acciones en Tesorería,375,17,0
+1E,1E0815,Instrumentos Financieros Compuestos,376,17,0
+1E,1E0811,Ajustes al patrimonio,377,17,17
+1E,1E0806,Resultados Acumulados,378,17,15
+1E,1E0809,Resultado del Ejercicio,379,17,17
+1E,1E0901,TOTAL PATRIMONIO,380,17,17
+1E,1E1001,TOTAL PASIVO Y PATRIMONIO,381,17,17
+1E,1E1202,Cuentas Contingentes Acreedoras,382,17,8
+1E,1E1203,Cuentas de Orden Deudoras por Contra,383,17,14
+1E,1E1204,Cuentas de Orden Acreedoras ,384,17,12
+1V,1V0109,Efectivo y Equivalentes al Efectivo,385,1,1
+1V,1V0114,Otros Activos Financieros,386,1,1
+1V,1V0121,Cuentas por cobrar comerciales y otras cuentas por cobrar,387,1,1
+1V,1V0103,Cuentas por Cobrar Comerciales (neto),388,1,1
+1V,1V0105,Otras Cuentas por Cobrar (neto),389,1,1
+1V,1V0104,Cuentas por Cobrar a Entidades Relacionadas,390,1,1
+1V,1V0107,Anticipos,391,1,1
+1V,1V0106,Inventarios,392,1,0
+1V,1V0112,Activos Biológicos,393,1,0
+1V,1V0117,Activos por Impuestos a las Ganancias ,394,1,0
+1V,1V0113,Otros Activos no financieros,395,1,0
+1V,1V0118,Total Activos Corrientes Distintos de los Activos o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o para Distribuir a los Propietarios,396,1,1
+1V,1V0119,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,397,1,0
+1V,1V0120,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para Distribuir a los Propietarios,398,1,0
+1V,1V0115,Activos no Corrientes o Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta o como Mantenidos para Distribuir a los Propietarios,399,1,0
+1V,1V01ST,Total Activos Corrientes,400,1,1
+1V,1V0217,Otros Activos Financieros,401,1,1
+1V,1V0221,"Inversiones en subsidiarias, negocios conjuntos y asociadas",402,1,1
+1V,1V0219,Cuentas por cobrar comerciales y otras cuentas por cobrar,403,1,0
+1V,1V0201,Cuentas por Cobrar Comerciales,404,1,0
+1V,1V0203,Otras Cuentas por Cobrar,405,1,0
+1V,1V0202,Cuentas por Cobrar a Entidades Relacionadas,406,1,0
+1V,1V0220,Anticipos,407,1,0
+1V,1V0216,Activos Biológicos,408,1,0
+1V,1V0211,Propiedades de Inversión,409,1,0
+1V,1V0205,"Propiedades, Planta y Equipo (neto)",410,1,1
+1V,1V0206,Activos  intangibles distintos  de la plusvalia,411,1,1
+1V,1V0207,Activos por impuestos diferidos,412,1,0
+1V,1V0212,Plusvalía,413,1,0
+1V,1V0208,Otros Activos no financieros,414,1,0
+1V,1V02ST,Total Activos No Corrientes,415,1,1
+1V,1V020T,TOTAL DE ACTIVOS,416,1,1
+1V,1V1101,Caja y Bancos,417,1,1
+1V,1V1102,Compensación de Operaciones,418,1,0
+1V,1V1103,Cuentas por Cobrar a Participantes,419,1,1
+1V,1V1104,Liquidación de Operaciones,420,1,0
+1V,1V1105,Entregas a Rendir Cuenta,421,1,0
+1V,1V1106,Otras Cuentas por Cobrar,422,1,1
+1V,1V11ST,Total Cuentas de Orden Deudoras de Fondos Bursátiles,423,1,1
+1V,1VT009,Cuentas de Orden Deudoras de Valores Bursátiles,424,1,0
+1V,1V1301,Emisiones,425,1,1
+1V,1V1302,Anotación en Cuenta,426,1,1
+1V,1V1303,Valores por Anotar en Cuenta,427,1,0
+1V,1V1304,Dividendos en Acciones,428,1,0
+1V,1V1305,Valores Ajustados,429,1,0
+1V,1V1306,Valores Retirados del Registro,430,1,0
+1V,1V13ST,Total Cuentas de Orden Deudoras de Valores Bursátiles,431,1,1
+1V,1V0309,Otros Pasivos Financieros ,432,1,1
+1V,1V0316,Cuentas por pagar comerciales y otras cuentas por pagar ,433,1,1
+1V,1V0302,Cuentas por Pagar Comerciales ,434,1,1
+1V,1V0304,Otras Cuentas por Pagar,435,1,1
+1V,1V0303,Cuentas por Pagar a Entidades Relacionadas,436,1,1
+1V,1V0317,Ingresos diferidos ,437,1,0
+1V,1V0313,Provisión por Beneficios a los Empleados,438,1,0
+1V,1V0310,Otras provisiones ,439,1,0
+1V,1V0311,Pasivos por Impuestos a las Ganancias ,440,1,0
+1V,1V0314,Otros Pasivos no financieros,441,1,0
+1V,1V0315,Total de Pasivos Corrientes distintos de Pasivos incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,442,1,1
+1V,1V0312,Pasivos incluidos en Grupos de Activos para su Disposición Clasificados como Mantenidos para la Venta,443,1,0
+1V,1V03ST,Total Pasivos Corrientes,444,1,1
+1V,1V0401,Otros Pasivos Financieros ,445,1,1
+1V,1V0411,Cuentas por pagar comerciales y otras cuentas por pagar ,446,1,1
+1V,1V0407,Cuentas por Pagar Comerciales ,447,1,1
+1V,1V0408,Otras Cuentas por Pagar,448,1,0
+1V,1V0402,Cuentas por Pagar a Entidades Relacionadas,449,1,0
+1V,1V0403,Ingresos Diferidos,450,1,0
+1V,1V0409,Provisión por Beneficios a los Empleados,451,1,0
+1V,1V0406,Otras provisiones ,452,1,0
+1V,1V0404,Pasivos por impuestos diferidos,453,1,1
+1V,1V0410,Otros pasivos no financieros,454,1,0
+1V,1V04ST,Total Pasivos No Corrientes,455,1,1
+1V,1V040T,Total Pasivos ,456,1,1
+1V,1V0701,Capital Emitido,457,1,1
+1V,1V0702,Primas de Emisión,458,1,0
+1V,1V0703,Acciones de Inversión,459,1,0
+1V,1V0711,Acciones Propias en Cartera,460,1,0
+1V,1V0712,Otras Reservas de Capital,461,1,1
+1V,1V0707,Resultados Acumulados,462,1,1
+1V,1V0708,Otras Reservas de Patrimonio,463,1,0
+1V,1V07ST,Total Patrimonio ,464,1,1
+1V,1V070T,TOTAL PASIVO Y PATRIMONIO,465,1,1
+1V,1V1201,Cuentas por Pagar a Participantes,466,1,1
+1V,1V1202,Garantías Recibidas por Operaciones,467,1,1
+1V,1V1203,Entregas por Cuenta de Emisores,468,1,1
+1V,1V1204,Intereses por Cuentas de Terceros,469,1,0
+1V,1V1205,"Comisiones, Contribuciones y Aportaciones",470,1,1
+1V,1V1206,Ingresos Financieros,471,1,1
+1V,1V1207,Otras Cuentas por Pagar,472,1,1
+1V,1V12ST,Total Cuentas de Orden Acreedoras de Fondos Bursátiles,473,1,1
+1V,1VT011,Cuentas de Orden Acreedoras de Valores Bursátiles,474,1,0
+1V,1V1401,Valores Emitidos,475,1,1
+1V,1V1402,Registro por Anotación en Cuenta,476,1,1
+1V,1V1403,Anotación en Cuenta en Curso,477,1,0
+1V,1V1404,Registro de Dividendos en Acciones,478,1,0
+1V,1V1405,Registro del Ajuste de Valores,479,1,0
+1V,1V1406,Retiro de Valores del Registro,480,1,0
+1V,1V14ST,Total Cuentas de Orden Acreedoras de Valores Bursátiles,481,1,1

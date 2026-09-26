@@ -1,0 +1,347 @@
+plan,Cuenta,DescripcionCuenta,orden,empresas,empresas_con_monto
+3D,3D0101,Venta de Bienes y Prestación de Servicios,0,139,128
+3D,3D0112,"Regalías, Cuotas, Comisiones, Otros Ingresos de Actividades Ordinarias",1,139,4
+3D,3D0110,Contratos Mantenidos con Propósito de Intermediación o para Negociar,2,139,0
+3D,3D0117,Arrendamiento y Posterior Venta de Activos Mantenidos para Arrendar a Terceros ,3,139,2
+3D,3D0104,Otros Cobros de Efectivo Relativos a las Actividades de Operación,4,139,71
+3D,3D0109,Proveedores de Bienes y Servicios,5,139,134
+3D,3D0118,Contratos Mantenidos con Propósito de Intermediación o para Negociar,6,139,0
+3D,3D0105,Pagos a y por Cuenta de los Empleados,7,139,113
+3D,3D0119,Elaboración o Adquisición de Activos para Arrendar y Otros Mantenidos para la Venta,8,139,1
+3D,3D0108,Otros Pagos de Efectivo Relativos a las Actividades de Operación,9,139,94
+3D,3D0121,Flujos de Efectivo y Equivalente al Efectivo procedente de (utilizados en) Operaciones,10,194,193
+3D,3D0103,Intereses Recibidos (no incluidos en la Actividad de Inversión),11,194,31
+3D,3D0107,Intereses Pagados (no incluidos en la Actividad de Financiación),12,194,48
+3D,3D0111,Dividendos Recibidos (no incluidos en la Actividad de Inversión),13,194,13
+3D,3D0116,Dividendos Pagados (no incluidos en la Actividad de Financiación),14,194,5
+3D,3D0120,Impuestos a las Ganancias (Pagados) Reembolsados,15,194,87
+3D,3D0122,Otros Cobros (Pagos) de Efectivo,16,139,48
+3D,3D01ST,Flujos de Efectivo y Equivalente al Efectivo procedente de (utilizados en) Actividades de Operación,17,194,193
+3D,3D0220,Reembolso de Adelantos de Préstamos y Préstamos Concedidos a Terceros,18,194,6
+3D,3D0218,Pérdida de Control de Subsidiarias u Otros Negocios,19,194,5
+3D,3D0209,Reembolsos Recibidos de Préstamos a Entidades Relacionadas,20,194,38
+3D,3D0201,Venta de Instrumentos Financieros de Patrimonio o Deuda de Otras Entidades,21,194,18
+3D,3D0221,"Contratos Derivados (Futuro, a Término, Opciones)",22,194,1
+3D,3D0222,"Venta de Participaciones en Negocios Conjuntos, Neto Del Efectivo Desapropiado",23,194,3
+3D,3D0202,"Venta de Propiedades, Planta y Equipo",24,194,44
+3D,3D0203,Venta de Activos Intangibles,25,194,0
+3D,3D0223,Venta de Otros Activos de Largo Plazo,26,194,1
+3D,3D0231,Subvenciones del Gobierno,27,194,0
+3D,3D0210,Intereses Recibidos,28,194,34
+3D,3D0211,Dividendos Recibidos,29,194,41
+3D,3D0225,Préstamos Concedidos a Terceros,30,194,7
+3D,3D0232,Obtener el Control de Subsidiarias u Otros Negocios,31,194,8
+3D,3D0212,Prestamos Concedidos a Entidades Relacionadas,32,194,50
+3D,3D0205,Compra de Instrumentos Financieros de Patrimonio o Deuda de Otras Entidades,33,194,17
+3D,3D0226,"Contratos Derivados (Futuro, a Término, Opciones)",34,194,0
+3D,3D0219,"Compra de Subsidiarias, Neto del Efectivo Adquirido",35,194,9
+3D,3D0227,"Compra de Participaciones en Negocios Conjuntos, Neto del Efectivo Adquirido",36,194,5
+3D,3D0206,"Compra de Propiedades, Planta y Equipo",37,194,140
+3D,3D0207,Compra de Activos Intangibles,38,194,81
+3D,3D0229,Compra de Otros Activos de Largo Plazo,39,194,7
+3D,3D0233,Impuestos a las Ganancias (Pagados) Reembolsados,40,194,0
+3D,3D0234,Otros Cobros (Pagos) de Efectivo Relativos a las Actividades de Inversión,41,194,45
+3D,3D02ST,Flujos de Efectivo y Equivalente al Efectivo procedente de (utilizados en) Actividades de Inversión,42,194,177
+3D,3D0325,Obtención de Préstamos,43,194,75
+3D,3D0319,Préstamos de Entidades Relacionadas,44,194,44
+3D,3D0326,Cambios en las Participaciones en la Propiedad de Subsidiarias que no Resultan en Pérdida de Control,45,194,0
+3D,3D0327,Emisión de Acciones,46,194,12
+3D,3D0328,Emisión de Otros Instrumentos de Patrimonio,47,194,5
+3D,3D0329,Subvenciones del Gobierno,48,194,2
+3D,3D0330,Amortización o Pago de Préstamos,49,194,103
+3D,3D0322,Pasivos por Arrendamiento Financiero,50,194,74
+3D,3D0321,Préstamos de Entidades Relacionadas,51,194,41
+3D,3D0331,Cambios en las Participaciones en la Propiedad de Subsidiarias que no Resultan en Pérdida de Control,52,194,1
+3D,3D0310,Recompra o Rescate de Acciones de la Entidad (Acciones en Cartera),53,194,7
+3D,3D0323,Adquisición de Otras Participaciones en el Patrimonio,54,194,2
+3D,3D0311,Intereses Pagados,55,194,47
+3D,3D0305,Dividendos Pagados,56,194,98
+3D,3D0332,Impuestos a las Ganancias (Pagados) Reembolsados,57,194,1
+3D,3D0333,Otros Cobros (Pagos) de Efectivo Relativos a las Actividades de Financiación,58,194,50
+3D,3D03ST,Flujos de Efectivo y Equivalente al Efectivo procedente de (utilizados en) Actividades de Financiación,59,194,177
+3D,3D0401,"Aumento (Disminución) Neto de Efectivo y Equivalente al Efectivo, antes de las Variaciones en las Tasas de Cambio",60,194,191
+3D,3D0404,Efectos de las Variaciones en las Tasas de Cambio sobre el Efectivo y Equivalentes al Efectivo,61,194,84
+3D,3D0405,Aumento (Disminución) Neto de Efectivo y Equivalente al Efectivo,62,194,191
+3D,3D0402,Efectivo y Equivalente al Efectivo al Inicio del Ejercicio,63,194,190
+3D,3D04ST,Efectivo y Equivalente al Efectivo al Finalizar el Ejercicio,64,194,193
+3D,3D05ST,,65,194,194
+3D,3D0611,Gasto por Intereses,66,55,22
+3D,3D0627,Ingreso por Intereses,67,55,16
+3D,3D0628,Ingreso por Dividendos,68,55,2
+3D,3D0629,Pérdida (Ganancia) por Diferencias de Cambio no Realizadas,69,55,15
+3D,3D0620,Gasto por Impuestos a las Ganancias,70,55,42
+3D,3D0619,"Ganancias (Pérdidas) no Distribuidas de Subsidiarias, Asociadas y Negocios Conjuntos",71,55,13
+3D,3D0636,Pagos Basados en Acciones,72,55,1
+3D,3D0610,Pérdidas por Deterioro de Valor (Reversiones de Valor) Reconocidas en el Resultado del Ejercicio,73,55,22
+3D,3D0602,"Depreciación, Amortización y Agotamiento",74,55,49
+3D,3D0631,Pérdidas (Ganancias) por Valor Razonable,75,55,12
+3D,3D0632,Pérdida (Ganancias) por la Disposición de Activos no Corrientes Mantenidas para la Venta,76,55,0
+3D,3D0634,Diferencia entre el Importe en Libros de los Activos Distribuidos y el Importe en Libros del Dividendo a Pagar,77,55,0
+3D,3D0635,Pérdida (Ganancia) en Venta de Propiedades de Inversión,78,55,3
+3D,3D0605,"Pérdida (Ganancia) en Venta de Propiedades, Planta y Equipo",79,55,13
+3D,3D0618,Pérdida (Ganancia) en Venta de Activos Intangibles,80,55,3
+3D,3D0836,Otros Ajustes por Partidas Distintas al Efectivo,81,55,39
+3D,3D0801,(Aumento) Disminución de Cuentas por Cobrar Comerciales,82,55,47
+3D,3D0803,(Aumento) Disminución de Otras Cuentas por Cobrar,83,55,49
+3D,3D0804,(Aumento) Disminución en Inventarios,84,55,26
+3D,3D0813,(Aumento) Disminución en Activos Biológicos,85,55,0
+3D,3D0818,(Aumento) Disminución de Otros Activos no Financieros,86,55,25
+3D,3D0806,Aumento (Disminución) de  Cuentas por Pagar Comerciales,87,55,49
+3D,3D0809,Aumento (Disminución) de Otras Cuentas por Pagar,88,55,50
+3D,3D0829,Aumento (Disminución) de Provisión por Beneficios a los Empleados,89,55,10
+3D,3D0815,Aumento (Disminución) de Otras Provisiones,90,55,20
+3D,3D0608,Otros Ajustes para Conciliar la Ganancia (Pérdida) del Ejercicio,91,55,2
+3D,3D0837,Otros Ajustes para los que los Efectos sobre el Efectivo son Flujos de Efectivo de Inversión o Financiamiento,92,55,1
+3D,3D0830,Total de Ajustes por Conciliación de Ganancias (Pérdidas),93,55,55
+4I,4I4500,FLUJOS DE EFECTIVO DE ACTIVIDAD DE OPERACIÓN,94,19,0
+4I,4I5516,Ganancia (pérdida) Neta del Ejercicio,95,6,6
+4I,4I5520,Ajustes por disminuciones (incrementos) en cuentas por cobrar de origen comercial,96,6,6
+4I,4I5521,Ajustes por disminuciones (incrementos) en otras cuentas por cobrar derivadas de las actividades de operación,97,6,5
+4I,4I5522,Ajustes por incrementos (disminuciones) en cuentas por pagar de origen comercial,98,6,6
+4I,4I5523,Ajustes por incrementos (disminuciones) en otras cuentas por pagar derivadas de las actividades de operación,99,6,3
+4I,4I5524,Ajustes por gastos de depreciación y amortización,100,6,6
+4I,4I5526,Ajustes por provisiones,101,6,3
+4I,4I5527,Ajustes por pérdidas (ganancias) de moneda extranjera no realizadas,102,6,0
+4I,4I5529,Ajustes por ganancias (pérdidas) de valor razonable,103,6,5
+4I,4I5530,Otros ajustes por partidas distintas al efectivo,104,6,5
+4I,4I5531,Ajustes por pérdidas (ganancias) por la disposición de activos no corrientes,105,6,0
+4I,4I5532,Otros ajustes para los que los efectos sobre el efectivo son flujos de efectivo de inversión o financiación,106,6,1
+4I,4I5534,Ganancias (pérdidas) no distribuidas de asociadas(*),107,6,0
+4I,4I4519,Impuestos a las ganancias reembolsados (pagados),108,19,17
+4I,4I4520,Otras entradas (salidas) de efectivo,109,19,13
+4I,4I4521,Flujos de Efectivo y Equivalente al Efectivo Procedentes de (Utilizados en) Actividades de Operación,110,19,19
+4I,4I4522,FLUJOS DE EFECTIVO DE ACTIVIDAD DE INVERSIÓN,111,19,0
+4I,4I4523,Procedentes de la pérdida de control de subsidiarias u otros negocios,112,19,0
+4I,4I4524,Utilizados para obtener el control de subsidiarias u otros negocios,113,19,0
+4I,4I4525,Utilizados en la compra de participaciones no controladoras,114,19,0
+4I,4I4528,Otros cobros por la venta de participaciones en negocios conjuntos,115,19,0
+4I,4I4529,Otros pagos para adquirir participaciones en negocios conjuntos,116,19,1
+4I,4I4530,"Importes procedentes de la venta de propiedades, planta y equipo",117,19,3
+4I,4I4531,"Compras de propiedades, planta y equipo",118,19,12
+4I,4I4532,Importes procedentes de ventas de activos intangibles,119,19,0
+4I,4I4533,Compras de activos intangibles,120,19,8
+4I,4I4534,Importes procedentes de otros activos a largo plazo,121,19,0
+4I,4I4535,Compras de otros activos a largo plazo,122,19,1
+4I,4I4564,Reembolsos recibidos de préstamos a entidades relacionadas (**),123,19,0
+4I,4I4537,Cobros procedentes del reembolso de anticipos y préstamos concedidos a terceros,124,19,1
+4I,4I4565,Prestamos concedidos a entidades relacionadas (**),125,19,1
+4I,4I4538,"Pagos derivados de contratos de futuro, a término, de opciones y de permuta financiera",126,19,0
+4I,4I4539,"Cobros procedentes de contratos de futuro, a término, de opciones y de permuta financiera",127,19,1
+4I,4I4540,Dividendos recibidos,128,19,7
+4I,4I4541,Intereses recibidos,129,19,3
+4I,4I4543,Otras entradas (salidas) de efectivo,130,19,4
+4I,4I4544,Flujos de Efectivo y Equivalente al Efectivo Procedente de (Utilizados en) Actividades de Inversión,131,19,17
+4I,4I4545,FLUJOS DE EFECTIVO DE ACTIVIDAD DE FINANCIACIÓN,132,19,0
+4I,4I4546,Procedentes de la emisión de acciones,133,19,0
+4I,4I4547,Procedentes de la emisión de otros instrumentos de patrimonio,134,19,0
+4I,4I4548,Pagos por adquirir o rescatar las acciones de la entidad,135,19,0
+4I,4I4549,Pagos por otras participaciones en el patrimonio,136,19,0
+4I,4I4550,Importes procedentes de préstamos de entidades relacionadas (**),137,19,4
+4I,4I4551,Reembolsos de préstamos de entidades relacionadas (**),138,19,3
+4I,4I4552,Pagos de pasivos por arrendamientos financieros,139,19,5
+4I,4I4553,Dividendos pagados,140,19,7
+4I,4I4554,Intereses pagados,141,19,3
+4I,4I4555,Impuestos a las ganancias reembolsados (pagados),142,19,0
+4I,4I4556,Otras entradas (salidas) de efectivo,143,19,6
+4I,4I4557,Flujos de Efectivo y Equivalente al Efectivo procedentes de (Utilizados en) Actividades de Financiación,144,19,14
+4I,4I4558,"Aumento (disminución) Neto de efectivo y equivalente al efectivo, antes de las Variaciones en las Tasas de Cambio",145,19,19
+4I,4I4559,Efectos de la variación en la tasa de cambio sobre el efectivo y equivalentes al efectivo,146,19,0
+4I,4I4560,Efectos de la variación en la tasa de cambio sobre el efectivo y equivalentes al efectivo,147,19,6
+4I,4I4561,Incremento (disminución) neto de efectivo y equivalentes al efectivo,148,19,19
+4I,4I4562,Efectivo y equivalentes al efectivo al principio del periodo,149,19,19
+4I,4I4563,Efectivo y equivalentes al efectivo al final del periodo,150,19,19
+3A,3A0101,Cobranza de comisiones,151,4,4
+3A,3A0104,Otros Cobros de Efectivo Relativos a la Actividad,152,4,4
+3A,3A0109,Proveedores,153,4,4
+3A,3A0105,Remuneraciones y Beneficios Sociales,154,4,4
+3A,3A0106,Tributos y Aportaciones,155,4,4
+3A,3A0108,Otros Pagos de Efectivo Relativos a la Actividad     ,156,4,2
+3A,3A01ST,Aumento (Disminución) del Efectivo y Equivalente de Efectivo Provenientes de Actividades de Operación,157,4,4
+3A,3A0201,Venta de Valores,158,4,2
+3A,3A0202,"Venta de Intangibles e Inmuebles, Maquinaria y Equipos",159,4,1
+3A,3A0235,Devolución de Encaje,160,4,4
+3A,3A0204,Otros Ingresos de Efectivo relativos a la Actividad,161,4,0
+3A,3A0220,Ampliación de Valores de Encaje,162,4,3
+3A,3A0205,Compra de Valores,163,4,2
+3A,3A0206,"Compra de Intangibles e Inmuebles, Maquinaria y Equipo",164,4,4
+3A,3A0208,Otros Pagos de Efectivo Relativos a la Actividad     ,165,4,1
+3A,3A02ST,Aumento (Disminución) del Efectivo y Equivalente de Efectivo Provenientes de Actividades de Inversión,166,4,4
+3A,3A0308,Préstamos Bancarios a corto y largo plazo,167,4,0
+3A,3A0320,Préstamos  de Vinculadas ,168,4,0
+3A,3A0301,Emisión de Acciones o Nuevos Aportes,169,4,0
+3A,3A0319,Recursos provenientes de emisión de títulos valores,170,4,0
+3A,3A0303,Otros Ingresos de Efectivo Relativos a la Actividad,171,4,1
+3A,3A0315,Amortización de Préstamos Bancarios Obtenidos ,172,4,0
+3A,3A0321,Amortización de Préstamos de Vinculadas,173,4,0
+3A,3A0305,Dividendos y otras Distribuciones,174,4,4
+3A,3A0306,Otros Pagos de Efectivo Relativos a la Actividad,175,4,0
+3A,3A03ST,Aumento (Dism) del Efectivo y Equivalente de Efectivo Provenientes de Actividades de Financiación,176,4,4
+3A,3A0401,Aumento (Disminución) del Efectivo y Equivalente de Efectivo,177,4,4
+3A,3A0402,Saldo Efectivo y Equivalente de Efectivo al Inicio del Ejercicio,178,4,4
+3A,3A04ST,Saldo Efectivo y Equivalente de Efectivo al Final del Periodo,179,4,4
+3F,3F0101,RESULTADO NETO DEL EJERCICIO,180,41,41
+3F,3F0301,Depreciación y amortización,181,41,38
+3F,3F0317,Provisiones,182,41,39
+3F,3F0313,Deterioro,183,41,11
+3F,3F0309,Otros ajustes,184,41,35
+3F,3F0418,Créditos,185,41,38
+3F,3F0419,Inversiones a valor razonable con cambios en resultados,186,41,9
+3F,3F0420,Disponibles para la venta,187,41,22
+3F,3F0405,Cuentas por cobrar y otras,188,41,40
+3F,3F0421,"Pasivos financieros, no subordinados",189,41,27
+3F,3F0406,Cuentas por pagar y otras,190,41,39
+3F,3F0422,Flujos de efectivo y equivalente al efectivo después de ajustes y variaciones neta en activos y pasivos,191,41,41
+3F,3F0415,Impuesto a las ganancias (pagados) cobrados,192,41,21
+3F,3F0501,FLUJOS DE EFECTIVO  NETO DE ACTIVIDADES DE OPERACIÓN,193,41,41
+3F,3F0622,Entrada por venta de participaciones,194,41,1
+3F,3F0623,Salida por compra en participaciones,195,41,3
+3F,3F0624,"Entrada  por venta de intangibles e inmuebles,  mobiliario y equipos",196,41,12
+3F,3F0625,"Salida por compras de intangibles e inmuebles, mobiliario y equipos",197,41,37
+3F,3F0626,Entrada de instrumento de deuda mantenidos hasta el vencimiento,198,41,6
+3F,3F0627,Salida de instrumento de deuda mantenidos hasta el vencimiento,199,41,5
+3F,3F0613,Otras entradas relacionadas a actividades de inversión,200,41,18
+3F,3F0621,Otras salidas relacionadas a actividades de inversión,201,41,9
+3F,3F0701,FLUJOS DE EFECTIVO  NETO DE ACTIVIDADES DE INVERSIÓN,202,41,41
+3F,3F0815,Entrada por la emisión de pasivos financieros subordinados,203,41,8
+3F,3F0816,Salida por el rescate de pasivos financieros subordinados,204,41,6
+3F,3F0804,Entrada por emisión de instrumentos de patrimonio ,205,41,7
+3F,3F0808,Dividendos pagados ,206,41,22
+3F,3F0817,Otras entradas relacionadas a las actividades de financiamiento,207,41,16
+3F,3F0818,Otras salidas relacionadas a las actividades de financiamiento,208,41,24
+3F,3F0901,FLUJOS DE EFECTIVO NETO  ACTIVIDADES DE FINANCIAMIENTO,209,41,37
+3F,3F1002,Aumento  neto (disminución) en efectivo y equivalente de efectivo antes  del efecto de las variaciones en el tipo de cambio,210,41,41
+3F,3F1003,Efectos de las variaciones en el tipo de cambio en el efectivo y equivalente de efectivo,211,41,20
+3F,3F1001,Aumento neto (disminución) de efectivo y equivalentes al efectivo,212,41,41
+3F,3F1101,Efectivo y equivalentes al efectivo al inicio del período,213,41,41
+3F,3F1201,Efectivo y equivalentes al efectivo al finalizar el período,214,41,41
+3E,3E0101,Utilidad (pérdida) neta del ejercicio,215,17,17
+3E,3E0110,Ajuste de Reservas Técnicas,216,17,17
+3E,3E0103,Depreciación y amortización,217,17,17
+3E,3E0111,Valoración de instrumentos de inversión ,218,17,9
+3E,3E0112,Provisión para Fluctuación de Inversiones Financieras,219,17,3
+3E,3E0104,Provisión para incobrables,220,17,14
+3E,3E0129,Provisión para riesgo de crédito de los TCHN y de los créditos inmobiliarios para la adquisición de bienes futuros,221,17,0
+3E,3E0113,Utilidades (pérdidas) reconocidas de empresas afiliadas,222,17,5
+3E,3E0114,"Deterioro de inversiones financieras  e inmuebles; inmuebles, muebles y equipos",223,17,10
+3E,3E0107,"(Ganancia) pérdida en venta de inversiones financieras e inmuebles; inmuebles, muebles y equipos y operaciones discontinuas",224,17,9
+3E,3E0115,Aumento (Disminución) de pasivos diferidos,225,17,9
+3E,3E0135,Aumento (Disminución) de otros pasivos,226,17,12
+3E,3E0118,Provisión (realización) de impuesto a la renta diferido,227,17,10
+3E,3E0121,(Ganancia) pérdida por cambios contables,228,17,1
+3E,3E0201,Cuentas por cobrar por operaciones de seguros,229,17,17
+3E,3E0202, Cuentas por cobrar por operaciones sujetas a riesgo crediticio ,230,17,1
+3E,3E0213,Cuentas por cobrar a reaseguradores y coaseguradores,231,17,17
+3E,3E0205,Cuentas por cobrar diversas,232,17,16
+3E,3E0212,Reservas técnicas a cargo de reaseguradoras,233,17,13
+3E,3E0206,Gastos pagados por anticipado,234,17,13
+3E,3E0219,Otros activos,235,17,11
+3E,3E0207,"Tributos, participaciones y cuentas por pagar diversas",236,17,17
+3E,3E0208,Cuentas por pagar a intermediarios y auxiliares,237,17,13
+3E,3E0209,Cuentas por pagar a asegurados,238,17,11
+3E,3E0214,Cuentas por pagar reaseguradores y coaseguradores,239,17,17
+3E,3E0215,Reservas técnicas para siniestros,240,17,17
+3E,3E0216,Resultado del Período depués de la variación neta en activos y pasivos y ajustes,241,17,0
+3E,3E0217,Impuesto a las ganancia pagados /cobrados,242,17,2
+3E,3E0301,Flujos de efectivo netos de actividades de operación,243,17,17
+3E,3E0401,Venta de Inversiones Financieras e Inversiones en Inmuebles ,244,17,15
+3E,3E0402,"Venta de Inmuebles, Muebles y Equipos",245,17,5
+3E,3E0409,Venta de otros activos,246,17,1
+3E,3E0432,Dividendos recibidos,247,17,4
+3E,3E0403,Otros cobros de efectivo relativos a la actividad.,248,17,4
+3E,3E0404,Compra de Inversiones Financieras e Inversiones en Inmuebles ,249,17,17
+3E,3E0405,"Compra de Inmuebles, Muebles y Equipos",250,17,17
+3E,3E0406,Compra de Activos Intangibles ,251,17,13
+3E,3E0429,Compra de otros activos,252,17,1
+3E,3E0407,Otros pagos de efectivo relativos a la actividad.,253,17,0
+3E,3E0408,Efectivo neto  proveniente de las Actividades de Inversión,254,17,17
+3E,3E0508,Aumento de obligaciones financieras,255,17,4
+3E,3E0513,Aumento de deuda a largo plazo,256,17,0
+3E,3E0510,Emisión de instrumentos de patrimonio,257,17,3
+3E,3E0503,Otras entradas relacionadas a la actividad de financiamiento,258,17,1
+3E,3E0511,Pago de obligaciones financieras,259,17,5
+3E,3E0514,Pago de deuda a largo plazo,260,17,0
+3E,3E0524,Recompra de las propias acciones,261,17,0
+3E,3E0512,Dividendos pagados,262,17,10
+3E,3E0506,Otras salidas relacionadas a la actividad de financiamiento.,263,17,1
+3E,3E0507,Flujo de efectivo netos de  actividades de financiamiento,264,17,14
+3E,3E0603,Aumento neto (disminución) en el efectivo y equivalente de efectivo antes del efecto de las variaciones en el tipo de cambio,265,17,17
+3E,3E0604,Efecto de las variaciones en el tipo de cambio en el efectivo y equivalente de efectivo,266,17,5
+3E,3E0601,Aumento (Dism) Neto de Efectivo y Equivalente de Efectivo,267,17,17
+3E,3E0602,Saldo Efectivo y Equivalente de Efectivo al Inicio del Período,268,17,16
+3E,3E0701,SALDO DE EFECTIVO Y EQUIVALENTE DE EFECTIVO AL FINALIZAR EL PERIODO,269,17,17
+4I,4I4501,Cobros por actividades de operación,270,13,0
+4I,4I4502,Cobros procedentes de la prestación de servicios de intermediación en el Mercado de Valores,271,13,13
+4I,4I4503,Cobros procedentes de la Venta de Valores Propios,272,13,11
+4I,4I4504,"Cobros procedentes de cuotas, comisiones y otros ingresos de actividades ordinarias",273,13,6
+4I,4I4505,Cobros procedentes de contratos mantenidos con propósitos de intermediación o para negociar,274,13,1
+4I,4I4507,Otros,275,13,12
+4I,4I4508,Pagos,276,13,0
+4I,4I4509,Pagos Procedentes de la compra de valores propios,277,13,9
+4I,4I4510,Pagos a proveedores por el suministro de bienes y servicios,278,13,12
+4I,4I4512,Pagos a y por cuenta de los empleados,279,13,13
+4I,4I4514,Pagos por costos de Actividades de Operación,280,13,5
+3V,3V0101,Venta de Bienes y Prestación de Servicios ,281,1,1
+3V,3V0112,"Regalías, cuotas,  comisiones, otros ingresos de actividades ordinarias ",282,1,0
+3V,3V0110,Contratos mantenidos con propósito de intermediación o para negociar,283,1,0
+3V,3V0117,Arredamiento y posterior venta de esos activos,284,1,0
+3V,3V0104,Otros cobros de efectivo relativos a la actividad de operación,285,1,1
+3V,3V0109,Proveedores de Bienes y Servicios,286,1,1
+3V,3V0118,Contratos mantenidos con propósito de intermediación o para negociar,287,1,0
+3V,3V0105,Pagos a y por cuenta de los empleados,288,1,1
+3V,3V0119,Elaboración o adquisición de activos para arrendar y otros mantenidos para la venta,289,1,0
+3V,3V0108,Otros Pagos de Efectivo Relativos a la Actividad  de Operación,290,1,0
+3V,3V0121,Flujos de efectivo y equivalente al efectivo procedente de (utilizados en) operaciones,291,1,1
+3V,3V0103,Intereses recibidos (no incluidos en la Actividad de Inversión),292,1,0
+3V,3V0107,Intereses pagados (no incluidos en la Actividad de Financiación),293,1,0
+3V,3V0111,Dividendos Recibidos (no incluidos en la Actividad de Inversión),294,1,0
+3V,3V0116,Dividendos pagados(no incluidos en la Actividad de Financiación),295,1,0
+3V,3V0120,Impuestos a las ganancias (pagados) reembolsados,296,1,1
+3V,3V0122,Otros cobros (pagos) de efectivo,297,1,0
+3V,3V01ST,Flujos de Efectivo y Equivalente al Efectivo Procedente de (Utilizados en) Actividades de Operación,298,1,1
+3V,3V0220,Reembolso de Adelantos de Prestamos y Préstamos Concedidos a Terceros,299,1,0
+3V,3V0218,Pérdida de control de subsidiarias u otros negocios,300,1,0
+3V,3V0209,Reembolsos recibidos de préstamos a entidades relacionadas,301,1,0
+3V,3V0201,Venta de  Instrumentos Financieros de Patrimonio o Deuda de Otras Entidades,302,1,0
+3V,3V0221,"Contratos Derivados (futuro, a término, opciones)",303,1,0
+3V,3V0222,"Venta  de Participaciones en Negocios Conjuntos, Neto del Efectivo Desapropiado",304,1,0
+3V,3V0202,"Venta de Propiedades, Planta y Equipo",305,1,1
+3V,3V0203,Venta de Activos Intangibles,306,1,0
+3V,3V0223,Venta de Otros Activos de largo plazo,307,1,0
+3V,3V0231,Subvenciones del gobierno,308,1,0
+3V,3V0210,Intereses Recibidos,309,1,1
+3V,3V0211,Dividendos Recibidos,310,1,1
+3V,3V0225,Anticipos y Prestamos Concedidos a Terceros,311,1,0
+3V,3V0232,Obtener el control de subsidiarias u otros negocios,312,1,0
+3V,3V0212,Prestamos concedidos a entidades relacionadas,313,1,0
+3V,3V0205,Compra de Instrumentos Financieros de Patrimonio o Deuda de Otras Entidades,314,1,0
+3V,3V0226,"Contratos Derivados (futuro, a término, opciones)",315,1,0
+3V,3V0219,"Compra de Subsidiarias, Neto del Efectivo Adquirido",316,1,0
+3V,3V0227,"Compra de Participaciones en Negocios Conjuntos,  Neto del Efectivo Adquirido",317,1,0
+3V,3V0206,"Compra de Propiedades, Planta  y Equipo",318,1,1
+3V,3V0207,Compra de Activos Intangibles ,319,1,1
+3V,3V0229,Compra de Otros Activos de largo plazo,320,1,0
+3V,3V0233,Impuestos a las ganancias (pagados) reembolsados,321,1,0
+3V,3V0234,Otros cobros (pagos) de efectivo relativos a la actividad de inversión    ,322,1,1
+3V,3V02ST,Flujos de Efectivo y Equivalente al Efectivo Procedente de (Utilizados en) Actividades de Inversión,323,1,1
+3V,3V0325,Obtención de Préstamos ,324,1,0
+3V,3V0319,Préstamos de entidades relacionadas,325,1,0
+3V,3V0326,Cambios en las participaciones en la propiedad de subsidiarias que no resultan en pérdida de control,326,1,0
+3V,3V0327,Emisión de Acciones ,327,1,0
+3V,3V0328,Emisión de  Otros Instrumentos de Patrimonio ,328,1,0
+3V,3V0329,Subvenciones del gobierno,329,1,0
+3V,3V0330,Amortización o pago de Préstamos ,330,1,0
+3V,3V0322,Pasivos por Arrendamiento Financiero,331,1,1
+3V,3V0321,Préstamos de entidades relacionadas,332,1,0
+3V,3V0331,Cambios en las participaciones en la propiedad de subsidiarias que no resultan en pérdida de control,333,1,0
+3V,3V0310,Recompra o Rescate de Acciones de la Entidad (Acciones en Cartera),334,1,0
+3V,3V0323,Adquisición de Otras Participaciones en el Patrimonio,335,1,0
+3V,3V0311,Intereses pagados,336,1,0
+3V,3V0305,Dividendos pagados,337,1,1
+3V,3V0332,Impuestos a las ganancias (pagados) reembolsados,338,1,0
+3V,3V0333,Otros cobros (pagos) de efectivo relativos a la actividad de financiación  ,339,1,0
+3V,3V03ST,Flujos de Efectivo y Equivalente al Efectivo Procedente de (Utilizados en) Actividades de Financiación,340,1,1
+3V,3V0401,"Aumento (Disminución) Neto de Efectivo y Equivalente al Efectivo, antes de las Variaciones en las Tasas de Cambio",341,1,1
+3V,3V0404,Efectos de las Variaciones en las Tasas de Cambio sobre el Efectivo y Equivalentes al Efectivo,342,1,0
+3V,3V0405,Aumento (Disminución) Neto de Efectivo y Equivalente al Efectivo,343,1,1
+3V,3V0402,Efectivo y Equivalente al Efectivo al Inicio del Ejercicio,344,1,1
+3V,3V04ST,Efectivo y Equivalente al Efectivo al Finalizar el Ejercicio,345,1,1
