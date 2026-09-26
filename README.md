@@ -79,14 +79,32 @@ las reglas de mapeo en [mapeo/](mapeo/).
 
 ## Cosas que conviene saber de la fuente
 
-- Montos en **miles** de la moneda de reporte. Hay empresas que reportan en dólares; la
+Estos son problemas de la data original que la base corrige o documenta. Cada uno está
+explicado con más detalle en [BITACORA.md](BITACORA.md).
+
+- **Montos en miles** de la moneda de reporte. Unas 30 empresas reportan en dólares; la
   base no convierte monedas.
-- En los trimestres, el estado de resultados trae el trimestre aislado y el acumulado
-  del año. Los trimestres no son auditados; el anual sí.
-- Los bancos presentan el individual en formato SBS y el consolidado en un formato de
-  conglomerado financiero. Algunas partidas (por ejemplo la prima al fondo de seguro de
-  depósitos) se clasifican distinto que en el estado auditado.
-- El servicio `obtener_EFData` del portal devuelve siempre 0 registros y no se usa.
+- **Escala mixta en años antiguos.** Hasta 2011, las sociedades agentes de bolsa
+  reportaban las líneas de total en soles y el detalle en miles, dentro del mismo estado.
+  Se detecta contra el índice de la SMV y se corrige.
+- **Mismos códigos, otro significado.** Las plantillas previas a NIIF (hasta 2009 en el
+  plan general, más tarde en bancos, seguros y AFP) reutilizan códigos de cuenta con otro
+  contenido; por ejemplo, la utilidad antes de impuestos se reportaba antes de la
+  participación de los trabajadores. El mapeo tiene vigencia por años.
+- **Planes de cuentas.** Seis actuales (empresas, bancos, seguros, AFP, sociedades agentes
+  de bolsa y CAVALI) y tres letras antiguas (B, S y C en 2005). En bancos, el estado
+  consolidado usa una plantilla distinta del individual.
+- **Trimestres.** En resultados, la SMV entrega el trimestre aislado y el acumulado; en el
+  flujo de efectivo, solo el acumulado. En los resultados trimestrales de las sociedades
+  agentes de bolsa, la cifra "del trimestre" corresponde a otro subperíodo; la base
+  conserva solo el acumulado.
+- **Encoding roto en origen** (por ejemplo "D lares"): la letra ya viene perdida, así que se
+  repara con un diccionario explícito.
+- **Detalles menores:** identificadores con espacios de relleno, RUC = 0 en holdings
+  extranjeros, una empresa que presentó el mismo estado en dos plantillas y el servicio
+  `obtener_EFData`, que siempre devuelve 0 registros.
+- Algunas partidas se clasifican distinto en el formato SBS que en el estado auditado NIIF
+  (por ejemplo, la prima al fondo de seguro de depósitos o el efectivo restringido).
 
 ## Fuente y licencia
 
