@@ -265,3 +265,25 @@ def identidad_resultados(est: pd.DataFrame, hechos: pd.DataFrame) -> pd.DataFram
     w["contra"] = w["monto"].notna().map({True: "antes_extraordinarias", False: "utilidad_neta"})
     return (w.dropna(subset=["cumple"]).groupby(["contra", "ejercicio"])["cumple"]
               .agg(tasa="mean", n="size").reset_index())
+
+
+def cambios_en_comparativos(est: pd.DataFrame, tolerancia: float = 1.0) -> pd.DataFrame:
+    """Cifras del año anterior que cambiaron en la presentación del año siguiente.
+
+    Cada estado anual trae el año previo como comparativo. Si difiere de lo que se
+    reportó originalmente, la empresa reexpresó o reclasificó. No todo cambio es una
+    corrección de errores: hasta 2004 los comparativos se ajustaban por inflación, en 2010
+    y 2011 hubo la adopción de NIIF, y hay reclasificaciones (ej. operaciones
+    discontinuadas). Por eso el nombre neutro.
+    """
+    a = est[est["periodo"] == "A"].copy()
+    a["ejercicio"] = a["ejercicio"].astype(int)
+    original = a[["rpj", "ejercicio", "tipo", "concepto", "valor"]].rename(columns={"valor": "original"})
+    posterior = (a[["rpj", "ejercicio", "tipo", "concepto", "valor_comparativo"]]
+                 .rename(columns={"valor_comparativo": "segun_estado_siguiente"})
+                 .assign(ejercicio=lambda d: d["ejercicio"] - 1))
+    m = original.merge(posterior, on=["rpj", "ejercicio", "tipo", "concepto"]).dropna()
+    m["diferencia"] = m["segun_estado_siguiente"] - m["original"]
+    m = m[m["diferencia"].abs() > tolerancia].copy()
+    m["diferencia_relativa"] = m["diferencia"] / m["original"].abs().where(m["original"] != 0)
+    return m.sort_values(["ejercicio", "rpj", "tipo", "concepto"], ignore_index=True)

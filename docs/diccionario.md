@@ -111,6 +111,22 @@ negativas las primas ganadas: la siniestralidad supera 100 % o sale negativa sin
 un error de datos. Los ratios trimestrales de margen
 usan el trimestre aislado, no el acumulado.
 
+## cambios_en_comparativos.parquet
+
+Cifras de un año que cambiaron cuando la empresa las volvió a presentar como comparativo
+en el estado del año siguiente (reexpresiones y reclasificaciones). Una fila por empresa,
+año, tipo y concepto estándar con diferencia mayor a 1 (miles).
+
+| campo | significado |
+|---|---|
+| `original` | Lo que se reportó en el estado de ese año. |
+| `segun_estado_siguiente` | Lo que aparece como comparativo en el estado del año siguiente. |
+| `diferencia`, `diferencia_relativa` | Cambio absoluto y relativo. |
+
+No todo cambio es una corrección de errores: hasta 2004 los comparativos se ajustaban por
+inflación (casi todas las empresas cambian en 2000-2003) y en 2010-2011 hubo la adopción
+de NIIF. En años recientes cambian entre 4 % y 7 % de las cifras.
+
 ## calidad.json
 
 Conteo de problemas encontrados al construir la base y del control cruzado contra el

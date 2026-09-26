@@ -8,6 +8,7 @@ Qué genera:
                          tabla más cómoda para empezar.
 - resumen_trimestral.csv Igual, para los trimestres (montos del trimestre aislado).
 - empresas.csv, cuentas.csv
+- cambios_en_comparativos.csv  Cifras que cambiaron al presentarse como comparativo al año siguiente.
 - estandar.csv.gz, ratios.csv.gz (comprimidos)
 - hechos/hechos_AAAA.csv.gz  Detalle por cuenta, un archivo comprimido por ejercicio.
 
@@ -79,6 +80,9 @@ def main() -> int:
     res[res["periodo"] == "A"].to_csv(csv / "resumen_anual.csv", **kw)
     res[res["periodo"] != "A"].to_csv(csv / "resumen_trimestral.csv", **kw)
     emp.to_csv(csv / "empresas.csv", **kw)
+    (pd.read_parquet(data / "cambios_en_comparativos.parquet")
+       .merge(emp[["rpj", "nombre"]], on="rpj", how="left")
+       .to_csv(csv / "cambios_en_comparativos.csv", **kw))
     pd.read_parquet(data / "cuentas.parquet").to_csv(csv / "cuentas.csv", **kw)
     # Las tablas largas van comprimidas (Excel no las necesita: para eso están los resúmenes).
     est.to_csv(csv / "estandar.csv.gz", index=False, compression="gzip")

@@ -291,3 +291,15 @@ def test_identidad_resultados():
     r = identidad_resultados(est, hechos).set_index("contra")
     assert r.loc["antes_extraordinarias", "tasa"] == 1.0
     assert r.loc["utilidad_neta", "tasa"] == 0.0
+
+
+def test_cambios_en_comparativos():
+    from smv.estandar import cambios_en_comparativos
+    est = pd.DataFrame([
+        {"rpj": "A", "ejercicio": 2023, "periodo": "A", "tipo": "I", "concepto": "utilidad_neta", "valor": 100.0, "valor_comparativo": 90.0},
+        {"rpj": "A", "ejercicio": 2024, "periodo": "A", "tipo": "I", "concepto": "utilidad_neta", "valor": 120.0, "valor_comparativo": 95.0},
+        {"rpj": "B", "ejercicio": 2023, "periodo": "A", "tipo": "I", "concepto": "utilidad_neta", "valor": 50.0, "valor_comparativo": 40.0},
+        {"rpj": "B", "ejercicio": 2024, "periodo": "A", "tipo": "I", "concepto": "utilidad_neta", "valor": 60.0, "valor_comparativo": 50.0},
+    ])
+    c = cambios_en_comparativos(est)
+    assert list(c["rpj"]) == ["A"] and c["diferencia"].iloc[0] == -5.0

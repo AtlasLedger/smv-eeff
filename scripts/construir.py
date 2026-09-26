@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from smv import CacheDisco
 from smv.estandar import (cobertura, conceptos, control_cruzado, cuadre_balance, deriva_descripciones,
-                          identidad_resultados, leer_mapeo, ratios)
+                          identidad_resultados, leer_mapeo, ratios, cambios_en_comparativos)
 from smv.modelo import construir
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -47,6 +47,8 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     # cobertura baja es esperable y no es alerta.
     bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)
                 & (cob["concepto"] != "partidas_entre_pasivo_y_patrimonio")]
+
+    cambios_en_comparativos(est).to_parquet(salida / "cambios_en_comparativos.parquet", index=False)
 
     ident = identidad_resultados(est, hechos)
     ident.to_csv(salida / "identidad_resultados.csv", index=False)
