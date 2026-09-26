@@ -235,3 +235,33 @@ def cuadre_balance(est: pd.DataFrame, tolerancia: float = 1.0) -> pd.DataFrame:
     intermedio = w["partidas_entre_pasivo_y_patrimonio"].fillna(0) if "partidas_entre_pasivo_y_patrimonio" in w else 0
     w["diferencia"] = w["activo_total"] - w["pasivo_total"] - w["patrimonio_total"] - intermedio
     return w[w["diferencia"].abs() > tolerancia].reset_index()
+
+
+# Línea "resultado antes de partidas extraordinarias" de las plantillas antiguas. Hasta
+# ~2012, entre el impuesto y la utilidad neta había partidas extraordinarias e interés
+# minoritario; la identidad correcta en esos años es contra esta línea.
+LINEA_ANTES_EXTRAORDINARIAS = {"E": "2E1701", "S": "2S1401", "F": "2F1501", "B": "2B1101",
+                               "I": "2I2141", "D": "2D05ST", "C": "2C05ST"}
+
+
+def identidad_resultados(est: pd.DataFrame, hechos: pd.DataFrame) -> pd.DataFrame:
+    """Verifica utilidad antes de impuestos + impuesto contra el resultado siguiente.
+
+    Compara contra la línea "antes de partidas extraordinarias" cuando la plantilla la
+    tiene, y si no, contra la utilidad neta. En plantillas actuales las diferencias
+    suelen ser operaciones discontinuadas; en las antiguas, un error del mapeo por era.
+    Devuelve la tasa de cumplimiento por plan y ejercicio.
+    """
+    w = est[est["concepto"].isin(["utilidad_antes_impuestos", "impuesto_renta", "utilidad_neta"])].pivot_table(
+        index=CLAVES, columns="concepto", values="valor", aggfunc="first").dropna(
+        subset=["utilidad_antes_impuestos", "impuesto_renta"]).reset_index()
+    h = hechos[hechos["cuenta"].astype(str).isin(set(LINEA_ANTES_EXTRAORDINARIAS.values()))]
+    h = h.assign(**{c: h[c].astype(str) for c in ["rpj", "periodo", "tipo", "cuenta"]})
+    h = h.assign(ejercicio=h["ejercicio"].astype(int), plan=h["cuenta"].str[1])
+    w["ejercicio"] = w["ejercicio"].astype(int)
+    w = w.merge(h[CLAVES + ["plan", "monto"]], on=CLAVES, how="left")
+    objetivo = w["monto"].fillna(w.get("utilidad_neta"))
+    w["cumple"] = (w["utilidad_antes_impuestos"] + w["impuesto_renta"] - objetivo).abs() <= 1
+    w["contra"] = w["monto"].notna().map({True: "antes_extraordinarias", False: "utilidad_neta"})
+    return (w.dropna(subset=["cumple"]).groupby(["contra", "ejercicio"])["cumple"]
+              .agg(tasa="mean", n="size").reset_index())

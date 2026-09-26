@@ -216,75 +216,10 @@ _Ninguna._
   "planes_sin_mapeo": [],
   "mapeo_cuentas_con_descripcion_cambiante": 71,
   "balances_que_no_cuadran": 3,
-  "control_cruzado_indice_smv_comparaciones": 187724,
+  "identidad_resultado_antes_extraordinarias_tasa": 0.9992,
+  "identidad_resultado_antes_extraordinarias_anios_bajo_95pct": [],
+  "control_cruzado_indice_smv_comparaciones": 208788,
   "control_cruzado_indice_smv_discrepancias": 5,
-  "mapeo_conceptos_con_cobertura_menor_90pct": [
-    {
-      "concepto": "activo_corriente",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "pasivo_corriente",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "depositos",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "ingresos",
-      "plan": "S",
-      "tipo": "I+C",
-      "cobertura": 0.8125
-    },
-    {
-      "concepto": "ingresos",
-      "plan": "V",
-      "tipo": "I+C",
-      "cobertura": 0.8
-    },
-    {
-      "concepto": "utilidad_operativa",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "margen_financiero_bruto",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "provisiones_credito_gasto",
-      "plan": "B",
-      "tipo": "I+C",
-      "cobertura": 0.8287292817679558
-    },
-    {
-      "concepto": "provisiones_credito_gasto",
-      "plan": "F",
-      "tipo": "I",
-      "cobertura": 0.8979779411764706
-    },
-    {
-      "concepto": "primas_ganadas_netas",
-      "plan": "S",
-      "tipo": "I+C",
-      "cobertura": 0.8125
-    },
-    {
-      "concepto": "siniestros_netos",
-      "plan": "S",
-      "tipo": "I+C",
-      "cobertura": 0.8125
-    }
-  ]
+  "mapeo_conceptos_con_cobertura_menor_90pct": []
 }
 ```

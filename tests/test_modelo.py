@@ -275,3 +275,19 @@ def test_patrimonio_codigo_de_fila_repetido():
     assert total.to_dict() == {"3I3010": 100.0, "3I3016": 20.0, "3I301A": 120.0}
     assert set(p.loc[p["columna"] == 8, "cuenta"]) == {"3I30I0"}   # el código original se conserva
     assert calidad["patrimonio_celdas_con_codigo_distinto_a_su_fila"] == 3
+
+
+def test_identidad_resultados():
+    from smv.estandar import identidad_resultados
+    base = {"periodo": "A", "tipo": "I"}
+    est = pd.DataFrame([
+        {**base, "rpj": "V", "ejercicio": 2003, "concepto": "utilidad_antes_impuestos", "valor": 100.0},
+        {**base, "rpj": "V", "ejercicio": 2003, "concepto": "impuesto_renta", "valor": -30.0},
+        {**base, "rpj": "N", "ejercicio": 2024, "concepto": "utilidad_antes_impuestos", "valor": 100.0},
+        {**base, "rpj": "N", "ejercicio": 2024, "concepto": "impuesto_renta", "valor": -30.0},
+        {**base, "rpj": "N", "ejercicio": 2024, "concepto": "utilidad_neta", "valor": 60.0},  # no cumple
+    ])
+    hechos = pd.DataFrame([{**base, "rpj": "V", "ejercicio": 2003, "cuenta": "2F1501", "monto": 70.0}])
+    r = identidad_resultados(est, hechos).set_index("contra")
+    assert r.loc["antes_extraordinarias", "tasa"] == 1.0
+    assert r.loc["utilidad_neta", "tasa"] == 0.0

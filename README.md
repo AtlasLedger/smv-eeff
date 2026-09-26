@@ -40,10 +40,13 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
 ## Qué tan confiable es
 
 - Los totales de activo, pasivo, patrimonio y utilidad neta se cruzan contra el índice
-  que publica la propia SMV en cada período: 187,724 comparaciones y 5 diferencias, todas
+  que publica la propia SMV en cada período (y los ingresos donde la definición es la
+  misma): 208,788 comparaciones y 5 diferencias, todas
   anomalías de la fuente documentadas. Ese cruce detectó, por ejemplo, que las sociedades
   agentes de bolsa reportaban en soles y no en miles en los años antiguos; la base lo
   corrige y lo registra.
+- En los años antiguos se verifica que utilidad antes de impuestos + impuesto = resultado
+  antes de partidas extraordinarias: se cumple en 99.9 % de las presentaciones.
 - En cada presentación se verifica que activo = pasivo + patrimonio (más las partidas que
   las plantillas antiguas ponían entre ambos, como el interés minoritario): cuadran todas
   salvo 3 de unas 48,000, también anomalías de la fuente.
@@ -116,9 +119,8 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
   repara con un diccionario explícito.
 - **Interés minoritario fuera del patrimonio** en las plantillas antiguas (hasta 2005 en
   el plan general y hasta 2010 en bancos y seguros): iba entre el pasivo y el patrimonio.
-- **Brechas conocidas:** algunas plantillas del año 2000 (bancos y seguros) y CAVALI
-  2013-2016 no tienen todos los conceptos estándar; los bancos no desglosan la cartera por
-  situación antes de 2006; el estado de cambios en el patrimonio de las sociedades agentes
+- **Brechas conocidas:** los bancos no desglosan la cartera por situación antes de 2006;
+  el estado de cambios en el patrimonio de las sociedades agentes
   de bolsa 2000-2005 no concilia con su balance en la mayoría de casos.
 - **Detalles menores:** identificadores con espacios de relleno, RUC = 0 en holdings
   extranjeros, una empresa que presentó el mismo estado en dos plantillas y el servicio

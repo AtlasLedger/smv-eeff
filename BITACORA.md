@@ -106,8 +106,17 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   emisor; la identidad contable lo confirma). Queda como diferencia explicada.
 - 682 empresas con balance; otras 2,284 entidades solo aparecen en el servicio de ORI en
   2012-2014 (columna `empresas.estados`).
-- Brechas conocidas: plantillas del año 2000 de B y S (30 bancos, 20 seguros) y CAVALI
-  2013-2016 sin todos los conceptos; bancos sin desglose de cartera antes de 2006.
+- Plantillas del año 2000 (bancos B y F trimestral, seguros S y E trimestral) mapeadas con
+  reglas propias. Dos errores silenciosos encontrados y corregidos: en 2000 la utilidad
+  antes de impuestos de bancos omitía el ajuste por inflación (2F1401) y la de seguros
+  sumaba solo las participaciones (el otro código no existía ese año).
+- Nuevo control permanente: utilidad antes de impuestos + impuesto = resultado antes de
+  partidas extraordinarias (plantillas antiguas): 99.92 %. Contra utilidad neta en
+  plantillas actuales ~97 % (el resto son operaciones discontinuadas).
+- Control de ingresos contra el índice SMV (solo conceptos 'directo'): 0 discrepancias.
+- Cobertura mínima del mapeo en todo el histórico: 97.2 %.
+- Brechas conocidas que quedan: bancos sin desglose de cartera antes de 2006; patrimonio
+  de SAB 2000-2005 que no concilia con el balance.
 - PATRIMONIO: en la plantilla de SAB el código de celda cambia por columna y, en años
   antiguos, la columna Total repite 3I30I0 en todas las filas. Se agregó `fila` (código
   de la primera columna de la fila) y se conserva el código original en `cuenta`.

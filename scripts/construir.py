@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from smv import CacheDisco
 from smv.estandar import (cobertura, conceptos, control_cruzado, cuadre_balance, deriva_descripciones,
-                          leer_mapeo, ratios)
+                          identidad_resultados, leer_mapeo, ratios)
 from smv.modelo import construir
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -48,6 +48,9 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)
                 & (cob["concepto"] != "partidas_entre_pasivo_y_patrimonio")]
 
+    ident = identidad_resultados(est, hechos)
+    ident.to_csv(salida / "identidad_resultados.csv", index=False)
+
     descuadre = cuadre_balance(est)
     if len(descuadre):
         descuadre.to_csv(salida / "balance_descuadrado.csv", index=False)
@@ -59,6 +62,11 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     calidad["planes_sin_mapeo"] = sorted(set(pres["plan"].dropna()) - mapeados)
     calidad["mapeo_cuentas_con_descripcion_cambiante"] = int(deriva["cuenta"].nunique())
     calidad["balances_que_no_cuadran"] = len(descuadre)
+    ant = ident[ident["contra"] == "antes_extraordinarias"]
+    calidad["identidad_resultado_antes_extraordinarias_tasa"] = (
+        round(float((ant["tasa"] * ant["n"]).sum() / ant["n"].sum()), 4) if len(ant) else None)
+    calidad["identidad_resultado_antes_extraordinarias_anios_bajo_95pct"] = (
+        ant.loc[ant["tasa"] < 0.95, "ejercicio"].astype(int).tolist())
     calidad["control_cruzado_indice_smv_comparaciones"] = comparadas
     calidad["control_cruzado_indice_smv_discrepancias"] = len(dif)
     calidad["mapeo_conceptos_con_cobertura_menor_90pct"] = bajas[["concepto", "plan", "tipo", "cobertura"]].to_dict("records")
