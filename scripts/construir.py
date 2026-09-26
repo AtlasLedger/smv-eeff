@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from smv import CacheDisco
-from smv.estandar import cobertura, conceptos, control_cruzado, leer_mapeo, ratios
+from smv.estandar import cobertura, conceptos, control_cruzado, deriva_descripciones, leer_mapeo, ratios
 from smv.modelo import construir
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -37,12 +37,16 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     rat = ratios(est)
     rat.to_parquet(salida / "ratios.parquet", index=False)
 
+    deriva = deriva_descripciones(ruta_mapeo, pd.read_parquet(salida / "cuentas_descripciones.parquet"))
+    deriva.to_csv(salida / "mapeo_revisar_descripciones.csv", index=False)
+
     cob = cobertura(est, pres, ruta_mapeo)
     cob.to_csv(salida / "cobertura_mapeo.csv", index=False)
     bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)]
 
     dif, comparadas = control_cruzado(est, pres)
     calidad = json.loads((salida / "calidad.json").read_text("utf-8"))
+    calidad["mapeo_cuentas_con_descripcion_cambiante"] = int(deriva["cuenta"].nunique())
     calidad["control_cruzado_indice_smv_comparaciones"] = comparadas
     calidad["control_cruzado_indice_smv_discrepancias"] = len(dif)
     calidad["mapeo_conceptos_con_cobertura_menor_90pct"] = bajas[["concepto", "plan", "tipo", "cobertura"]].to_dict("records")

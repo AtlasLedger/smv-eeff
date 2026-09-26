@@ -45,6 +45,11 @@ log = logging.getLogger(__name__)
 # Operaciones con formato "una fila por cuenta" que entran a la tabla de hechos.
 OPS_HECHOS = ["balance", "resultados", "flujo", "integrales"]
 ORDEN_PERIODO = {"1": 1, "2": 2, "3": 3, "4": 4, "A": 5}
+CLAVE_PRESENTACION = ["rpj", "ejercicio", "periodo", "tipo"]
+
+# Cuenta de activo total por plan (las mismas que mapeo/mapeo_cuentas.csv marca como
+# 'directo'). Se usan para detectar presentaciones reportadas en otra escala.
+CUENTAS_ACTIVO_TOTAL = {"1D020T", "1F2001", "1E02ST", "1A020T", "1I1131", "1V020T"}
 
 COLUMNAS_HECHOS = {
     "RPJ": "rpj",
@@ -98,6 +103,42 @@ def _patrimonio(df: pd.DataFrame, calidad: dict) -> tuple[pd.DataFrame, pd.DataF
                           "Cuenta": "cuenta", "OrdenColumna": "columna", "Monto1": "monto"})
     p["columna"] = p["columna"].astype("int16")
     return p, columnas
+
+
+def _detectar_escala(hechos_por_anio: dict, idx: pd.DataFrame) -> pd.DataFrame:
+    """Presentaciones cuyo activo total es ~1000 veces el que publica la SMV en su índice.
+
+    Caso real: las SAB reportaban en soles (no en miles) hasta ~2010; el índice de la SMV
+    ya las muestra en miles. Se exige una razón entre 999 y 1001 para no confundir esto
+    con un error de otro tipo.
+    """
+    vacio = pd.DataFrame(columns=CLAVE_PRESENTACION + ["escala_original"])
+    if idx.empty or "smv_activo_total" not in idx:
+        return vacio
+    partes = []
+    for lista in hechos_por_anio.values():
+        for h in lista:
+            partes.append(h[h["cuenta"].isin(CUENTAS_ACTIVO_TOTAL)][CLAVE_PRESENTACION + ["monto"]])
+    if not partes:
+        return vacio
+    act = pd.concat(partes, ignore_index=True)
+    m = act.merge(idx[CLAVE_PRESENTACION + ["smv_activo_total"]], on=CLAVE_PRESENTACION)
+    m = m[m["smv_activo_total"].abs() > 0]
+    razon = m["monto"] / m["smv_activo_total"]
+    esc = m.loc[razon.between(999, 1001), CLAVE_PRESENTACION].drop_duplicates()
+    return esc.assign(escala_original="unidades")
+
+
+def _reescalar(df: pd.DataFrame, escalas: pd.DataFrame, excluir: set, ejercicio: int | None = None) -> pd.DataFrame:
+    """Divide entre 1000 los montos de las presentaciones marcadas (salvo cuentas por acción)."""
+    df = df.copy()
+    claves = df[["rpj", "periodo", "tipo"]].assign(
+        ejercicio=df["ejercicio"] if "ejercicio" in df else ejercicio)
+    marca = claves.merge(escalas, on=CLAVE_PRESENTACION, how="left")["escala_original"].notna().to_numpy()
+    marca = marca & ~df["cuenta"].isin(excluir).to_numpy()
+    for col in [c for c in df.columns if c.startswith("monto")]:
+        df.loc[marca, col] = df.loc[marca, col] / 1000
+    return df
 
 
 def _presentaciones(df: pd.DataFrame) -> pd.DataFrame:
@@ -159,6 +200,23 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
             c["ejercicio"], c["periodo"] = ejercicio, periodo
             cuentas.append(c)
 
+    # --- Escala: algunas presentaciones antiguas vienen en unidades y no en miles
+    idx = (pd.concat(indices, ignore_index=True).drop_duplicates(CLAVE_PRESENTACION)
+           if indices else pd.DataFrame(columns=CLAVE_PRESENTACION + ["smv_activo_total"]))
+    por_accion = set()
+    if cuentas:
+        cu_all = pd.concat(cuentas, ignore_index=True)
+        por_accion = set(cu_all.loc[cu_all["DescripcionCuenta"].fillna("")
+                                    .str.contains(r"por acci[oó]n", case=False), "Cuenta"])
+    escalas = _detectar_escala(hechos_por_anio, idx)
+    calidad["presentaciones_reescaladas_de_unidades_a_miles"] = len(escalas)
+    if len(escalas):
+        hechos_por_anio = {a: [_reescalar(h, escalas, por_accion) for h in partes]
+                           for a, partes in hechos_por_anio.items()}
+        # La tabla de patrimonio no trae la columna ejercicio: se pasa aparte
+        patrimonio_por_anio = {a: [_reescalar(p, escalas, set(), ejercicio=a) for p in partes]
+                               for a, partes in patrimonio_por_anio.items()}
+
     # --- Hechos, un archivo por ejercicio
     filas = 0
     for ejercicio, partes in sorted(hechos_por_anio.items()):
@@ -190,6 +248,9 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
 
     # --- Presentaciones (+ totales del índice de la SMV como control cruzado)
     pres = pd.concat(presentaciones, ignore_index=True)
+    pres["ejercicio"] = pres["ejercicio"].astype("int16")
+    pres = pres.merge(escalas, on=CLAVE_PRESENTACION, how="left")
+    pres["escala_original"] = pres["escala_original"].fillna("miles")
     if indices:
         idx = pd.concat(indices, ignore_index=True).drop_duplicates(["rpj", "ejercicio", "periodo", "tipo"])
         pres = pres.merge(idx.drop(columns="moneda"), on=["rpj", "ejercicio", "periodo", "tipo"], how="left")

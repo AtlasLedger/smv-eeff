@@ -3,6 +3,8 @@
 Lee el mapeo de mapeo/mapeo_cuentas.csv (concepto, plan, tipo, cuentas, confianza) y lo
 aplica sobre la tabla de hechos. `tipo` vacío = aplica a individual y consolidado; `I` o
 `C` cuando la plantilla cambia (el consolidado de bancos usa otra plantilla completa).
+`desde`/`hasta` (ejercicios, vacío = sin límite) cuando un mismo código cambió de
+significado en el tiempo (las plantillas previas a NIIF reutilizan códigos).
 
 Decisiones de diseño:
 - El mapeo vive en un CSV y no en el código: es criterio contable, no programación.
@@ -35,6 +37,7 @@ def leer_mapeo(ruta: str | Path) -> pd.DataFrame:
     m = m[m["confianza"].isin(RANGO_CONFIANZA) & (m["cuentas"] != "")]
     filas = [
         {"concepto": r.concepto, "plan": r.plan, "tipo_mapeo": r.tipo, "cuenta": c.strip(),
+         "desde": int(r.desde) if r.desde else 0, "hasta": int(r.hasta) if r.hasta else 9999,
          "confianza": r.confianza}
         for r in m.itertuples() for c in r.cuentas.split("+")
     ]
@@ -48,7 +51,8 @@ def conceptos(hechos: pd.DataFrame, mapeo: pd.DataFrame) -> pd.DataFrame:
         h[c] = h[c].astype(str)
     h["plan"] = h["cuenta"].str[1]
     x = h.merge(mapeo, on=["plan", "cuenta"], how="inner")
-    x = x[(x["tipo_mapeo"] == "") | (x["tipo_mapeo"] == x["tipo"])]
+    x = x[((x["tipo_mapeo"] == "") | (x["tipo_mapeo"] == x["tipo"]))
+          & x["ejercicio"].astype(int).between(x["desde"], x["hasta"])]
     agg = (x.groupby(CLAVES + ["concepto", "confianza"], as_index=False, observed=True)
              .agg(valor=("monto", lambda s: s.sum(min_count=1)),
                   valor_comparativo=("monto_comparativo", lambda s: s.sum(min_count=1)),
@@ -150,3 +154,27 @@ def cobertura(est: pd.DataFrame, presentaciones: pd.DataFrame, ruta_mapeo: str |
                       "confianza": r.confianza, "presentaciones": n, "con_valor": hay,
                       "cobertura": hay / n if n else float("nan")})
     return pd.DataFrame(filas)
+
+
+def deriva_descripciones(ruta_mapeo: str | Path, historial: pd.DataFrame) -> pd.DataFrame:
+    """Cuentas usadas en el mapeo cuya descripción cambió en el tiempo.
+
+    Un código que cambia de descripción puede haber cambiado de significado (pasa en las
+    plantillas previas a NIIF). Se ignoran diferencias de mayúsculas, tildes y espacios.
+    El resultado es una lista para revisar a mano, no un error.
+    """
+    import unicodedata
+
+    def norm(t):
+        t = unicodedata.normalize("NFD", str(t)).encode("ascii", "ignore").decode().lower()
+        return " ".join(t.replace("(", " ").replace(")", " ").split())
+
+    m = leer_mapeo(ruta_mapeo)
+    usadas = m.groupby("cuenta")["concepto"].agg(lambda s: ",".join(sorted(set(s))))
+    h = historial[historial["cuenta"].isin(usadas.index)].copy()
+    h["norm"] = h["descripcion"].map(norm)
+    variantes = h.groupby("cuenta")["norm"].nunique()
+    cambian = variantes[variantes > 1].index
+    out = h[h["cuenta"].isin(cambian)].sort_values(["cuenta", "desde"])
+    out["conceptos"] = out["cuenta"].map(usadas)
+    return out[["cuenta", "conceptos", "descripcion", "desde", "hasta"]]

@@ -34,6 +34,15 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 5. **Deuda financiera.** En el plan general "Otros Pasivos Financieros" mezcla deuda,
    arrendamientos NIIF 16 y derivados. No se puede separar con esta data. ¿Se acepta con
    la advertencia?
+7. **Plantillas previas a NIIF (años antiguos).** La SMV reutiliza los mismos códigos con
+   otro significado. En 2005: `2D01ST` era "Total de Ingresos Brutos" (incluye otros
+   ingresos operacionales), `2D04ST` era "antes de gastos extraordinarios,
+   participaciones e impuesto" y la participación de trabajadores iba aparte (`2D0501`).
+   Bancos, seguros y AFP hasta ~2012 reportan "antes de participaciones e impuesto".
+   Hoy el mapeo aplica el significado moderno a todos los años; para esos conceptos en
+   años antiguos hay que decidir si (a) se acepta con advertencia, (b) se reconstruye
+   (ej. restar la participación) o (c) se deja vacío. El mapeo ya admite `desde`/`hasta`.
+   Lista para revisar: `data/mapeo_revisar_descripciones.csv`.
 6. **Utilidad operativa** de AFP (¿incluye el encaje legal?), bancos (2F2801) y seguros
    (no hay línea equivalente).
 
@@ -58,6 +67,10 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - Bancos: el consolidado usa OTRA plantilla (formato de conglomerado financiero, con
   líneas de seguros y corriente/no corriente). El mapeo distingue individual y consolidado.
   En el consolidado no se puede calcular morosidad (solo desglosa la cartera corriente).
+- ESCALA: las SAB reportaban en soles (no en miles) al menos en 2005 y 2010. Se detecta
+  comparando el activo total con el índice de la SMV (razón ~1000) y se divide entre
+  1000, salvo cuentas por acción. Queda registrado en `presentaciones.escala_original`.
+  Con eso, 0 discrepancias en 17,086 comparaciones (2005, 2010, 2012, 2024-2026).
 - Diferencias de presentación SBS vs estado auditado NIIF (no son errores de la base):
   prima al fondo de seguro de depósitos (BCP) y efectivo restringido (Credicorp).
 
