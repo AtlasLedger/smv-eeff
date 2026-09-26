@@ -6,16 +6,26 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 ## Estado actual
 
 - Paso 1 (extractor): listo. Descarga histórica 2000-2026 en curso para balance,
-  resultados, flujo, integrales e índice (`logs/historico_1.out`). Si se cortó, volver a
-  correr el mismo comando: continúa donde quedó.
-- Paso 2 (mapeo): **propuesta** lista en `mapeo/`. Faltan las decisiones de criterio (abajo).
-- Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`.
-- Paso 4 (validación): 100 cifras OK + 2 diferencias explicadas (2022-2024), en 5 empresas y 5
-  plantillas (Alicorp consolidado PEN, BCP individual banco, Credicorp consolidado
-  conglomerado, Buenaventura consolidado USD, Rimac individual seguros).
-  `validacion/reporte.md`. Faltan: una SAB (plan I; no encontré su estado auditado
-  individual en línea) y una AFP (plan A); y validar años antiguos.
-- Paso 5 (publicación): pendiente; requiere cuentas de el propietario del proyecto (GitHub, Zenodo).
+  resultados, flujo, integrales e índice (`logs/historico_1.out`, de reciente a antiguo).
+  Al terminar arranca sola la de patrimonio anual (`logs/cola_patrimonio.sh` ->
+  `logs/historico_patrimonio.out`). Si algo se cortó, volver a correr el mismo comando:
+  continúa donde quedó.
+- Paso 2 (mapeo): **propuesta** lista en `mapeo/` para los 6 planes actuales y las 3
+  letras antiguas, con vigencia por años. Cobertura mínima 99.6 %. Faltan las decisiones
+  de criterio: `mapeo/DECISIONES.md`.
+- Paso 3 (modelo): listo. `python scripts/construir.py` genera `data/`;
+  `python scripts/exportar.py` los CSV; `python scripts/perfil_historico.py` el perfil.
+- Paso 4 (validación): ver abajo. `python scripts/validar.py`.
+- Paso 5 (publicación): todo preparado (README, licencias, workflows, página); requiere
+  cuentas de el propietario del proyecto (GitHub, Zenodo). Ver "Antes de publicar".
+
+### Qué hacer cuando termine la descarga histórica
+1. `python scripts/construir.py` y revisar `data/calidad.json` (discrepancias con el índice,
+   balances que no cuadran, cobertura del mapeo, planes sin mapeo).
+2. `python scripts/validar.py` (se validan solos 2017-2019 de Credicorp y Buenaventura).
+3. `python scripts/perfil_historico.py` y revisar años 2000-2004 y 2013-2019 (posibles
+   cambios de plantilla en bancos, seguros y AFP: fijar el año del paso a NIIF).
+4. `python scripts/exportar.py` y actualizar números en README.
 
 ## Decisiones que necesitan a el propietario del proyecto
 
