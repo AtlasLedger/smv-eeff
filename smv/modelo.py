@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -108,9 +109,10 @@ def _patrimonio(df: pd.DataFrame, calidad: dict) -> tuple[pd.DataFrame, pd.DataF
 def _detectar_escala(hechos_por_anio: dict, idx: pd.DataFrame) -> pd.DataFrame:
     """Presentaciones cuyo activo total es ~1000 veces el que publica la SMV en su índice.
 
-    Caso real: las SAB reportaban en soles (no en miles) hasta ~2010; el índice de la SMV
-    ya las muestra en miles. Se exige una razón entre 999 y 1001 para no confundir esto
-    con un error de otro tipo.
+    Caso real: en las SAB hasta ~2010 las líneas de TOTAL (escritas en mayúsculas en la
+    plantilla: TOTAL ACTIVO, UTILIDAD BRUTA...) venían en soles, mientras que las líneas de
+    detalle venían en miles con decimales. El índice de la SMV muestra los totales en
+    miles. Se exige una razón entre 999 y 1001 para no confundir esto con otro error.
     """
     vacio = pd.DataFrame(columns=CLAVE_PRESENTACION + ["escala_original"])
     if idx.empty or "smv_activo_total" not in idx:
@@ -129,13 +131,27 @@ def _detectar_escala(hechos_por_anio: dict, idx: pd.DataFrame) -> pd.DataFrame:
     return esc.assign(escala_original="unidades")
 
 
-def _reescalar(df: pd.DataFrame, escalas: pd.DataFrame, excluir: set, ejercicio: int | None = None) -> pd.DataFrame:
-    """Divide entre 1000 los montos de las presentaciones marcadas (salvo cuentas por acción)."""
+def _es_total(descripcion) -> bool:
+    """Las líneas calculadas de las plantillas antiguas de las SAB van en MAYÚSCULAS."""
+    texto = str(descripcion or "")
+    if "por acci" in texto.lower():
+        return False  # los montos por acción nunca se reescalan
+    letras = re.sub(r"[^A-Za-zÁÉÍÓÚÑáéíóúñ]", "", texto)
+    return bool(letras) and letras.isupper()
+
+
+def _reescalar(df: pd.DataFrame, escalas: pd.DataFrame, totales: set, ejercicio: int | None = None) -> pd.DataFrame:
+    """Divide entre 1000 las líneas de total de las presentaciones marcadas.
+
+    `totales` es el conjunto de (ejercicio, periodo, cuenta) cuya descripción es de total.
+    Las líneas de detalle ya vienen en miles y no se tocan.
+    """
     df = df.copy()
-    claves = df[["rpj", "periodo", "tipo"]].assign(
-        ejercicio=df["ejercicio"] if "ejercicio" in df else ejercicio)
+    anio = df["ejercicio"] if "ejercicio" in df else pd.Series(ejercicio, index=df.index)
+    claves = df[["rpj", "periodo", "tipo"]].assign(ejercicio=anio)
     marca = claves.merge(escalas, on=CLAVE_PRESENTACION, how="left")["escala_original"].notna().to_numpy()
-    marca = marca & ~df["cuenta"].isin(excluir).to_numpy()
+    es_total = [(int(a), p, c) in totales for a, p, c in zip(anio, df["periodo"], df["cuenta"])]
+    marca = marca & pd.Series(es_total, index=df.index).to_numpy()
     for col in [c for c in df.columns if c.startswith("monto")]:
         df.loc[marca, col] = df.loc[marca, col] / 1000
     return df
@@ -203,19 +219,21 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     # --- Escala: algunas presentaciones antiguas vienen en unidades y no en miles
     idx = (pd.concat(indices, ignore_index=True).drop_duplicates(CLAVE_PRESENTACION)
            if indices else pd.DataFrame(columns=CLAVE_PRESENTACION + ["smv_activo_total"]))
-    por_accion = set()
+    totales: set = set()
     if cuentas:
         cu_all = pd.concat(cuentas, ignore_index=True)
-        por_accion = set(cu_all.loc[cu_all["DescripcionCuenta"].fillna("")
-                                    .str.contains(r"por acci[oó]n", case=False), "Cuenta"])
+        cu_all = cu_all[cu_all["DescripcionCuenta"].map(_es_total)]
+        totales = set(zip(cu_all["ejercicio"].astype(int), cu_all["periodo"], cu_all["Cuenta"]))
     escalas = _detectar_escala(hechos_por_anio, idx)
-    calidad["presentaciones_reescaladas_de_unidades_a_miles"] = len(escalas)
+    calidad["presentaciones_con_totales_en_unidades"] = len(escalas)
     if len(escalas):
-        hechos_por_anio = {a: [_reescalar(h, escalas, por_accion) for h in partes]
+        hechos_por_anio = {a: [_reescalar(h, escalas, totales) for h in partes]
                            for a, partes in hechos_por_anio.items()}
-        # La tabla de patrimonio no trae la columna ejercicio: se pasa aparte
-        patrimonio_por_anio = {a: [_reescalar(p, escalas, set(), ejercicio=a) for p in partes]
-                               for a, partes in patrimonio_por_anio.items()}
+        # Patrimonio de esas presentaciones: escala no verificada; se deja como vino y se avisa.
+        calidad["patrimonio_escala_no_verificada"] = int(sum(
+            len(p.merge(escalas.drop(columns="ejercicio"), on=["rpj", "periodo", "tipo"]))
+            for a, partes in patrimonio_por_anio.items() for p in partes
+            if a in set(escalas["ejercicio"].astype(int))))
 
     # --- Hechos, un archivo por ejercicio
     filas = 0

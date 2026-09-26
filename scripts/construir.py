@@ -18,7 +18,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from smv import CacheDisco
-from smv.estandar import cobertura, conceptos, control_cruzado, deriva_descripciones, leer_mapeo, ratios
+from smv.estandar import (cobertura, conceptos, control_cruzado, cuadre_balance, deriva_descripciones,
+                          leer_mapeo, ratios)
 from smv.modelo import construir
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -44,9 +45,14 @@ def capa_estandar(salida: Path, ruta_mapeo: Path) -> dict[str, int]:
     cob.to_csv(salida / "cobertura_mapeo.csv", index=False)
     bajas = cob[(cob["cobertura"] < 0.9) & (cob["presentaciones"] > 0)]
 
+    descuadre = cuadre_balance(est)
+    if len(descuadre):
+        descuadre.to_csv(salida / "balance_descuadrado.csv", index=False)
+
     dif, comparadas = control_cruzado(est, pres)
     calidad = json.loads((salida / "calidad.json").read_text("utf-8"))
     calidad["mapeo_cuentas_con_descripcion_cambiante"] = int(deriva["cuenta"].nunique())
+    calidad["balances_que_no_cuadran"] = len(descuadre)
     calidad["control_cruzado_indice_smv_comparaciones"] = comparadas
     calidad["control_cruzado_indice_smv_discrepancias"] = len(dif)
     calidad["mapeo_conceptos_con_cobertura_menor_90pct"] = bajas[["concepto", "plan", "tipo", "cobertura"]].to_dict("records")

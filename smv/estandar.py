@@ -178,3 +178,17 @@ def deriva_descripciones(ruta_mapeo: str | Path, historial: pd.DataFrame) -> pd.
     out = h[h["cuenta"].isin(cambian)].sort_values(["cuenta", "desde"])
     out["conceptos"] = out["cuenta"].map(usadas)
     return out[["cuenta", "conceptos", "descripcion", "desde", "hasta"]]
+
+
+def cuadre_balance(est: pd.DataFrame, tolerancia: float = 1.0) -> pd.DataFrame:
+    """Presentaciones donde activo total != pasivo total + patrimonio total.
+
+    Es una identidad contable: si no se cumple, hay un problema de escala, de mapeo o de
+    la fuente. Tolerancia en miles (redondeo).
+    """
+    w = est[est["concepto"].isin(["activo_total", "pasivo_total", "patrimonio_total"])].pivot_table(
+        index=CLAVES, columns="concepto", values="valor", aggfunc="first").dropna()
+    if w.empty:
+        return pd.DataFrame(columns=CLAVES + ["activo_total", "pasivo_total", "patrimonio_total", "diferencia"])
+    w["diferencia"] = w["activo_total"] - w["pasivo_total"] - w["patrimonio_total"]
+    return w[w["diferencia"].abs() > tolerancia].reset_index()

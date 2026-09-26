@@ -135,18 +135,43 @@ def test_ejercicio_se_normaliza_a_entero():
     assert limpiar(df)["Ejercicio"].iloc[0] == 2024
 
 
-def test_detecta_y_corrige_presentaciones_en_unidades():
+def test_detecta_y_corrige_totales_en_unidades():
+    # SAB antiguas: los TOTALES venían en soles y el detalle en miles con decimales.
     base = {"ejercicio": 2010, "periodo": "A", "tipo": "I"}
     hechos = pd.DataFrame([
-        {**base, "rpj": "SAB", "cuenta": "1I1131", "monto": 38_179_940.0},  # en soles
-        {**base, "rpj": "SAB", "cuenta": "2I2901", "monto": 0.25},          # utilidad por acción
-        {**base, "rpj": "OK", "cuenta": "1D020T", "monto": 5_000.0},         # ya en miles
+        {**base, "rpj": "SAB", "cuenta": "1I1131", "monto": 38_179_940.0},  # TOTAL ACTIVO, en soles
+        {**base, "rpj": "SAB", "cuenta": "1I1010", "monto": 165.964},       # Caja y bancos, en miles
+        {**base, "rpj": "OK", "cuenta": "1D020T", "monto": 5_000.0},         # otra empresa, en miles
     ])
     idx = pd.DataFrame([{**base, "rpj": "SAB", "smv_activo_total": 38_180.0},
                         {**base, "rpj": "OK", "smv_activo_total": 5_000.0}])
     esc = _detectar_escala({2010: [hechos]}, idx)
     assert list(esc["rpj"]) == ["SAB"]
-    out = _reescalar(hechos, esc, excluir={"2I2901"}).set_index("cuenta")["monto"]
+    totales = {(2010, "A", "1I1131"), (2010, "A", "1D020T")}
+    out = _reescalar(hechos, esc, totales).set_index("cuenta")["monto"]
     assert out["1I1131"] == pytest.approx(38_179.94)
-    assert out["2I2901"] == 0.25        # los montos por acción no se tocan
+    assert out["1I1010"] == 165.964     # el detalle ya estaba en miles
     assert out["1D020T"] == 5_000.0     # otras empresas no se tocan
+
+
+def test_es_total():
+    from smv.modelo import _es_total
+    assert _es_total("TOTAL INGRESOS OPERACIONALES")
+    assert _es_total("RESULTADO ANTES DE PARTICIP. E IMPUESTO A LA RENTA")
+    assert not _es_total("Caja y bancos")
+    assert not _es_total("UTILIDAD (PERDIDA) BASICA POR ACCION COMUN")
+    assert not _es_total("")
+
+
+def test_cuadre_balance():
+    from smv.estandar import cuadre_balance
+    base = {"ejercicio": 2024, "periodo": "A", "tipo": "I"}
+    est = pd.DataFrame([
+        {**base, "rpj": "A", "concepto": "activo_total", "valor": 100.0},
+        {**base, "rpj": "A", "concepto": "pasivo_total", "valor": 60.0},
+        {**base, "rpj": "A", "concepto": "patrimonio_total", "valor": 40.0},
+        {**base, "rpj": "B", "concepto": "activo_total", "valor": 100.0},
+        {**base, "rpj": "B", "concepto": "pasivo_total", "valor": 60.0},
+        {**base, "rpj": "B", "concepto": "patrimonio_total", "valor": 30.0},
+    ])
+    assert list(cuadre_balance(est)["rpj"]) == ["B"]

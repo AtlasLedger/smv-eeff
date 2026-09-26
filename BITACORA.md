@@ -69,10 +69,13 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
 - Bancos: el consolidado usa OTRA plantilla (formato de conglomerado financiero, con
   líneas de seguros y corriente/no corriente). El mapeo distingue individual y consolidado.
   En el consolidado no se puede calcular morosidad (solo desglosa la cartera corriente).
-- ESCALA: las SAB reportaban en soles (no en miles) al menos en 2005 y 2010. Se detecta
-  comparando el activo total con el índice de la SMV (razón ~1000) y se divide entre
-  1000, salvo cuentas por acción. Queda registrado en `presentaciones.escala_original`.
-  Con eso, 0 discrepancias en 17,086 comparaciones (2005, 2010, 2012, 2024-2026).
+- ESCALA MIXTA: en las SAB de 2005 y 2010, dentro de una MISMA presentación, las líneas
+  de total (en MAYÚSCULAS en la plantilla) venían en soles y las de detalle en miles con
+  decimales (77.065 de comisiones = 77,065 de total de ingresos). Se detecta comparando el
+  activo total con el índice SMV (razón ~1000) y se dividen entre 1000 solo las líneas de
+  total. Verificado: las líneas en mayúsculas son ~1000x y las demás no. Un primer intento
+  dividía todo y dejaba el detalle 1000 veces más chico: lo detectó la revisión de ratios.
+- Nuevo control: activo = pasivo + patrimonio en cada presentación (0 descuadres).
 - Diferencias de presentación SBS vs estado auditado NIIF (no son errores de la base):
   prima al fondo de seguro de depósitos (BCP) y efectivo restringido (Credicorp).
 
