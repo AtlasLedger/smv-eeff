@@ -142,12 +142,23 @@ def _patrimonio(df: pd.DataFrame, calidad: dict) -> tuple[pd.DataFrame, pd.DataF
     # Se numera cada aparición en el orden del payload (bloque 0, 1...). En los demás
     # planes los códigos ya distinguen el año (4D01xx anterior, 4D02xx actual) y el
     # bloque es siempre 0.
-    df = df.copy()
-    df["bloque"] = df.groupby(["RPJ", "Cuenta", "OrdenColumna"]).cumcount().astype("int8")
+    df = df.reset_index(drop=True)
+    # Identificador de FILA. En la plantilla de las SAB el código de cuenta cambia según la
+    # columna (3I3010 Capital, 3I3020 Primas...) y, en años antiguos, la columna "Total
+    # Patrimonio" repite 3I30I0 ("Saldo inicial") en TODAS las filas, así que el código
+    # solo no identifica la celda. El payload viene ordenado por fila (columnas 1..n
+    # seguidas): la fila se identifica con el código de su primera columna. Se conserva el
+    # código original en `cuenta` y se agrega `fila`. En los demás planes fila == cuenta.
+    col = df["OrdenColumna"].astype(int)
+    nueva_fila = (col <= col.groupby(df["RPJ"]).shift(1).fillna(10**6)) | (df["RPJ"] != df["RPJ"].shift(1))
+    df["fila"] = df.groupby(nueva_fila.cumsum())["Cuenta"].transform("first")
+    calidad["patrimonio_celdas_con_codigo_distinto_a_su_fila"] = (
+        calidad.get("patrimonio_celdas_con_codigo_distinto_a_su_fila", 0) + int((df["fila"] != df["Cuenta"]).sum()))
+    df["bloque"] = df.groupby(["RPJ", "fila", "OrdenColumna"]).cumcount().astype("int16")
     calidad["patrimonio_celdas_bloque_repetido"] += int((df["bloque"] > 0).sum())
     columnas = df.drop_duplicates(["plan", "OrdenColumna"])[["plan", "OrdenColumna", "DescripcionColumna"]]
     df = df[df["Monto1"] != 0]
-    p = df[["RPJ", "_periodo_consultado", "_tipo_consultado", "Cuenta", "OrdenColumna", "bloque", "Monto1"]]
+    p = df[["RPJ", "_periodo_consultado", "_tipo_consultado", "fila", "Cuenta", "OrdenColumna", "bloque", "Monto1"]]
     p = p.rename(columns={"RPJ": "rpj", "_periodo_consultado": "periodo", "_tipo_consultado": "tipo",
                           "Cuenta": "cuenta", "OrdenColumna": "columna", "Monto1": "monto"})
     p["columna"] = p["columna"].astype("int16")
@@ -336,8 +347,11 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
         if dup.any():
             raise ValueError(f"{ejercicio}: {int(dup.sum())} hechos duplicados")
         h = h.sort_values(["periodo", "tipo", "rpj", "estado", "cuenta"], ignore_index=True)
+        # Texto plano y no "category": con category cada archivo guarda un índice de 8 bits
+        # y al leer todos los años juntos el diccionario combinado se desborda. Parquet ya
+        # comprime el texto repetido, así que el tamaño casi no cambia.
         for col in ["rpj", "periodo", "tipo", "estado", "cuenta"]:
-            h[col] = h[col].astype("category")
+            h[col] = h[col].astype(str)
         destino = salida / "hechos" / f"ejercicio={ejercicio}"
         destino.mkdir(exist_ok=True)
         h.drop(columns="ejercicio").to_parquet(destino / "part-0.parquet", index=False)
@@ -346,8 +360,8 @@ def construir(cache: CacheDisco, salida: Path) -> dict[str, int]:
     # --- Patrimonio, un archivo por ejercicio
     for ejercicio, partes in sorted(patrimonio_por_anio.items()):
         p = pd.concat(partes, ignore_index=True)
-        for col in ["rpj", "periodo", "tipo", "cuenta"]:
-            p[col] = p[col].astype("category")
+        for col in ["rpj", "periodo", "tipo", "fila", "cuenta"]:
+            p[col] = p[col].astype(str)
         destino = salida / "patrimonio" / f"ejercicio={ejercicio}"
         destino.mkdir(parents=True, exist_ok=True)
         p.to_parquet(destino / "part-0.parquet", index=False)

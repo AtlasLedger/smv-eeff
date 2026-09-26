@@ -260,3 +260,18 @@ def test_partida_intermedia_se_quita_si_ya_estaba_en_el_patrimonio():
     inter = est[est["concepto"] == "partidas_entre_pasivo_y_patrimonio"]
     assert list(inter["rpj"]) == ["FUERA"]   # en DENTRO ya cuadraba sin la partida
     assert cuadre_balance(est).empty
+
+
+def test_patrimonio_codigo_de_fila_repetido():
+    # Plantilla antigua SAB: la última columna repite el código de "Saldo inicial" en todas las filas.
+    base = {"RPJ": "S", "_periodo_consultado": "A", "_tipo_consultado": "I", "plan": "I"}
+    filas = []
+    for cod, v in [("3I3010", 100.0), ("3I3016", 20.0), ("3I301A", 120.0)]:
+        filas += [{**base, "Cuenta": cod, "OrdenColumna": "1", "DescripcionColumna": "CAPITAL", "Monto1": v},
+                  {**base, "Cuenta": "3I30I0", "OrdenColumna": "8", "DescripcionColumna": "Total", "Monto1": v}]
+    calidad = {"patrimonio_celdas_bloque_repetido": 0}
+    p, _ = _patrimonio(pd.DataFrame(filas), calidad)
+    total = p[p["columna"] == 8].set_index("fila")["monto"]
+    assert total.to_dict() == {"3I3010": 100.0, "3I3016": 20.0, "3I301A": 120.0}
+    assert set(p.loc[p["columna"] == 8, "cuenta"]) == {"3I30I0"}   # el código original se conserva
+    assert calidad["patrimonio_celdas_con_codigo_distinto_a_su_fila"] == 3

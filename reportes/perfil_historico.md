@@ -134,9 +134,9 @@ _Ninguna._
 
 ```json
 {
-  "patrimonio_celdas_bloque_repetido": 39120,
+  "patrimonio_celdas_bloque_repetido": 99584,
   "archivos_vacios": 140,
-  "archivos_procesados": 1228,
+  "archivos_procesados": 1264,
   "presentaciones_en_dos_planes": [
     "S80083 2000-1-I obtener_BalanceGeneral: se usa plan I",
     "S80141 2000-1-I obtener_BalanceGeneral: se usa plan I",
@@ -203,12 +203,14 @@ _Ninguna._
     "SG0005 2020-4-I obtener_FlujoEfectivo: se usa plan I",
     "SG0005 2021-1-I obtener_FlujoEfectivo: se usa plan I",
     "SG0005 2021-2-I obtener_FlujoEfectivo: se usa plan I",
-    "SG0005 2021-3-I obtener_FlujoEfectivo: se usa plan I"
+    "SG0005 2021-3-I obtener_FlujoEfectivo: se usa plan I",
+    "SG0005 2017-A-I obtener_CambiosPatrimonio: se usa plan D"
   ],
+  "patrimonio_celdas_con_codigo_distinto_a_su_fila": 180469,
   "indice_smv_filas_sin_dato": 423,
   "totales_en_unidades_detectados_sin_indice": 406,
   "presentaciones_con_totales_en_unidades": 1381,
-  "patrimonio_escala_no_verificada": 0,
+  "patrimonio_escala_no_verificada": 83407,
   "empresas_con_balance": 682,
   "empresas_solo_con_ori": 2284,
   "planes_sin_mapeo": [],

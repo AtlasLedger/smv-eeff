@@ -6,7 +6,7 @@ las decisiones que necesitan su validación. La sección de arriba siempre está
 ## Estado actual
 
 - Paso 1 (extractor): histórico COMPLETO 2000-2026 (1,350 combinaciones, 0 fallidas, 9.1
-  millones de filas). Patrimonio anual descargándose (`logs/historico_patrimonio.out`).
+  millones de filas) + patrimonio anual 2000-2025 (54 combinaciones, 0 fallidas).
 - Paso 2 (mapeo): propuesta lista para todas las plantillas con vigencia por años.
   Decisiones de criterio pendientes: `mapeo/DECISIONES.md` (8 puntos).
 - Paso 3 (modelo): base completa construida (`data/`, 163 MB; ningún archivo sobre 50 MB).
@@ -108,6 +108,14 @@ Mientras no se validen, cada valor y ratio que dependa de ellas sale marcado com
   2012-2014 (columna `empresas.estados`).
 - Brechas conocidas: plantillas del año 2000 de B y S (30 bancos, 20 seguros) y CAVALI
   2013-2016 sin todos los conceptos; bancos sin desglose de cartera antes de 2006.
+- PATRIMONIO: en la plantilla de SAB el código de celda cambia por columna y, en años
+  antiguos, la columna Total repite 3I30I0 en todas las filas. Se agregó `fila` (código
+  de la primera columna de la fila) y se conserva el código original en `cuenta`.
+  Control: el total de la última columna coincide con el patrimonio del balance en 96 a
+  100 % de las presentaciones de todos los planes y eras, salvo SAB 2000-2005 (38 %; no
+  se corrige, queda como brecha conocida).
+- Formato: las claves se guardan como texto y no como "category" (con category, leer
+  todos los años juntos desbordaba el índice de 8 bits del diccionario).
 - Presentación doble: BNB Valores SAB (SG0005) presentó 2021-T1/T2 en el plan de SAB y en
   el general a la vez. La guarda contra reglas superpuestas lo detectó (si no, el activo
   salía duplicado). Se usa el plan que corresponde al tipo de empresa. Quedan 2

@@ -24,7 +24,8 @@ proyecto es la capa de trabajo que hay que hacer encima para poder usarla:
   resultado integral) de **2000 a 2026**, anuales y trimestrales, individuales y
   consolidados: unos 9.1 millones de montos por cuenta.
 - Una capa de conceptos comparables y 12 ratios estándar.
-- El estado de cambios en el patrimonio (anual).
+- El estado de cambios en el patrimonio (anual). Su saldo final coincide con el patrimonio
+  del balance en 96 % a 100 % de los casos según el plan de cuentas.
 
 ## Estado
 
@@ -117,7 +118,8 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
   el plan general y hasta 2010 en bancos y seguros): iba entre el pasivo y el patrimonio.
 - **Brechas conocidas:** algunas plantillas del año 2000 (bancos y seguros) y CAVALI
   2013-2016 no tienen todos los conceptos estándar; los bancos no desglosan la cartera por
-  situación antes de 2006.
+  situación antes de 2006; el estado de cambios en el patrimonio de las sociedades agentes
+  de bolsa 2000-2005 no concilia con su balance en la mayoría de casos.
 - **Detalles menores:** identificadores con espacios de relleno, RUC = 0 en holdings
   extranjeros, una empresa que presentó el mismo estado en dos plantillas y el servicio
   `obtener_EFData`, que siempre devuelve 0 registros.
