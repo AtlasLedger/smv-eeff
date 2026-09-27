@@ -157,3 +157,14 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
   versiones en Zenodo por sí solas.
 - Lección: no comprimir el caché en macOS sin `COPYFILE_DISABLE=1`; el tar de macOS agrega
   archivos ocultos `._*` que en Linux rompían la construcción (ya se ignoran igual).
+
+## Difusión (2026-09-27)
+
+- `scripts/generar_sitio.py` genera en cada publicación de la página una página estática por
+  empresa (`empresa/<slug>/`, 631), el directorio `empresa/` y `sitemap.xml` (633 URL), para
+  que los buscadores vean cada empresa (el explorador de `index.html` carga los datos con
+  JavaScript y Google no los indexa bien). `index.html` lleva además `canonical` y una ficha
+  schema.org `Dataset` para Google Dataset Search. Sin robots.txt: en un sitio de proyecto
+  de GitHub Pages iría en la raíz del dominio, que es otro repositorio.
+- Pendiente del propietario: verificar el sitio en Google Search Console y enviar el sitemap;
+  crear cuentas en Kaggle y Hugging Face para subir copias.

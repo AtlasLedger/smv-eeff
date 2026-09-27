@@ -6,7 +6,7 @@ name: pagina
 on:
   push:
     branches: [main]
-    paths: ["site/**"]
+    paths: ["site/**", "scripts/generar_sitio.py"]
   workflow_run:
     workflows: [actualizar]
     types: [completed]
@@ -32,6 +32,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pandas pyarrow
       - name: Armar el sitio
         run: |
           mkdir -p _sitio/data _sitio/docs _sitio/mapeo _sitio/validacion
@@ -41,6 +45,7 @@ jobs:
           cp docs/diccionario.md _sitio/docs/
           cp mapeo/*.csv mapeo/DECISIONES.md _sitio/mapeo/
           cp validacion/reporte.md _sitio/validacion/
+          python scripts/generar_sitio.py --data data --salida _sitio
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _sitio
