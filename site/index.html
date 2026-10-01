@@ -218,15 +218,27 @@
   .value-negative { color:var(--danger); }
   .empty-cell { height:180px; color:#86868b; text-align:center!important; white-space:normal; }
   .empty-cell strong { display:block; margin-bottom:6px; color:#424245; font-size:.9rem; }
-  .confidence {
-    display:inline-flex; align-items:center; margin-left:6px; border:1px solid rgba(175,82,222,.16);
-    border-radius:999px; padding:2px 7px; color:#8944a8; background:#f7ecfc;
-    font-size:.58rem; font-weight:650; letter-spacing:.03em; text-transform:uppercase;
+  .calculation-link {
+    display:block; width:max-content; margin-top:4px; padding:0; border:0; color:var(--mint);
+    background:none; font-size:.7rem; font-weight:600; text-align:left; cursor:pointer;
   }
+  .calculation-link:hover,.calculation-link:focus-visible { text-decoration:underline; text-underline-offset:3px; }
   .explorer-foot { display:flex; justify-content:space-between; gap:24px; padding:16px 18px; border-top:1px solid var(--line); color:#86868b; font-size:.71rem; }
   .explorer-foot p { margin:0; }
   .explorer-foot a { color:var(--mint); text-decoration:none; }
   .explorer-foot a:hover { text-decoration:underline; text-underline-offset:3px; }
+  .calculation-dialog {
+    width:min(460px,calc(100% - 32px)); max-height:calc(100% - 32px); border:1px solid var(--line-strong);
+    border-radius:24px; padding:28px; color:var(--ink); background:#fff; box-shadow:0 24px 80px rgba(0,0,0,.18);
+  }
+  .calculation-dialog::backdrop { background:rgba(29,29,31,.38); backdrop-filter:blur(3px); }
+  .calculation-dialog h3 { margin:0 28px 8px 0; font-size:1.4rem; line-height:1.2; }
+  .calculation-dialog p { margin:0 0 14px; color:var(--muted); font-size:.88rem; }
+  .calculation-dialog .calculation-context { color:var(--faint); font-size:.76rem; }
+  .calculation-dialog .calculation-fields { color:var(--ink); font-weight:600; }
+  .calculation-dialog a { color:var(--mint); font-size:.86rem; font-weight:600; text-decoration:none; }
+  .calculation-dialog a:hover { text-decoration:underline; text-underline-offset:3px; }
+  .calculation-close { position:absolute; top:18px; right:18px; width:34px; height:34px; border:0; border-radius:50%; background:var(--soft); cursor:pointer; }
 
   .light-band {
     position:relative; color:var(--ink); border-block:1px solid #dce7e2;
@@ -487,10 +499,18 @@
         </table>
       </div>
       <div class="explorer-foot">
-        <p>Montos en miles de la moneda de reporte. “Criterio” identifica conceptos cuya equivalencia contable fue validada y documentada.</p>
+        <p>Montos en miles de la moneda de reporte. Cuando una cifra usa una regla de comparación entre formatos de la SMV, puedes consultar cómo se obtuvo.</p>
         <p><a href="#glosario">Ver glosario y metodología</a></p>
       </div>
     </div>
+    <dialog class="calculation-dialog" id="calculation-dialog" aria-labelledby="calculation-title">
+      <button class="calculation-close" type="button" aria-label="Cerrar explicación">×</button>
+      <h3 id="calculation-title">Cómo se obtuvieron estas cifras</h3>
+      <p class="calculation-context" id="calculation-context"></p>
+      <p>En esta fila, las siguientes cifras se obtuvieron aplicando reglas documentadas a las cuentas publicadas por la SMV. No es una advertencia de error:</p>
+      <p class="calculation-fields" id="calculation-fields"></p>
+      <a href="mapeo/DECISIONES.md" target="_blank" rel="noopener">Consultar las reglas de cálculo ↗</a>
+    </dialog>
   </section>
 
   <section class="section light-band" id="metodologia">
@@ -541,9 +561,9 @@
             </dl></div>
           </details>
           <details>
-            <summary>Directo vs. validado por criterio</summary>
+            <summary>Cómo hacemos comparables las cifras</summary>
             <div class="detail-content">
-              <p><strong>Directo</strong> significa que la equivalencia no requiere interpretación. <strong>Validado</strong> identifica una decisión contable estudiada contra los datos y documentada, por ejemplo la definición de ingresos en bancos o aseguradoras.</p>
+              <p>Algunas cifras provienen directamente de una cuenta de la SMV. Otras combinan varias cuentas para comparar empresas que presentan sus estados en formatos distintos, por ejemplo los ingresos de bancos o aseguradoras. Cada regla está documentada.</p>
               <p><a class="text-link" href="mapeo/DECISIONES.md" target="_blank">Revisar decisiones contables ↗</a></p>
             </div>
           </details>
@@ -625,6 +645,22 @@ const COLUMNAS = [
 const estado = { datos:[], listo:false };
 const tbody = document.querySelector("#t tbody");
 const estadoResultados = document.getElementById("result-status");
+const calculationDialog = document.getElementById("calculation-dialog");
+let filasVisibles = [];
+
+function columnasConRegla(d) {
+  const reglas = new Set(String(d.conceptos_con_criterio || "").split(",").map(function(s){ return s.trim(); }));
+  const presentes = function(clave){ return d[clave] !== "" && d[clave] != null; };
+  const columnas = [];
+  if (reglas.has("activo_total") && presentes("activo_total")) columnas.push("Activo");
+  if (reglas.has("patrimonio_total") && presentes("patrimonio_total")) columnas.push("Patrimonio");
+  if (reglas.has("ingresos") && presentes("ingresos")) columnas.push("Ingresos");
+  if (reglas.has("utilidad_neta") && presentes("utilidad_neta")) columnas.push("Utilidad neta");
+  if ((reglas.has("ingresos") || reglas.has("utilidad_neta")) && presentes("ratio_margen_neto")) columnas.push("Margen neto");
+  if ((reglas.has("utilidad_neta") || reglas.has("patrimonio_total")) && presentes("ratio_roe")) columnas.push("ROE");
+  if ((reglas.has("pasivo_total") || reglas.has("patrimonio_total")) && presentes("ratio_pasivo_patrimonio")) columnas.push("Pasivo / patrimonio");
+  return columnas;
+}
 
 function parseCSV(texto) {
   const filas=[]; let fila=[],campo="",comillas=false;
@@ -667,6 +703,7 @@ function pintar() {
   const consulta=normalizar(original);
   const tipo=document.getElementById("tipo").value;
   if (consulta.length<2) {
+    filasVisibles=[];
     estadoResultados.textContent="Escribe al menos dos letras o selecciona un ejemplo.";
     tbody.innerHTML='<tr><td class="empty-cell" colspan="10"><strong>Encuentra una empresa</strong>Busca por razón social o RUC para ver su historia financiera.</td></tr>';
     return;
@@ -675,19 +712,32 @@ function pintar() {
     return d.tipo===tipo && (normalizar(d.nombre).includes(consulta) || String(d.ruc||"").includes(consulta));
   }).sort(function(a,b){ return a.nombre.localeCompare(b.nombre) || Number(b.ejercicio)-Number(a.ejercicio); });
   if (!coincidencias.length) {
+    filasVisibles=[];
     estadoResultados.textContent="0 resultados para “"+original+"”.";
     tbody.innerHTML='<tr><td class="empty-cell" colspan="10"><strong>Sin coincidencias</strong>Prueba con otra empresa o cambia el tipo de estado.</td></tr>';
     return;
   }
-  const limite=500,visibles=coincidencias.slice(0,limite);
+  const limite=500;
+  filasVisibles=coincidencias.slice(0,limite);
   estadoResultados.innerHTML="<strong>"+coincidencias.length.toLocaleString("es-PE")+"</strong> registros encontrados"+
     (coincidencias.length>limite?" · mostrando los primeros "+limite:"");
-  tbody.innerHTML=visibles.map(function(d){
-    const etiqueta=d.conceptos_con_criterio
-      ?' <span class="confidence" title="'+escapar(d.conceptos_con_criterio)+'">criterio</span>':"";
-    return "<tr><td>"+escapar(d.nombre)+etiqueta+"</td>"+COLUMNAS.map(function(col){ return celda(d[col[0]],col[1]); }).join("")+"</tr>";
+  tbody.innerHTML=filasVisibles.map(function(d,index){
+    const explicacion=columnasConRegla(d).length
+      ?' <button class="calculation-link" type="button" data-row-index="'+index+'">Cómo se obtuvo</button>':"";
+    return "<tr><td>"+escapar(d.nombre)+explicacion+"</td>"+COLUMNAS.map(function(col){ return celda(d[col[0]],col[1]); }).join("")+"</tr>";
   }).join("");
 }
+tbody.addEventListener("click",function(event){
+  const boton=event.target.closest(".calculation-link");
+  if (!boton) return;
+  const d=filasVisibles[Number(boton.dataset.rowIndex)];
+  if (!d) return;
+  document.getElementById("calculation-context").textContent=d.nombre+" · "+d.ejercicio+" · "+(d.tipo==="C"?"Consolidado":"Individual");
+  document.getElementById("calculation-fields").textContent=columnasConRegla(d).join(", ")+".";
+  calculationDialog.showModal();
+});
+document.querySelector(".calculation-close").addEventListener("click",function(){ calculationDialog.close(); });
+calculationDialog.addEventListener("click",function(event){ if (event.target===calculationDialog) calculationDialog.close(); });
 function buscarEjemplo(consulta,tipo) {
   const input=document.getElementById("q");
   input.value=consulta;
