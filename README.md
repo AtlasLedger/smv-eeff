@@ -136,6 +136,12 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
 - Algunas partidas se clasifican distinto en el formato SBS que en el estado auditado NIIF
   (por ejemplo, la prima al fondo de seguro de depósitos o el efectivo restringido).
 
+## Dónde encontrarlo
+
+- Página con una ficha por empresa: https://atlasledger.github.io/smv-eeff/
+- Kaggle: https://www.kaggle.com/datasets/atlasledger/peru-smv-financial-statements (copia que se refresca a mano; la versión al día es la de este repositorio).
+- Listado en awesome-public-datasets, sección Finance.
+
 ## Cómo citar
 
 AtlasLedger (2026). *smv-eeff: estados financieros normalizados de empresas supervisadas

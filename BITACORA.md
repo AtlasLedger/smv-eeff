@@ -168,3 +168,5 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
   de GitHub Pages iría en la raíz del dominio, que es otro repositorio.
 - Pendiente del propietario: verificar el sitio en Google Search Console y enviar el sitemap;
   crear cuentas en Kaggle y Hugging Face para subir copias.
+- Kaggle (2026-10-03): copia publicada en kaggle.com/datasets/atlasledger/peru-smv-financial-statements (CSV y Parquet, hechos por año con columna `ejercicio`). No se actualiza sola: refrescar a mano 1 o 2 veces al año con `kaggle datasets version`.
+- Listas: aceptado en awesome-public-datasets (Finance); propuesta pendiente en awesome-quant.
