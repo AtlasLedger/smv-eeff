@@ -140,6 +140,7 @@ explicado con más detalle en [BITACORA.md](BITACORA.md).
 
 - Página con una ficha por empresa: https://atlasledger.github.io/smv-eeff/
 - Kaggle: https://www.kaggle.com/datasets/atlasledger/peru-smv-financial-statements (copia que se refresca a mano; la versión al día es la de este repositorio).
+- Hugging Face: https://huggingface.co/datasets/AtlasLedger/smv-eeff (misma copia que Kaggle, con visor de datos en el navegador).
 - Listado en awesome-public-datasets, sección Finance.
 
 ## Cómo citar

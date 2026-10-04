@@ -170,3 +170,4 @@ de impuestos gana (49 % contra 26 % en empresas; 64 % contra 17 % en bancos, pro
   crear cuentas en Kaggle y Hugging Face para subir copias.
 - Kaggle (2026-10-03): copia publicada en kaggle.com/datasets/atlasledger/peru-smv-financial-statements (CSV y Parquet, hechos por año con columna `ejercicio`). No se actualiza sola: refrescar a mano 1 o 2 veces al año con `kaggle datasets version`.
 - Listas: aceptado en awesome-public-datasets (Finance); propuesta pendiente en awesome-quant.
+- Hugging Face (2026-10-03): copia publicada en huggingface.co/datasets/AtlasLedger/smv-eeff. No se actualiza sola; refrescar junto con Kaggle con `HfApi().upload_folder` (ver PLAN_DIFUSION.md, tarea 3).
