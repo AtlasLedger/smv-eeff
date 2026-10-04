@@ -40,6 +40,7 @@ jobs:
         run: |
           mkdir -p _sitio/data _sitio/docs _sitio/mapeo _sitio/validacion
           cp site/index.html site/google*.html _sitio/
+          cp -r site/en _sitio/
           cp -r data/csv _sitio/data/
           cp data/metadatos.json data/calidad.json _sitio/data/
           cp docs/diccionario.md _sitio/docs/

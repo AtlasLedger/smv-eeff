@@ -47,7 +47,7 @@ def test_generar_sitio_minimo(tmp_path):
     pagina = (tmp_path / "empresa" / "alfa-beta-s-a" / "index.html").read_text(encoding="utf-8")
     assert (tmp_path / "empresa" / "otra-s-a-c" / "index.html").exists()
     sitemap = (tmp_path / "sitemap.xml").read_text(encoding="utf-8")
-    assert sitemap.count("<url>") == 4 and "<lastmod>2026-09-26</lastmod>" in sitemap
+    assert sitemap.count("<url>") == 5 and "<lastmod>2026-09-26</lastmod>" in sitemap
     titulo = re.search(r"<title>(.*?)</title>", pagina).group(1)
     assert "—" not in titulo and "2020-2021" in titulo
     assert "ALFA &amp; BETA" in pagina and "ALFA & BETA" not in pagina

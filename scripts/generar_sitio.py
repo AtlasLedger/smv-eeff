@@ -273,7 +273,7 @@ def pagina_directorio(empresas: list[tuple[str, str, str]]) -> str:
 
 
 def sitemap(slugs: list[str], fecha: str) -> str:
-    urls = [URL_BASE, f"{URL_BASE}empresa/"] + [f"{URL_BASE}empresa/{s}/" for s in sorted(slugs)]
+    urls = [URL_BASE, f"{URL_BASE}en/", f"{URL_BASE}empresa/"] + [f"{URL_BASE}empresa/{s}/" for s in sorted(slugs)]
     entradas = "".join(f"<url><loc>{u}</loc><lastmod>{fecha}</lastmod></url>\n" for u in urls)
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'

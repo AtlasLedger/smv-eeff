@@ -2,6 +2,8 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22981480.svg)](https://doi.org/10.5281/zenodo.22981480)
 
+*English version: [README.en.md](README.en.md)*
+
 Base de datos abierta, limpia y comparable de los estados financieros que las empresas
 supervisadas por la SMV (Superintendencia del Mercado de Valores del Perú) presentan cada
 trimestre.
