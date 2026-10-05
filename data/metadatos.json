@@ -2,8 +2,8 @@
   "titulo": "Estados financieros de empresas supervisadas por la SMV (Perú), normalizados",
   "fuente": "Superintendencia del Mercado de Valores (SMV), portal de datos abiertos (ODbL 1.0)",
   "licencia": "ODbL-1.0",
-  "construido_utc": "2026-09-26T17:45:58+00:00",
-  "commit_codigo": "68f7ab4",
+  "construido_utc": "2026-10-05T12:21:52+00:00",
+  "commit_codigo": "81d8f5c",
   "ejercicios": [
     2000,
     2026
