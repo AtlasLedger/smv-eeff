@@ -2,19 +2,19 @@
   "titulo": "Estados financieros de empresas supervisadas por la SMV (Perú), normalizados",
   "fuente": "Superintendencia del Mercado de Valores (SMV), portal de datos abiertos (ODbL 1.0)",
   "licencia": "ODbL-1.0",
-  "construido_utc": "2026-10-05T12:21:52+00:00",
-  "commit_codigo": "81d8f5c",
+  "construido_utc": "2026-11-05T12:34:45+00:00",
+  "commit_codigo": "e014694",
   "ejercicios": [
     2000,
     2026
   ],
-  "empresas_con_balance": 682,
-  "filas_hechos": 9097698,
+  "empresas_con_balance": 683,
+  "filas_hechos": 9154584,
   "controles": {
     "balances_que_no_cuadran": 3,
     "identidad_resultado_antes_extraordinarias_tasa": 0.9992,
     "identidad_resultado_antes_extraordinarias_anios_bajo_95pct": [],
-    "control_cruzado_indice_smv_comparaciones": 208788,
+    "control_cruzado_indice_smv_comparaciones": 210029,
     "control_cruzado_indice_smv_discrepancias": 5
   }
 }

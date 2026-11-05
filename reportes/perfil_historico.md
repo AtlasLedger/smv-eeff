@@ -1,8 +1,8 @@
 # Perfil histórico de la base
 
-- Empresas: **2,966**
+- Empresas: **2,967**
 - Ejercicios: 2000 a 2026
-- Presentaciones de balance: 47,843
+- Presentaciones de balance: 48,115
 
 ## Presentaciones por año
 
@@ -36,7 +36,7 @@ Empresas con balance anual (A) y número de presentaciones trimestrales, por tip
 | 2023 | 87 | 280 | 331 | 1049 |
 | 2024 | 86 | 276 | 329 | 1028 |
 | 2025 | 77 | 274 | 330 | 1025 |
-| 2026 | 0 | 0 | 156 | 504 |
+| 2026 | 0 | 0 | 182 | 750 |
 
 
 ## Planes de cuentas por año (empresas con balance anual individual)
@@ -135,8 +135,8 @@ _Ninguna._
 ```json
 {
   "patrimonio_celdas_bloque_repetido": 99584,
-  "archivos_vacios": 140,
-  "archivos_procesados": 1264,
+  "archivos_vacios": 130,
+  "archivos_procesados": 1274,
   "presentaciones_en_dos_planes": [
     "S80083 2000-1-I obtener_BalanceGeneral: se usa plan I",
     "S80141 2000-1-I obtener_BalanceGeneral: se usa plan I",
@@ -211,14 +211,14 @@ _Ninguna._
   "totales_en_unidades_detectados_sin_indice": 406,
   "presentaciones_con_totales_en_unidades": 1381,
   "patrimonio_escala_no_verificada": 83407,
-  "empresas_con_balance": 682,
+  "empresas_con_balance": 683,
   "empresas_solo_con_ori": 2284,
   "planes_sin_mapeo": [],
   "mapeo_cuentas_con_descripcion_cambiante": 75,
   "balances_que_no_cuadran": 3,
   "identidad_resultado_antes_extraordinarias_tasa": 0.9992,
   "identidad_resultado_antes_extraordinarias_anios_bajo_95pct": [],
-  "control_cruzado_indice_smv_comparaciones": 208788,
+  "control_cruzado_indice_smv_comparaciones": 210029,
   "control_cruzado_indice_smv_discrepancias": 5,
   "mapeo_conceptos_con_cobertura_menor_90pct": []
 }
